@@ -1,0 +1,5 @@
+
+Events were actively counted for 1.9 seconds.
+Event counts (actual) for /dades/albert.segarra.roca/Q6/PCA/lab/lab2/pi.g.O3:
+	Event                    Count                    % time counted
+	CPU_CLK_UNHALTED         6,562,217,293            100.00

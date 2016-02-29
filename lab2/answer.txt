@@ -1,0 +1,130 @@
+Ejercicio 1
+-----------
+
+a)
+
+Redirecting to /home2/users/alumnes/1185377/dummy.txt:
+
+0.64user 0.03system 0:01.11elapsed 61%CPU (0avgtext+0avgdata 1156maxresident)k
+0inputs+97664outputs (1major+82minor)pagefaults 0swaps
+
+Redirecting to /home2/users/alumnes/1185377/dades/dummy.txt:
+
+0.62user 0.05system 0:01.19elapsed 56%CPU (0avgtext+0avgdata 1200maxresident)k
+0inputs+97664outputs (0major+71minor)pagefaults 0swaps
+
+Redirecting to /tmp/dummy.txt:
+
+0.64user 0.01system 0:10.66elapsed 6%CPU (0avgtext+0avgdata 1132maxresident)k
+0inputs+0outputs (0major+67minor)pagefaults 0swaps
+
+Redirecting to /dev/null:
+
+0.64user 0.00system 0:00.64elapsed 99%CPU (0avgtext+0avgdata 1172maxresident)k
+0inputs+0outputs (0major+67minor)pagefaults 0swaps
+
+d)
+
+Because of the different mounting systems,
+which lead to different I/O operation costs.
+Those differences in the I/O cost cause
+variations in the system and total elapsed times.
+
+The user time doesn't vary because it does not
+include I/O operations.
+
+
+e)
+
+I can say that redirecting output to files on paths
+mounted by NFS and CIFS is not a good option when
+measuring an application time, because it affects
+execution time in a way we generally do not desire
+for our measures, causing a %CPU not close to 100%.
+
+The best setup is to use /dev/null if our intention
+is to measure just computation time
+(without I/O time), and /tmp if we also want to
+measure the I/O time that we would see in a
+local disk file system (not NFS nor CIFS) or if
+we want to see the output of the program. 
+
+We should also be aware that files saved in the /tmp
+path need to be later copied to another path if we're
+willing to keep them because they're deleted on 
+computer shutdown.
+
+Ejercicio 2
+-----------
+
+Redirecting to /home2/users/alumnes/1185377/dummy.txt:
+
+7.13user 0.01system 0:07.16elapsed 99%CPU (0avgtext+0avgdata 1164maxresident)k
+0inputs+160outputs (2major+76minor)pagefaults 0swaps
+
+7.13user 0.01system 0:07.16elapsed 99%CPU (0avgtext+0avgdata 1164maxresident)k
+0inputs+200outputs (1major+74minor)pagefaults 0swaps
+
+7.20user 0.01system 0:07.23elapsed 99%CPU (0avgtext+0avgdata 1280maxresident)k
+0inputs+200outputs (1major+76minor)pagefaults 0swaps
+
+Redirecting to /home2/users/alumnes/1185377/dades/dummy.txt:
+
+7.17user 0.01system 0:07.19elapsed 99%CPU (0avgtext+0avgdata 1324maxresident)k
+0inputs+56outputs (1major+78minor)pagefaults 0swaps
+
+7.16user 0.01system 0:07.17elapsed 99%CPU (0avgtext+0avgdata 1176maxresident)k
+0inputs+56outputs (1major+74minor)pagefaults 0swaps
+
+7.19user 0.01system 0:07.21elapsed 99%CPU (0avgtext+0avgdata 1332maxresident)k
+0inputs+56outputs (1major+78minor)pagefaults 0swaps
+
+Redirecting to /tmp/dummy.txt:
+
+7.17user 0.00system 0:07.18elapsed 100%CPU (0avgtext+0avgdata 1284maxresident)k
+0inputs+0outputs (1major+78minor)pagefaults 0swaps
+
+7.14user 0.01system 0:07.16elapsed 99%CPU (0avgtext+0avgdata 1168maxresident)k
+0inputs+0outputs (1major+75minor)pagefaults 0swaps
+
+7.18user 0.01system 0:07.19elapsed 99%CPU (0avgtext+0avgdata 1328maxresident)k
+0inputs+0outputs (1major+79minor)pagefaults 0swaps
+
+Redirecting to /dev/null:
+
+7.19user 0.00system 0:07.19elapsed 100%CPU (0avgtext+0avgdata 1280maxresident)k
+0inputs+0outputs (1major+75minor)pagefaults 0swaps
+
+7.15user 0.00system 0:07.15elapsed 100%CPU (0avgtext+0avgdata 1252maxresident)k
+0inputs+0outputs (1major+77minor)pagefaults 0swaps
+
+7.16user 0.00system 0:07.16elapsed 100%CPU (0avgtext+0avgdata 1284maxresident)k
+0inputs+0outputs (1major+79minor)pagefaults 0swaps
+
+
+The results are very similar because the pi
+program does very little I/O compared to
+the computation it does. This causes the CPU
+execution time percentage to always be very high
+independently of the output mounting system. 
+
+This is because, added to the fact that it is
+compiled with no optimization (O0), which increases
+computation time, pi program does only write 
+approximately 23047 bytes of data, whereas 
+popul program writes about 49160192 bytes of data.
+
+Ejercicio 3
+-----------
+
+a)
+
+O0 and O3 outputs of pi are equal
+
+b)
+
+Speedup user+system: 2.55913978495
+
+c)
+
+Speedup elapsed: 2.55
