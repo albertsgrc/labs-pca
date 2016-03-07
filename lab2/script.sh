@@ -301,7 +301,8 @@ operf --event=CPU_CLK_UNHALTED:7500 ./pi.g.O0 > /dev/null
 opreport -l
 
 echo ""
-echo "
+
+ans = "
 There is an increment in the samples column value
 for the 7500 counter value with respect to the 750000
 counter value.
@@ -312,6 +313,8 @@ will be higher and oprofile will take more samples in
 the same time.
 "
 
+echo "$ans"
+
 echo "Ejercicio 7"
 echo "-----------"
 
@@ -319,3 +322,60 @@ gcc pi.c -O3 -g -o pi.g.O3
 
 operf --event=CPU_CLK_UNHALTED:7500 ./pi.g.O3 > /dev/null
 
+ans="
+We can clearly see that oprofile has taken much less
+samples on the optimized (O3) execution, and that's because
+its execution time is much smaller.
+
+Also, when using opannotate, we can see that the sample
+percentages have changed a little bit, making the division
+operations much less expensive as compared to branching
+operations. This is because the are parts of the code
+which the compiler can optimize much more than others.
+
+Also, the number of lines of code that opannotate has been
+able to sample individually is much smaller with the execution
+of the optimized executable, and that's because it's harder
+to map lines of code to instructions due to the compiler
+optimizations.
+
+Lastly, using ocount we can see that the number of cycles
+has been more than halved in the O3 execution, again due
+to the optimizations which reduce instructions, increase
+throughput and decrease overall cycles. 
+"
+
+echo "$ans"
+
+echo "Ejercicio 8"
+echo "-----------"
+
+echo ""
+echo "a)"
+
+ans="
+The time shown is CPU time, cause it is based on the
+tms_utime and tms_stime attributes of the struct,
+and not on the return value of times.
+
+The times() call can also provide real elapsed time, and
+we can access it with the return value of the call.
+"
+
+echo "$ans"
+
+echo "b)"
+
+ans="
+getrusage() can only provide CPU time, cause it always
+returns 0 upon success, and the struct which gets assigned
+has no attribute with the elapsed time, only user and system
+cpu time.
+
+As I can see from the results I've obtained in my machine,
+the precision is slightly higher with getrusage(), but
+as the documentation states, times() accuracy is left
+unspecified, whereas getrusage() accuracy is microseconds.
+"
+
+echo "$ans"

@@ -3,6 +3,8 @@
 #include <stdlib.h>
 #include <sys/times.h>
 #include <unistd.h>
+#include <sys/time.h>
+#include <sys/resource.h>
 
 int N, N4;
 char a[25480], b[25480], c[25480];
@@ -126,6 +128,9 @@ void calculate( void )
     int j;
     struct tms start, end;
 
+    struct rusage usage_start, usage_end;
+    if (getrusage(RUSAGE_SELF, &usage_start) == -1) exit(0);
+
     if (times(&start) == (clock_t)-1) exit(0);
 
     N4 = N + 4;
@@ -162,8 +167,19 @@ void calculate( void )
 
     progress();
 
+    if (getrusage(RUSAGE_SELF, &usage_end) == -1) exit(0);
+
     if (times(&end) == (clock_t)-1) exit(0);
     fprintf(stderr, "\n Timing amb crida times: user %f segons, system: %f segons\n", (float)(end.tms_utime-start.tms_utime)/sysconf(_SC_CLK_TCK), (float)(end.tms_stime-start.tms_stime)/sysconf(_SC_CLK_TCK));
+    
+    float user_time_start = (usage_start.ru_utime.tv_sec + (float)(usage_start.ru_utime.tv_usec)/1e6);
+    float user_time_end = (usage_end.ru_utime.tv_sec + (float)(usage_end.ru_utime.tv_usec)/1e6);
+    float user_time = user_time_end - user_time_start;
+
+    float system_time_start = (usage_start.ru_stime.tv_sec + (float)(usage_start.ru_stime.tv_usec)/1e6);
+    float system_time_end = (usage_end.ru_stime.tv_sec + (float)(usage_end.ru_stime.tv_usec)/1e6);
+    float system_time = system_time_end - system_time_start;
+    fprintf(stderr, "\n Timing amb crida getrusage: user %f segons, system: %f segons\n", user_time, system_time);
 }
 
 /*
