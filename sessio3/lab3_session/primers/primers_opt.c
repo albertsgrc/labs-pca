@@ -44,14 +44,14 @@ BITARRAY *createBitArray(bignum bits)
     return ba;
 }
 
-void setBit(BITARRAY * ba, bignum bitSS)
+inline void setBit(BITARRAY * ba, bignum bitSS)
 {
     t_elem *pElem = ba->p + (bitSS >> ba->bitsPerElemLog2);
     t_elem remainder = (bitSS & ba->bitsPerElemMask);
     *pElem |= ((t_elem)(1) << remainder);
 } 
 
-void clearBit(BITARRAY * ba, bignum bitSS)
+inline void clearBit(BITARRAY * ba, bignum bitSS)
 {
     t_elem *pElem = ba->p + (bitSS >> ba->bitsPerElemLog2);
     t_elem remainder = (bitSS & ba->bitsPerElemMask);
@@ -60,7 +60,7 @@ void clearBit(BITARRAY * ba, bignum bitSS)
     *pElem &= mask;
 } 
 
-int getBit(BITARRAY * ba, bignum bitSS)
+inline int getBit(BITARRAY * ba, bignum bitSS)
 {
     t_elem *pElem = ba->p + (bitSS >> ba->bitsPerElemLog2);
     t_elem remainder = (bitSS & ba->bitsPerElemMask);
@@ -69,7 +69,7 @@ int getBit(BITARRAY * ba, bignum bitSS)
     return (ret & (t_elem)(1));
 }
 
-void clearAll(BITARRAY * ba)
+inline void clearAll(BITARRAY * ba)
 {
     bignum intSS;
     for (intSS = 0; intSS <= ba->intsInArray; intSS++) {
@@ -77,7 +77,7 @@ void clearAll(BITARRAY * ba)
     }
 }
 
-void setAll(BITARRAY * ba)
+inline void setAll(BITARRAY * ba)
 {
     bignum intSS;
     for (intSS = 0; intSS <= ba->intsInArray; intSS++) {
@@ -85,7 +85,7 @@ void setAll(BITARRAY * ba)
     }
 }
 
-void printPrime(bignum bn)
+inline void printPrime(bignum bn)
 {
     static char buf[1000];
     sprintf(buf, "%ull", bn);
@@ -101,7 +101,6 @@ void findPrimes(bignum topCandidate)
     clearBit(ba, 0);
     clearBit(ba, 1);		/* MARK ALL THE NON-PRIMES */
     bignum thisFactor = 2;
-    bignum lastSquare = 0;
     bignum thisSquare = 0;
     while (thisFactor * thisFactor <= topCandidate) {	/* MARK THE MULTIPLES OF THIS FACTOR */
 	bignum mark = thisFactor + thisFactor;
@@ -110,19 +109,18 @@ void findPrimes(bignum topCandidate)
 	    mark += thisFactor;
 	}			/* PRINT THE PROVEN PRIMES SO FAR */
 	thisSquare = thisFactor * thisFactor;
-	for (; lastSquare < thisSquare; lastSquare++) {
-	    if (getBit(ba, lastSquare))
-		printPrime(lastSquare);
-	}			/* SET thisFactor TO NEXT PRIME */
+	/* SET thisFactor TO NEXT PRIME */
 	thisFactor++;
 	while (getBit(ba, thisFactor) == 0)
 	    thisFactor++;
 	assert(thisFactor <= topCandidate);
-    }				/* PRINT THE REMAINING PRIMES */
-    for (; lastSquare <= topCandidate; lastSquare++) {
-	if (getBit(ba, lastSquare))
-	    printPrime(lastSquare);
     }
+
+    bignum i;		/* PRINT ALL THE PRIMES */
+    for (i = 2; i <= topCandidate; i++)
+	   if (getBit(ba, i))
+	       printPrime(i);
+    
     freeBitArray(ba);
 }
 
