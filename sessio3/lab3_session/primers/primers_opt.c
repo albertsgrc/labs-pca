@@ -65,8 +65,8 @@ int getBit(BITARRAY * ba, bignum bitSS)
     t_elem *pElem = ba->p + (bitSS >> ba->bitsPerElemLog2);
     t_elem remainder = (bitSS & ba->bitsPerElemMask);
     t_elem ret = *pElem;
-    ret &= ((t_elem)(1) << remainder);
-    return (ret != (t_elem)(0));
+    ret >>= remainder;
+    return (ret & (t_elem)(1));
 }
 
 void clearAll(BITARRAY * ba)
