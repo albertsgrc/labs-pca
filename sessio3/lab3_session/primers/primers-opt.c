@@ -8,15 +8,16 @@ typedef unsigned long t_elem;
 
 typedef struct {
     t_elem *p;		/* pointer to array */
+
     uint bitsPerByte;		/* 8 on normal systems */
     uint bytesPerElem;		/* sizeof(unsigned int) */
     uint bitsPerElem;		/* for bit arithmetic */
+
     bignum bitsInArray;		/* how many bits in array */
-    uint intsInArray;		/* how many uints to give necessary bits */
+    bignum intsInArray;		/* how many uints to give necessary bits */
 
     uint bitsPerElemMask;
     uint bitsPerElemLog2;
-
 } BITARRAY;
 
 void freeBitArray(BITARRAY * ba)
@@ -34,13 +35,13 @@ BITARRAY *createBitArray(bignum bits)
     ba->bitsPerElem = ba->bitsPerByte * ba->bytesPerElem;
     ba->bitsInArray = bits;
     ba->intsInArray = bits / ba->bitsPerElem + 1;
-    
 
     ba->bitsPerElemLog2 = __builtin_ctz(ba->bitsPerElem);
     ba->bitsPerElemMask = ba->bitsPerElem - 1;
 
     ba->p = malloc(ba->intsInArray * ba->bytesPerElem);
     assert(ba->p != NULL);
+
     return ba;
 }
 
