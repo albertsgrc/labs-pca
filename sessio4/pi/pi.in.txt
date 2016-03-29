@@ -1,0 +1,2241 @@
+   1              		.file	"pi.c"
+   2              	# GNU C (SUSE Linux) version 4.8.3 20140627 [gcc-4_8-branch revision 212064] (x86_64-suse-linux)
+   3              	#	compiled by GNU C version 4.8.3 20140627 [gcc-4_8-branch revision 212064], GMP version 5.1.3, MPF
+   4              	# GGC heuristics: --param ggc-min-expand=100 --param ggc-min-heapsize=131072
+   5              	# options passed:  pi.c -mtune=generic -march=x86-64 -auxbase-strip pi.s -g
+   6              	# -O3 -fverbose-asm
+   7              	# options enabled:  -faggressive-loop-optimizations
+   8              	# -fasynchronous-unwind-tables -fauto-inc-dec -fbranch-count-reg
+   9              	# -fcaller-saves -fcombine-stack-adjustments -fcommon -fcompare-elim
+  10              	# -fcprop-registers -fcrossjumping -fcse-follow-jumps -fdefer-pop
+  11              	# -fdelete-null-pointer-checks -fdevirtualize -fdwarf2-cfi-asm
+  12              	# -fearly-inlining -feliminate-unused-debug-types -fexpensive-optimizations
+  13              	# -fforward-propagate -ffunction-cse -fgcse -fgcse-after-reload -fgcse-lm
+  14              	# -fgnu-runtime -fgnu-unique -fguess-branch-probability
+  15              	# -fhoist-adjacent-loads -fident -fif-conversion -fif-conversion2
+  16              	# -findirect-inlining -finline -finline-atomics -finline-functions
+  17              	# -finline-functions-called-once -finline-small-functions -fipa-cp
+  18              	# -fipa-cp-clone -fipa-profile -fipa-pure-const -fipa-reference -fipa-sra
+  19              	# -fira-hoist-pressure -fira-share-save-slots -fira-share-spill-slots
+  20              	# -fivopts -fkeep-static-consts -fleading-underscore -fmath-errno
+  21              	# -fmerge-constants -fmerge-debug-strings -fmove-loop-invariants
+  22              	# -fomit-frame-pointer -foptimize-register-move -foptimize-sibling-calls
+  23              	# -foptimize-strlen -fpartial-inlining -fpeephole -fpeephole2
+  24              	# -fpredictive-commoning -fprefetch-loop-arrays -free -freg-struct-return
+  25              	# -fregmove -freorder-blocks -freorder-functions -frerun-cse-after-loop
+  26              	# -fsched-critical-path-heuristic -fsched-dep-count-heuristic
+  27              	# -fsched-group-heuristic -fsched-interblock -fsched-last-insn-heuristic
+  28              	# -fsched-rank-heuristic -fsched-spec -fsched-spec-insn-heuristic
+  29              	# -fsched-stalled-insns-dep -fschedule-insns2 -fshow-column -fshrink-wrap
+  30              	# -fsigned-zeros -fsplit-ivs-in-unroller -fsplit-wide-types
+  31              	# -fstrict-aliasing -fstrict-overflow -fstrict-volatile-bitfields
+  32              	# -fsync-libcalls -fthread-jumps -ftoplevel-reorder -ftrapping-math
+  33              	# -ftree-bit-ccp -ftree-builtin-call-dce -ftree-ccp -ftree-ch
+  34              	# -ftree-coalesce-vars -ftree-copy-prop -ftree-copyrename -ftree-cselim
+  35              	# -ftree-dce -ftree-dominator-opts -ftree-dse -ftree-forwprop -ftree-fre
+  36              	# -ftree-loop-distribute-patterns -ftree-loop-if-convert -ftree-loop-im
+  37              	# -ftree-loop-ivcanon -ftree-loop-optimize -ftree-parallelize-loops=
+  38              	# -ftree-partial-pre -ftree-phiprop -ftree-pre -ftree-pta -ftree-reassoc
+  39              	# -ftree-scev-cprop -ftree-sink -ftree-slp-vectorize -ftree-slsr -ftree-sra
+  40              	# -ftree-switch-conversion -ftree-tail-merge -ftree-ter
+  41              	# -ftree-vect-loop-version -ftree-vectorize -ftree-vrp -funit-at-a-time
+  42              	# -funswitch-loops -funwind-tables -fvar-tracking
+  43              	# -fvar-tracking-assignments -fvect-cost-model -fverbose-asm
+  44              	# -fzero-initialized-in-bss -m128bit-long-double -m64 -m80387
+  45              	# -maccumulate-outgoing-args -malign-stringops -mfancy-math-387
+  46              	# -mfp-ret-in-387 -mfxsr -mglibc -mieee-fp -mlong-double-80 -mmmx -mno-sse4
+  47              	# -mpush-args -mred-zone -msse -msse2 -mtls-direct-seg-refs
+  48              	
+  49              		.text
+  50              	.Ltext0:
+  51              		.p2align 4,,15
+  52              		.globl	DIVIDE
+  54              	DIVIDE:
+  55              	.LFB33:
+  56              		.file 1 "pi.c"
+   1:pi.c          **** #include <memory.h>
+   2:pi.c          **** #include <stdio.h>
+   3:pi.c          **** #include <stdlib.h>
+   4:pi.c          **** 
+   5:pi.c          **** int N, N4;
+   6:pi.c          **** char a[10240], b[10240], c[10240];
+   7:pi.c          **** char string[100];
+   8:pi.c          **** 
+   9:pi.c          **** void DIVIDE( char *x, int n )                           
+  10:pi.c          **** {                                                
+  57              		.loc 1 10 0
+  58              		.cfi_startproc
+  59              	.LVL0:
+  11:pi.c          ****     int j, k;
+  12:pi.c          ****     unsigned q, r, u;
+  13:pi.c          ****     long v;
+  14:pi.c          **** 
+  15:pi.c          ****     r = 0;                                       
+  16:pi.c          ****     for( k = 0; k <= N4; k++ )                  
+  60              		.loc 1 16 0
+  61 0000 8B050000 		movl	N4(%rip), %eax	# N4,
+  61      0000
+  62 0006 31C9     		xorl	%ecx, %ecx	# ivtmp.25
+  15:pi.c          ****     for( k = 0; k <= N4; k++ )                  
+  63              		.loc 1 15 0
+  64 0008 4531C0   		xorl	%r8d, %r8d	# r
+  65              		.loc 1 16 0
+  66 000b 85C0     		testl	%eax, %eax	#
+  67 000d 782E     		js	.L1	#,
+  68              	.LVL1:
+  69 000f 90       		.p2align 4,,10
+  70              		.p2align 3
+  71              	.L5:
+  17:pi.c          ****     {                                            
+  18:pi.c          ****         u = r * 10 + x[k];                       
+  72              		.loc 1 18 0 discriminator 2
+  73 0010 0FBE040F 		movsbl	(%rdi,%rcx), %eax	# MEM[base: x_8(D), index: ivtmp.25_14, offset: 0B], D.3399
+  74 0014 438D1480 		leal	(%r8,%r8,4), %edx	#, D.3399
+  75 0018 448D0450 		leal	(%rax,%rdx,2), %r8d	#, u
+  76              	.LVL2:
+  19:pi.c          ****         q = u / n;                               
+  77              		.loc 1 19 0 discriminator 2
+  78 001c 31D2     		xorl	%edx, %edx	# tmp97
+  79 001e 4489C0   		movl	%r8d, %eax	# u, tmp96
+  80 0021 F7F6     		divl	%esi	# n
+  81              	.LVL3:
+  20:pi.c          ****         r = u - q * n;                           
+  82              		.loc 1 20 0 discriminator 2
+  83 0023 89C2     		movl	%eax, %edx	# tmp96, D.3399
+  21:pi.c          ****         x[k] = q;                                
+  84              		.loc 1 21 0 discriminator 2
+  85 0025 88040F   		movb	%al, (%rdi,%rcx)	# tmp96, MEM[base: x_8(D), index: ivtmp.25_14, offset: 0B]
+  86 0028 8D4101   		leal	1(%rcx), %eax	#, D.3401
+  87              	.LVL4:
+  20:pi.c          ****         r = u - q * n;                           
+  88              		.loc 1 20 0 discriminator 2
+  89 002b 0FAFD6   		imull	%esi, %edx	# n, D.3399
+  90              	.LVL5:
+  91 002e 4883C101 		addq	$1, %rcx	#, ivtmp.25
+  92              	.LVL6:
+  93 0032 4129D0   		subl	%edx, %r8d	# D.3399, r
+  94              	.LVL7:
+  16:pi.c          ****     {                                            
+  95              		.loc 1 16 0 discriminator 2
+  96 0035 39050000 		cmpl	%eax, N4(%rip)	# D.3401, N4
+  96      0000
+  97 003b 7DD3     		jge	.L5	#,
+  98              	.LVL8:
+  99              	.L1:
+ 100 003d F3C3     		rep ret
+ 101              		.cfi_endproc
+ 102              	.LFE33:
+ 104 003f 90       		.p2align 4,,15
+ 105              		.globl	LONGDIV
+ 107              	LONGDIV:
+ 108              	.LFB34:
+  22:pi.c          ****     }                                           
+  23:pi.c          **** }
+  24:pi.c          **** 
+  25:pi.c          **** void LONGDIV( char *x, int n )                          
+  26:pi.c          **** {                                                
+ 109              		.loc 1 26 0
+ 110              		.cfi_startproc
+ 111              	.LVL9:
+  27:pi.c          ****     int j, k;
+  28:pi.c          ****     unsigned q, r, u;
+  29:pi.c          ****     long v;
+  30:pi.c          **** 
+  31:pi.c          ****     if( n < 6553 )                               
+ 112              		.loc 1 31 0
+ 113 0040 81FE9819 		cmpl	$6552, %esi	#, n
+ 113      0000
+ 114 0046 7E78     		jle	.L8	#,
+ 115              	.LVL10:
+  32:pi.c          ****     {                                            
+  33:pi.c          ****         r = 0;                                   
+  34:pi.c          ****         for( k = 0; k <= N4; k++ )               
+  35:pi.c          ****         {                                        
+  36:pi.c          ****             u = r * 10 + x[k];                   
+  37:pi.c          ****             q = u / n;                           
+  38:pi.c          ****             r = u - q * n;                       
+  39:pi.c          ****             x[k] = q;                            
+  40:pi.c          ****         }                                       
+  41:pi.c          ****     }                                            
+  42:pi.c          ****     else                                         
+  43:pi.c          ****     {                                            
+  44:pi.c          ****         r = 0;                                   
+  45:pi.c          ****         for( k = 0; k <= N4; k++ )              
+ 116              		.loc 1 45 0 discriminator 1
+ 117 0048 448B0500 		movl	N4(%rip), %r8d	# N4,
+ 117      000000
+ 118 004f 31D2     		xorl	%edx, %edx	#
+ 119 0051 31C9     		xorl	%ecx, %ecx	# k
+  46:pi.c          ****         {                                       
+  47:pi.c          ****             if( r < 6553 )                      
+  48:pi.c          ****             {                                   
+  49:pi.c          ****                 u = r * 10 + x[k];              
+  50:pi.c          ****                 q = u / n;                      
+  51:pi.c          ****                 r = u - q * n;                  
+  52:pi.c          ****             }                                   
+  53:pi.c          ****             else                                
+  54:pi.c          ****             {                                   
+  55:pi.c          ****                 v = (long) r * 10 + x[k];       
+  56:pi.c          ****                 q = v / n;                      
+ 120              		.loc 1 56 0 discriminator 1
+ 121 0053 4C63D6   		movslq	%esi, %r10	# n, D.3429
+  45:pi.c          ****         {                                       
+ 122              		.loc 1 45 0 discriminator 1
+ 123 0056 4585C0   		testl	%r8d, %r8d	#
+ 124 0059 7933     		jns	.L15	#,
+ 125 005b F3C3     		rep ret
+ 126              	.LVL11:
+ 127 005d 0F1F00   		.p2align 4,,10
+ 128              		.p2align 3
+ 129              	.L16:
+  49:pi.c          ****                 q = u / n;                      
+ 130              		.loc 1 49 0
+ 131 0060 0FBE07   		movsbl	(%rdi), %eax	# MEM[base: _33, offset: 0B], D.3426
+ 132 0063 8D1492   		leal	(%rdx,%rdx,4), %edx	#, D.3426
+ 133              	.LVL12:
+ 134 0066 448D0C50 		leal	(%rax,%rdx,2), %r9d	#, u
+ 135              	.LVL13:
+  50:pi.c          ****                 r = u - q * n;                  
+ 136              		.loc 1 50 0
+ 137 006a 31D2     		xorl	%edx, %edx	# tmp119
+ 138 006c 4489C8   		movl	%r9d, %eax	# u, q
+ 139 006f F7F6     		divl	%esi	# n
+  51:pi.c          ****             }                                   
+ 140              		.loc 1 51 0
+ 141 0071 4489CA   		movl	%r9d, %edx	# u, r
+  50:pi.c          ****                 r = u - q * n;                  
+ 142              		.loc 1 50 0
+ 143 0074 4189C0   		movl	%eax, %r8d	# q, q
+ 144              	.LVL14:
+  51:pi.c          ****             }                                   
+ 145              		.loc 1 51 0
+ 146 0077 0FAFC6   		imull	%esi, %eax	# n, D.3426
+ 147              	.LVL15:
+ 148 007a 29C2     		subl	%eax, %edx	# D.3426,
+ 149              	.LVL16:
+ 150              	.L13:
+  57:pi.c          ****                 r = v - q * n;                  
+  58:pi.c          ****             }                                   
+  59:pi.c          ****             x[k] = q;                           
+ 151              		.loc 1 59 0
+ 152 007c 448807   		movb	%r8b, (%rdi)	# q, *_98
+  45:pi.c          ****         {                                       
+ 153              		.loc 1 45 0
+ 154 007f 83C101   		addl	$1, %ecx	#, k
+ 155              	.LVL17:
+ 156 0082 4883C701 		addq	$1, %rdi	#, ivtmp.38
+ 157 0086 390D0000 		cmpl	%ecx, N4(%rip)	# k, N4
+ 157      0000
+ 158 008c 7C42     		jl	.L7	#,
+ 159              	.LVL18:
+ 160              	.L15:
+  47:pi.c          ****             {                                   
+ 161              		.loc 1 47 0
+ 162 008e 81FA9819 		cmpl	$6552, %edx	#, r
+ 162      0000
+ 163 0094 76CA     		jbe	.L16	#,
+  55:pi.c          ****                 q = v / n;                      
+ 164              		.loc 1 55 0
+ 165 0096 480FBE07 		movsbq	(%rdi), %rax	# MEM[base: _45, offset: 0B], D.3429
+ 166 009a 488D1492 		leaq	(%rdx,%rdx,4), %rdx	#, D.3429
+ 167              	.LVL19:
+ 168 009e 4C8D0C50 		leaq	(%rax,%rdx,2), %r9	#, v
+ 169              	.LVL20:
+  56:pi.c          ****                 r = v - q * n;                  
+ 170              		.loc 1 56 0
+ 171 00a2 4C89C8   		movq	%r9, %rax	# v, D.3429
+ 172 00a5 4899     		cqto
+ 173 00a7 49F7FA   		idivq	%r10	# D.3429
+  57:pi.c          ****             }                                   
+ 174              		.loc 1 57 0
+ 175 00aa 4489CA   		movl	%r9d, %edx	# v, r
+  56:pi.c          ****                 r = v - q * n;                  
+ 176              		.loc 1 56 0
+ 177 00ad 4189C0   		movl	%eax, %r8d	# D.3429, q
+ 178              	.LVL21:
+  57:pi.c          ****             }                                   
+ 179              		.loc 1 57 0
+ 180 00b0 0FAFC6   		imull	%esi, %eax	# n, D.3426
+ 181              	.LVL22:
+ 182 00b3 29C2     		subl	%eax, %edx	# D.3426,
+ 183              	.LVL23:
+ 184 00b5 EBC5     		jmp	.L13	#
+ 185              	.LVL24:
+ 186 00b7 660F1F84 		.p2align 4,,10
+ 186      00000000 
+ 186      00
+ 187              		.p2align 3
+ 188              	.L8:
+  34:pi.c          ****         {                                        
+ 189              		.loc 1 34 0 discriminator 1
+ 190 00c0 8B050000 		movl	N4(%rip), %eax	# N4,
+ 190      0000
+ 191 00c6 85C0     		testl	%eax, %eax	#
+ 192 00c8 790E     		jns	.L17	#,
+ 193              	.LVL25:
+ 194 00ca 660F1F44 		.p2align 4,,10
+ 194      0000
+ 195              		.p2align 3
+ 196              	.L7:
+ 197 00d0 F3C3     		rep ret
+ 198              	.LVL26:
+ 199              		.p2align 4,,10
+ 200 00d2 660F1F44 		.p2align 3
+ 200      0000
+ 201              	.L17:
+  34:pi.c          ****         {                                        
+ 202              		.loc 1 34 0 is_stmt 0
+ 203 00d8 31C9     		xorl	%ecx, %ecx	# ivtmp.32
+ 204 00da 4531C0   		xorl	%r8d, %r8d	# r
+ 205              	.LVL27:
+ 206 00dd 0F1F00   		.p2align 4,,10
+ 207              		.p2align 3
+ 208              	.L11:
+  36:pi.c          ****             q = u / n;                           
+ 209              		.loc 1 36 0 is_stmt 1 discriminator 2
+ 210 00e0 0FBE040F 		movsbl	(%rdi,%rcx), %eax	# MEM[base: x_15(D), index: ivtmp.32_97, offset: 0B], D.3426
+ 211 00e4 438D1480 		leal	(%r8,%r8,4), %edx	#, D.3426
+ 212 00e8 448D0450 		leal	(%rax,%rdx,2), %r8d	#, u
+ 213              	.LVL28:
+  37:pi.c          ****             r = u - q * n;                       
+ 214              		.loc 1 37 0 discriminator 2
+ 215 00ec 31D2     		xorl	%edx, %edx	# tmp111
+ 216 00ee 4489C0   		movl	%r8d, %eax	# u, tmp110
+ 217 00f1 F7F6     		divl	%esi	# n
+ 218              	.LVL29:
+  38:pi.c          ****             x[k] = q;                            
+ 219              		.loc 1 38 0 discriminator 2
+ 220 00f3 89C2     		movl	%eax, %edx	# tmp110, D.3426
+  39:pi.c          ****         }                                       
+ 221              		.loc 1 39 0 discriminator 2
+ 222 00f5 88040F   		movb	%al, (%rdi,%rcx)	# tmp110, MEM[base: x_15(D), index: ivtmp.32_97, offset: 0B]
+ 223 00f8 8D4101   		leal	1(%rcx), %eax	#, D.3430
+ 224              	.LVL30:
+  38:pi.c          ****             x[k] = q;                            
+ 225              		.loc 1 38 0 discriminator 2
+ 226 00fb 0FAFD6   		imull	%esi, %edx	# n, D.3426
+ 227              	.LVL31:
+ 228 00fe 4883C101 		addq	$1, %rcx	#, ivtmp.32
+ 229              	.LVL32:
+ 230 0102 4129D0   		subl	%edx, %r8d	# D.3426, r
+ 231              	.LVL33:
+  34:pi.c          ****         {                                        
+ 232              		.loc 1 34 0 discriminator 2
+ 233 0105 39050000 		cmpl	%eax, N4(%rip)	# D.3430, N4
+ 233      0000
+ 234 010b 7DD3     		jge	.L11	#,
+ 235 010d F3C3     		rep ret
+ 236              		.cfi_endproc
+ 237              	.LFE34:
+ 239 010f 90       		.p2align 4,,15
+ 240              		.globl	MULTIPLY
+ 242              	MULTIPLY:
+ 243              	.LFB35:
+  60:pi.c          ****         }                                       
+  61:pi.c          ****     }                                           
+  62:pi.c          **** }
+  63:pi.c          **** 
+  64:pi.c          **** void MULTIPLY( char *x, int n )                        
+  65:pi.c          **** {                                            
+ 244              		.loc 1 65 0
+ 245              		.cfi_startproc
+ 246              	.LVL34:
+  66:pi.c          ****     int j, k;
+  67:pi.c          ****     unsigned q, r, u;
+  68:pi.c          ****     long v;
+  69:pi.c          ****     r = 0;                                   
+  70:pi.c          ****     for( k = N4; k >= 0; k-- )               
+ 247              		.loc 1 70 0
+ 248 0110 48630D00 		movslq	N4(%rip), %rcx	# N4,
+ 248      000000
+ 249              	.LVL35:
+ 250 0117 85C9     		testl	%ecx, %ecx	# k
+ 251 0119 783D     		js	.L18	#,
+ 252 011b 4801F9   		addq	%rdi, %rcx	# x, ivtmp.46
+ 253              	.LVL36:
+  69:pi.c          ****     for( k = N4; k >= 0; k-- )               
+ 254              		.loc 1 69 0
+ 255 011e 31D2     		xorl	%edx, %edx	# r
+ 256 0120 4883EF01 		subq	$1, %rdi	#, D.3446
+ 257              	.LVL37:
+  71:pi.c          ****     {                                        
+  72:pi.c          ****         q = n * x[k] + r;                    
+  73:pi.c          ****         r = q / 10;                          
+ 258              		.loc 1 73 0
+ 259 0124 41B9CDCC 		movl	$-858993459, %r9d	#, tmp101
+ 259      CCCC
+ 260              	.LVL38:
+ 261 012a 660F1F44 		.p2align 4,,10
+ 261      0000
+ 262              		.p2align 3
+ 263              	.L21:
+  72:pi.c          ****         r = q / 10;                          
+ 264              		.loc 1 72 0 discriminator 2
+ 265 0130 0FBE01   		movsbl	(%rcx), %eax	# MEM[base: _40, offset: 0B], D.3443
+ 266 0133 4883E901 		subq	$1, %rcx	#, ivtmp.46
+ 267              	.LVL39:
+ 268 0137 0FAFC6   		imull	%esi, %eax	# n, D.3443
+ 269 013a 448D0402 		leal	(%rdx,%rax), %r8d	#, q
+ 270              	.LVL40:
+ 271              		.loc 1 73 0 discriminator 2
+ 272 013e 4489C0   		movl	%r8d, %eax	# q, tmp102
+ 273 0141 41F7E1   		mull	%r9d	# tmp101
+ 274              	.LVL41:
+ 275 0144 C1EA03   		shrl	$3, %edx	#, r
+ 276              	.LVL42:
+  74:pi.c          ****         x[k] = q - r * 10;                   
+ 277              		.loc 1 74 0 discriminator 2
+ 278 0147 8D0492   		leal	(%rdx,%rdx,4), %eax	#, D.3445
+ 279 014a 01C0     		addl	%eax, %eax	# tmp99
+ 280 014c 4129C0   		subl	%eax, %r8d	# tmp99, tmp100
+ 281              	.LVL43:
+ 282 014f 44884101 		movb	%r8b, 1(%rcx)	# tmp100, MEM[base: _40, offset: 0B]
+  70:pi.c          ****     {                                        
+ 283              		.loc 1 70 0 discriminator 2
+ 284 0153 4839F9   		cmpq	%rdi, %rcx	# D.3446, ivtmp.46
+ 285 0156 75D8     		jne	.L21	#,
+ 286              	.LVL44:
+ 287              	.L18:
+ 288 0158 F3C3     		rep ret
+ 289              		.cfi_endproc
+ 290              	.LFE35:
+ 292 015a 660F1F44 		.p2align 4,,15
+ 292      0000
+ 293              		.globl	SET
+ 295              	SET:
+ 296              	.LFB36:
+  75:pi.c          ****     }                                        
+  76:pi.c          **** }
+  77:pi.c          **** 
+  78:pi.c          **** void SET( char *x, int n )                              
+  79:pi.c          **** {                                                
+ 297              		.loc 1 79 0
+ 298              		.cfi_startproc
+ 299              	.LVL45:
+ 300 0160 55       		pushq	%rbp	#
+ 301              		.cfi_def_cfa_offset 16
+ 302              		.cfi_offset 6, -16
+ 303 0161 89F5     		movl	%esi, %ebp	# n, n
+  80:pi.c          ****     memset( x, 0, N4 + 1 );                      
+ 304              		.loc 1 80 0
+ 305 0163 31F6     		xorl	%esi, %esi	#
+ 306              	.LVL46:
+  79:pi.c          ****     memset( x, 0, N4 + 1 );                      
+ 307              		.loc 1 79 0
+ 308 0165 53       		pushq	%rbx	#
+ 309              		.cfi_def_cfa_offset 24
+ 310              		.cfi_offset 3, -24
+ 311 0166 4889FB   		movq	%rdi, %rbx	# x, x
+ 312 0169 4883EC08 		subq	$8, %rsp	#,
+ 313              		.cfi_def_cfa_offset 32
+ 314              		.loc 1 80 0
+ 315 016d 8B050000 		movl	N4(%rip), %eax	# N4, tmp72
+ 315      0000
+ 316 0173 8D5001   		leal	1(%rax), %edx	#, D.3452
+ 317 0176 4863D2   		movslq	%edx, %rdx	# D.3452, D.3453
+ 318 0179 E8000000 		call	memset	#
+ 318      00
+ 319              	.LVL47:
+  81:pi.c          ****     x[0] = n;                                    
+ 320              		.loc 1 81 0
+ 321 017e 40882B   		movb	%bpl, (%rbx)	# n, *x_5(D)
+  82:pi.c          **** }
+ 322              		.loc 1 82 0
+ 323 0181 4883C408 		addq	$8, %rsp	#,
+ 324              		.cfi_def_cfa_offset 24
+ 325 0185 5B       		popq	%rbx	#
+ 326              		.cfi_def_cfa_offset 16
+ 327              	.LVL48:
+ 328 0186 5D       		popq	%rbp	#
+ 329              		.cfi_def_cfa_offset 8
+ 330              	.LVL49:
+ 331 0187 C3       		ret
+ 332              		.cfi_endproc
+ 333              	.LFE36:
+ 335 0188 0F1F8400 		.p2align 4,,15
+ 335      00000000 
+ 336              		.globl	SUBTRACT
+ 338              	SUBTRACT:
+ 339              	.LFB37:
+  83:pi.c          **** 
+  84:pi.c          **** 
+  85:pi.c          **** void SUBTRACT( char *x, char *y, char *z )                      
+  86:pi.c          **** {                                                
+ 340              		.loc 1 86 0
+ 341              		.cfi_startproc
+ 342              	.LVL50:
+  87:pi.c          ****     int j, k;
+  88:pi.c          ****     unsigned q, r, u;
+  89:pi.c          ****     long v;
+  90:pi.c          ****     for( k = N4; k >= 0; k-- )                   
+ 343              		.loc 1 90 0
+ 344 0190 48630500 		movslq	N4(%rip), %rax	# N4,
+ 344      000000
+ 345              	.LVL51:
+ 346 0197 85C0     		testl	%eax, %eax	# k
+ 347 0199 783D     		js	.L24	#,
+ 348 019b 488D0C06 		leaq	(%rsi,%rax), %rcx	#, ivtmp.57
+ 349 019f 4801C7   		addq	%rax, %rdi	# D.3487, ivtmp.60
+ 350              	.LVL52:
+ 351 01a2 4883EE01 		subq	$1, %rsi	#, D.3484
+ 352              	.LVL53:
+ 353 01a6 488D4402 		leaq	-1(%rdx,%rax), %rax	#, ivtmp.61
+ 353      FF
+ 354              	.LVL54:
+ 355 01ab EB16     		jmp	.L29	#
+ 356              	.LVL55:
+ 357 01ad 0F1F00   		.p2align 4,,10
+ 358              		.p2align 3
+ 359              	.L30:
+  91:pi.c          ****     {                                            
+  92:pi.c          ****         if( (x[k] = y[k] - z[k]) < 0 )           
+ 360              		.loc 1 92 0
+ 361 01b0 8817     		movb	%dl, (%rdi)	# D.3483, MEM[base: _57, offset: 0B]
+ 362              	.L27:
+ 363              	.LVL56:
+ 364 01b2 4883E901 		subq	$1, %rcx	#, ivtmp.57
+ 365              	.LVL57:
+ 366 01b6 4883EF01 		subq	$1, %rdi	#, ivtmp.60
+ 367 01ba 4883E801 		subq	$1, %rax	#, ivtmp.61
+  90:pi.c          ****     {                                            
+ 368              		.loc 1 90 0
+ 369 01be 4839F1   		cmpq	%rsi, %rcx	# D.3484, ivtmp.57
+ 370 01c1 7415     		je	.L24	#,
+ 371              	.L29:
+ 372              	.LVL58:
+ 373              		.loc 1 92 0
+ 374 01c3 0FB611   		movzbl	(%rcx), %edx	# MEM[base: _38, offset: 0B], MEM[base: _38, offset: 0B]
+ 375 01c6 2A5001   		subb	1(%rax), %dl	# MEM[base: _37, offset: 1B], D.3483
+ 376 01c9 79E5     		jns	.L30	#,
+  93:pi.c          ****         {                                        
+  94:pi.c          ****             x[k] += 10;                          
+ 377              		.loc 1 94 0
+ 378 01cb 83C20A   		addl	$10, %edx	#, tmp112
+ 379 01ce 8817     		movb	%dl, (%rdi)	# tmp112, MEM[base: _58, offset: 0B]
+  95:pi.c          ****             z[k-1]++;                            
+ 380              		.loc 1 95 0
+ 381 01d0 800001   		addb	$1, (%rax)	#, MEM[base: _37, offset: 0B]
+ 382 01d3 EBDD     		jmp	.L27	#
+ 383              	.LVL59:
+ 384              		.p2align 4,,10
+ 385 01d5 0F1F00   		.p2align 3
+ 386              	.L24:
+ 387 01d8 F3C3     		rep ret
+ 388              		.cfi_endproc
+ 389              	.LFE37:
+ 391 01da 660F1F44 		.p2align 4,,15
+ 391      0000
+ 392              		.globl	calculate
+ 394              	calculate:
+ 395              	.LFB39:
+  96:pi.c          ****         }                                        
+  97:pi.c          ****     }                                            
+  98:pi.c          **** }
+  99:pi.c          **** 
+ 100:pi.c          **** 
+ 101:pi.c          **** void calculate( void );
+ 102:pi.c          **** void progress( void );
+ 103:pi.c          **** void epilog( void );
+ 104:pi.c          **** 
+ 105:pi.c          **** 
+ 106:pi.c          **** int main( int argc, char *argv[] )
+ 107:pi.c          **** {
+ 108:pi.c          ****     N = 10000;
+ 109:pi.c          **** 
+ 110:pi.c          ****     if (argc>1)
+ 111:pi.c          ****       N = atoi(argv[1]);
+ 112:pi.c          **** 
+ 113:pi.c          ****     setbuf(stdout, NULL);
+ 114:pi.c          **** 
+ 115:pi.c          ****     calculate();
+ 116:pi.c          **** 
+ 117:pi.c          ****     epilog();
+ 118:pi.c          **** 
+ 119:pi.c          ****     return 0;
+ 120:pi.c          **** }
+ 121:pi.c          **** 
+ 122:pi.c          **** void calculate( void )
+ 123:pi.c          **** {
+ 396              		.loc 1 123 0
+ 397              		.cfi_startproc
+ 398 01e0 4157     		pushq	%r15	#
+ 399              		.cfi_def_cfa_offset 16
+ 400              		.cfi_offset 15, -16
+ 401              	.LBB68:
+ 402              	.LBB69:
+  80:pi.c          ****     x[0] = n;                                    
+ 403              		.loc 1 80 0
+ 404 01e2 31F6     		xorl	%esi, %esi	#
+ 405 01e4 BF000000 		movl	$a, %edi	#,
+ 405      00
+ 406              	.LBE69:
+ 407              	.LBE68:
+ 408              		.loc 1 123 0
+ 409 01e9 4156     		pushq	%r14	#
+ 410              		.cfi_def_cfa_offset 24
+ 411              		.cfi_offset 14, -24
+ 412 01eb 4155     		pushq	%r13	#
+ 413              		.cfi_def_cfa_offset 32
+ 414              		.cfi_offset 13, -32
+ 415 01ed 4154     		pushq	%r12	#
+ 416              		.cfi_def_cfa_offset 40
+ 417              		.cfi_offset 12, -40
+ 418 01ef 55       		pushq	%rbp	#
+ 419              		.cfi_def_cfa_offset 48
+ 420              		.cfi_offset 6, -48
+ 421 01f0 53       		pushq	%rbx	#
+ 422              		.cfi_def_cfa_offset 56
+ 423              		.cfi_offset 3, -56
+ 424 01f1 4883EC08 		subq	$8, %rsp	#,
+ 425              		.cfi_def_cfa_offset 64
+ 124:pi.c          ****     int j;
+ 125:pi.c          **** 
+ 126:pi.c          ****     N4 = N + 4;
+ 426              		.loc 1 126 0
+ 427 01f5 8B050000 		movl	N(%rip), %eax	# N, N.7
+ 427      0000
+ 428 01fb 448D7804 		leal	4(%rax), %r15d	#, N4.8
+ 429              	.LBB73:
+ 430              	.LBB70:
+  80:pi.c          ****     x[0] = n;                                    
+ 431              		.loc 1 80 0
+ 432 01ff 83C005   		addl	$5, %eax	#, D.3648
+ 433 0202 4863D8   		movslq	%eax, %rbx	# D.3648, D.3649
+ 434 0205 4889DA   		movq	%rbx, %rdx	# D.3649,
+ 435              	.LBE70:
+ 436              	.LBE73:
+ 127:pi.c          **** 
+ 128:pi.c          ****     SET( a, 0 );
+ 129:pi.c          ****     SET( b, 0 );
+ 130:pi.c          **** 
+ 131:pi.c          ****     for( j = 2 * N4 + 1; j >= 3; j -= 2 )
+ 437              		.loc 1 131 0
+ 438 0208 478D643F 		leal	1(%r15,%r15), %r12d	#, j
+ 438      01
+ 126:pi.c          **** 
+ 439              		.loc 1 126 0
+ 440 020d 44893D00 		movl	%r15d, N4(%rip)	# N4.8, N4
+ 440      000000
+ 441              	.LVL60:
+ 442              	.LBB74:
+ 443              	.LBB71:
+  80:pi.c          ****     x[0] = n;                                    
+ 444              		.loc 1 80 0
+ 445 0214 E8000000 		call	memset	#
+ 445      00
+ 446              	.LVL61:
+ 447              	.LBE71:
+ 448              	.LBE74:
+ 449              	.LBB75:
+ 450              	.LBB76:
+ 451 0219 31F6     		xorl	%esi, %esi	#
+ 452 021b 4889DA   		movq	%rbx, %rdx	# D.3649,
+ 453 021e BF000000 		movl	$b, %edi	#,
+ 453      00
+ 454              	.LBE76:
+ 455              	.LBE75:
+ 456              	.LBB79:
+ 457              	.LBB72:
+  81:pi.c          **** }
+ 458              		.loc 1 81 0
+ 459 0223 C6050000 		movb	$0, a(%rip)	#, MEM[(char *)&a]
+ 459      000000
+ 460              	.LVL62:
+ 461              	.LBE72:
+ 462              	.LBE79:
+ 463              	.LBB80:
+ 464              	.LBB77:
+  80:pi.c          ****     x[0] = n;                                    
+ 465              		.loc 1 80 0
+ 466 022a E8000000 		call	memset	#
+ 466      00
+ 467              	.LVL63:
+ 468              	.LBE77:
+ 469              	.LBE80:
+ 470              		.loc 1 131 0
+ 471 022f 4183FC02 		cmpl	$2, %r12d	#, j
+ 472              	.LBB81:
+ 473              	.LBB78:
+  81:pi.c          **** }
+ 474              		.loc 1 81 0
+ 475 0233 C6050000 		movb	$0, b(%rip)	#, MEM[(char *)&b]
+ 475      000000
+ 476              	.LBE78:
+ 477              	.LBE81:
+ 478              		.loc 1 131 0
+ 479 023a 0F8E2304 		jle	.L79	#,
+ 479      0000
+ 480 0240 31DB     		xorl	%ebx, %ebx	# ivtmp.165
+ 481 0242 4963EC   		movslq	%r12d, %rbp	# j, D.3654
+ 482              	.LBB82:
+ 483              	.LBB83:
+  19:pi.c          ****         r = u - q * n;                           
+ 484              		.loc 1 19 0
+ 485 0245 41BE1F85 		movl	$1374389535, %r14d	#, tmp681
+ 485      EB51
+ 486              	.LBE83:
+ 487              	.LBE82:
+ 488              	.LBB85:
+ 489              	.LBB86:
+ 490 024b 41BD3BC7 		movl	$-1994733765, %r13d	#, tmp682
+ 490      1A89
+ 491              		.p2align 4,,10
+ 492 0251 0F1F8000 		.p2align 3
+ 492      000000
+ 493              	.L57:
+ 494              	.LVL64:
+ 495              	.LBE86:
+ 496              	.LBE85:
+ 497              	.LBB88:
+ 498              	.LBB89:
+  80:pi.c          ****     x[0] = n;                                    
+ 499              		.loc 1 80 0
+ 500 0258 418D5701 		leal	1(%r15), %edx	#, D.3648
+ 501 025c 31F6     		xorl	%esi, %esi	#
+ 502 025e BF000000 		movl	$c, %edi	#,
+ 502      00
+ 503 0263 4863D2   		movslq	%edx, %rdx	# D.3648, D.3649
+ 504 0266 E8000000 		call	memset	#
+ 504      00
+ 505              	.LVL65:
+ 506              	.LBE89:
+ 507              	.LBE88:
+ 508              	.LBB91:
+ 509              	.LBB92:
+  31:pi.c          ****     {                                            
+ 510              		.loc 1 31 0
+ 511 026b 4181FC98 		cmpl	$6552, %r12d	#, j
+ 511      190000
+ 512              	.LBE92:
+ 513              	.LBE91:
+ 514              	.LBB95:
+ 515              	.LBB90:
+  81:pi.c          **** }
+ 516              		.loc 1 81 0
+ 517 0272 C6050000 		movb	$1, c(%rip)	#, MEM[(char *)&c]
+ 517      000001
+ 518              	.LVL66:
+ 519              	.LBE90:
+ 520              	.LBE95:
+ 521              	.LBB96:
+ 522              	.LBB93:
+  31:pi.c          ****     {                                            
+ 523              		.loc 1 31 0
+ 524 0279 0F8EE101 		jle	.L33	#,
+ 524      0000
+ 525              	.LVL67:
+  45:pi.c          ****         {                                       
+ 526              		.loc 1 45 0
+ 527 027f 4585FF   		testl	%r15d, %r15d	# D.3648
+ 528 0282 7876     		js	.L37	#,
+ 529 0284 4D63FF   		movslq	%r15d, %r15	# D.3648, D.3654
+ 530 0287 B9000000 		movl	$c, %ecx	#, ivtmp.150
+ 530      00
+ 531 028c 31D2     		xorl	%edx, %edx	#
+ 532 028e 4981C700 		addq	$c+1, %r15	#, D.3654
+ 532      000000
+ 533 0295 4C8D042B 		leaq	(%rbx,%rbp), %r8	#, D.3654
+ 534 0299 EB2C     		jmp	.L41	#
+ 535              	.LVL68:
+ 536 029b 0F1F4400 		.p2align 4,,10
+ 536      00
+ 537              		.p2align 3
+ 538              	.L82:
+  49:pi.c          ****                 q = u / n;                      
+ 539              		.loc 1 49 0
+ 540 02a0 0FBE01   		movsbl	(%rcx), %eax	# MEM[base: _187, offset: 0B], D.3650
+ 541 02a3 8D1492   		leal	(%rdx,%rdx,4), %edx	#, D.3650
+ 542              	.LVL69:
+ 543 02a6 4883C101 		addq	$1, %rcx	#, ivtmp.150
+ 544              	.LVL70:
+ 545 02aa 8D3C50   		leal	(%rax,%rdx,2), %edi	#, u
+ 546              	.LVL71:
+  50:pi.c          ****                 r = u - q * n;                  
+ 547              		.loc 1 50 0
+ 548 02ad 31D2     		xorl	%edx, %edx	# tmp554
+ 549 02af 89F8     		movl	%edi, %eax	# u, q
+ 550 02b1 41F7F4   		divl	%r12d	# j
+ 551 02b4 89C6     		movl	%eax, %esi	# q, q
+ 552              	.LVL72:
+  51:pi.c          ****             }                                   
+ 553              		.loc 1 51 0
+ 554 02b6 410FAFC4 		imull	%r12d, %eax	# j, D.3650
+ 555              	.LVL73:
+  59:pi.c          ****         }                                       
+ 556              		.loc 1 59 0
+ 557 02ba 408871FF 		movb	%sil, -1(%rcx)	# q, MEM[(char *)_684]
+  51:pi.c          ****             }                                   
+ 558              		.loc 1 51 0
+ 559 02be 29C7     		subl	%eax, %edi	# D.3650, r
+ 560              	.LVL74:
+  45:pi.c          ****         {                                       
+ 561              		.loc 1 45 0
+ 562 02c0 4C39F9   		cmpq	%r15, %rcx	# D.3654, ivtmp.150
+  51:pi.c          ****             }                                   
+ 563              		.loc 1 51 0
+ 564 02c3 89FA     		movl	%edi, %edx	# r,
+ 565              	.LVL75:
+  45:pi.c          ****         {                                       
+ 566              		.loc 1 45 0
+ 567 02c5 7433     		je	.L37	#,
+ 568              	.LVL76:
+ 569              	.L41:
+  47:pi.c          ****             {                                   
+ 570              		.loc 1 47 0
+ 571 02c7 81FA9819 		cmpl	$6552, %edx	#, r
+ 571      0000
+ 572 02cd 76D1     		jbe	.L82	#,
+  55:pi.c          ****                 q = v / n;                      
+ 573              		.loc 1 55 0
+ 574 02cf 480FBE01 		movsbq	(%rcx), %rax	# MEM[base: _198, offset: 0B], D.3656
+ 575 02d3 488D1492 		leaq	(%rdx,%rdx,4), %rdx	#, D.3656
+ 576              	.LVL77:
+ 577 02d7 4883C101 		addq	$1, %rcx	#, ivtmp.150
+ 578              	.LVL78:
+ 579 02db 488D3C50 		leaq	(%rax,%rdx,2), %rdi	#, v
+ 580              	.LVL79:
+  56:pi.c          ****                 r = v - q * n;                  
+ 581              		.loc 1 56 0
+ 582 02df 4889F8   		movq	%rdi, %rax	# v, D.3656
+ 583 02e2 4899     		cqto
+ 584 02e4 49F7F8   		idivq	%r8	# D.3654
+  57:pi.c          ****             }                                   
+ 585              		.loc 1 57 0
+ 586 02e7 89FA     		movl	%edi, %edx	# v, r
+  56:pi.c          ****                 r = v - q * n;                  
+ 587              		.loc 1 56 0
+ 588 02e9 89C6     		movl	%eax, %esi	# D.3656, q
+ 589              	.LVL80:
+  57:pi.c          ****             }                                   
+ 590              		.loc 1 57 0
+ 591 02eb 410FAFC4 		imull	%r12d, %eax	# j, D.3650
+ 592              	.LVL81:
+  59:pi.c          ****         }                                       
+ 593              		.loc 1 59 0
+ 594 02ef 408871FF 		movb	%sil, -1(%rcx)	# q, MEM[(char *)_684]
+  57:pi.c          ****             }                                   
+ 595              		.loc 1 57 0
+ 596 02f3 29C2     		subl	%eax, %edx	# D.3650,
+ 597              	.LVL82:
+  45:pi.c          ****         {                                       
+ 598              		.loc 1 45 0
+ 599 02f5 4C39F9   		cmpq	%r15, %rcx	# D.3654, ivtmp.150
+ 600 02f8 75CD     		jne	.L41	#,
+ 601              	.LVL83:
+ 602              	.L37:
+ 603              	.LBE93:
+ 604              	.LBE96:
+ 605              	.LBB97:
+ 606              	.LBB98:
+  90:pi.c          ****     {                                            
+ 607              		.loc 1 90 0
+ 608 02fa 8B350000 		movl	N4(%rip), %esi	# N4, k
+ 608      0000
+ 609              	.LVL84:
+ 610 0300 85F6     		testl	%esi, %esi	# k
+ 611 0302 0F88B500 		js	.L36	#,
+ 611      0000
+ 612 0308 4C63C6   		movslq	%esi, %r8	# k, D.3651
+ 613 030b 498DB800 		leaq	c(%r8), %rdi	#, ivtmp.139
+ 613      000000
+ 614 0312 498D9000 		leaq	a(%r8), %rdx	#, ivtmp.141
+ 614      000000
+ 615 0319 4889F9   		movq	%rdi, %rcx	# ivtmp.139, ivtmp.139
+ 616 031c EB19     		jmp	.L47	#
+ 617              	.LVL85:
+ 618 031e 6690     		.p2align 4,,10
+ 619              		.p2align 3
+ 620              	.L84:
+  92:pi.c          ****         {                                        
+ 621              		.loc 1 92 0
+ 622 0320 8802     		movb	%al, (%rdx)	# D.3653, MEM[base: _527, offset: 0B]
+ 623              	.L45:
+ 624              	.LVL86:
+ 625 0322 4883E901 		subq	$1, %rcx	#, ivtmp.139
+ 626              	.LVL87:
+ 627 0326 4883EA01 		subq	$1, %rdx	#, ivtmp.141
+  90:pi.c          ****     {                                            
+ 628              		.loc 1 90 0
+ 629 032a 4881F900 		cmpq	$c-1, %rcx	#, ivtmp.139
+ 629      000000
+ 630 0331 0F84B100 		je	.L83	#,
+ 630      0000
+ 631              	.L47:
+ 632              	.LVL88:
+  92:pi.c          ****         {                                        
+ 633              		.loc 1 92 0
+ 634 0337 0FB601   		movzbl	(%rcx), %eax	# MEM[base: _528, offset: 0B], MEM[base: _528, offset: 0B]
+ 635 033a 2A02     		subb	(%rdx), %al	# MEM[base: _527, offset: 0B], D.3653
+ 636 033c 79E2     		jns	.L84	#,
+  94:pi.c          ****             z[k-1]++;                            
+ 637              		.loc 1 94 0
+ 638 033e 83C00A   		addl	$10, %eax	#, tmp571
+  95:pi.c          ****         }                                        
+ 639              		.loc 1 95 0
+ 640 0341 8042FF01 		addb	$1, -1(%rdx)	#, MEM[base: _527, offset: -1B]
+  94:pi.c          ****             z[k-1]++;                            
+ 641              		.loc 1 94 0
+ 642 0345 8802     		movb	%al, (%rdx)	# tmp571, MEM[base: _527, offset: 0B]
+ 643 0347 EBD9     		jmp	.L45	#
+ 644              	.LVL89:
+ 645 0349 0F1F8000 		.p2align 4,,10
+ 645      000000
+ 646              		.p2align 3
+ 647              	.L86:
+ 648              	.LBE98:
+ 649              	.LBE97:
+ 650              	.LBB100:
+ 651              	.LBB101:
+  90:pi.c          ****     {                                            
+ 652              		.loc 1 90 0
+ 653 0350 31C9     		xorl	%ecx, %ecx	# ivtmp.118
+ 654 0352 31C0     		xorl	%eax, %eax	# r
+ 655              		.p2align 4,,10
+ 656 0354 0F1F4000 		.p2align 3
+ 657              	.L55:
+ 658              	.LVL90:
+ 659              	.LBE101:
+ 660              	.LBE100:
+ 661              	.LBB103:
+ 662              	.LBB87:
+  18:pi.c          ****         q = u / n;                               
+ 663              		.loc 1 18 0
+ 664 0358 0FBE9100 		movsbl	b(%rcx), %edx	# MEM[symbol: b, index: ivtmp.118_410, offset: 0B], D.3650
+ 664      000000
+ 665 035f 8D0480   		leal	(%rax,%rax,4), %eax	#, D.3650
+ 666              	.LVL91:
+ 667 0362 4883C101 		addq	$1, %rcx	#, ivtmp.118
+ 668              	.LVL92:
+ 669 0366 8D3C42   		leal	(%rdx,%rax,2), %edi	#, u
+ 670              	.LVL93:
+  19:pi.c          ****         r = u - q * n;                           
+ 671              		.loc 1 19 0
+ 672 0369 89F8     		movl	%edi, %eax	# u, tmp684
+ 673 036b 41F7E5   		mull	%r13d	# tmp682
+ 674 036e C1EA07   		shrl	$7, %edx	#, q
+ 675              	.LVL94:
+  20:pi.c          ****         x[k] = q;                                
+ 676              		.loc 1 20 0
+ 677 0371 69C2EF00 		imull	$239, %edx, %eax	#, q, D.3650
+ 677      0000
+  21:pi.c          ****     }                                           
+ 678              		.loc 1 21 0
+ 679 0377 88910000 		movb	%dl, b-1(%rcx)	# q, MEM[symbol: b, index: ivtmp.118_410, offset: 0B]
+ 679      0000
+  20:pi.c          ****         x[k] = q;                                
+ 680              		.loc 1 20 0
+ 681 037d 29C7     		subl	%eax, %edi	# D.3650, r
+ 682              	.LVL95:
+  16:pi.c          ****     {                                            
+ 683              		.loc 1 16 0
+ 684 037f 39CE     		cmpl	%ecx, %esi	# ivtmp.118, k
+  20:pi.c          ****         x[k] = q;                                
+ 685              		.loc 1 20 0
+ 686 0381 89F8     		movl	%edi, %eax	# r, r
+ 687              	.LVL96:
+  16:pi.c          ****     {                                            
+ 688              		.loc 1 16 0
+ 689 0383 7DD3     		jge	.L55	#,
+ 690 0385 31C9     		xorl	%ecx, %ecx	# ivtmp.114
+ 691 0387 31C0     		xorl	%eax, %eax	# r
+ 692              	.LVL97:
+ 693 0389 0F1F8000 		.p2align 4,,10
+ 693      000000
+ 694              		.p2align 3
+ 695              	.L56:
+ 696              	.LBE87:
+ 697              	.LBE103:
+ 698              	.LBB104:
+ 699              	.LBB105:
+  18:pi.c          ****         q = u / n;                               
+ 700              		.loc 1 18 0
+ 701 0390 0FBE9100 		movsbl	b(%rcx), %edx	# MEM[symbol: b, index: ivtmp.114_434, offset: 0B], D.3650
+ 701      000000
+ 702 0397 8D0480   		leal	(%rax,%rax,4), %eax	#, D.3650
+ 703              	.LVL98:
+ 704 039a 4883C101 		addq	$1, %rcx	#, ivtmp.114
+ 705              	.LVL99:
+ 706 039e 8D3C42   		leal	(%rdx,%rax,2), %edi	#, u
+ 707              	.LVL100:
+  19:pi.c          ****         r = u - q * n;                           
+ 708              		.loc 1 19 0
+ 709 03a1 89F8     		movl	%edi, %eax	# u, tmp685
+ 710 03a3 41F7E5   		mull	%r13d	# tmp682
+ 711 03a6 C1EA07   		shrl	$7, %edx	#, q
+ 712              	.LVL101:
+  20:pi.c          ****         x[k] = q;                                
+ 713              		.loc 1 20 0
+ 714 03a9 69C2EF00 		imull	$239, %edx, %eax	#, q, D.3650
+ 714      0000
+  21:pi.c          ****     }                                           
+ 715              		.loc 1 21 0
+ 716 03af 88910000 		movb	%dl, b-1(%rcx)	# q, MEM[symbol: b, index: ivtmp.114_434, offset: 0B]
+ 716      0000
+  20:pi.c          ****         x[k] = q;                                
+ 717              		.loc 1 20 0
+ 718 03b5 29C7     		subl	%eax, %edi	# D.3650, r
+ 719              	.LVL102:
+  16:pi.c          ****     {                                            
+ 720              		.loc 1 16 0
+ 721 03b7 39CE     		cmpl	%ecx, %esi	# ivtmp.114, k
+  20:pi.c          ****         x[k] = q;                                
+ 722              		.loc 1 20 0
+ 723 03b9 89F8     		movl	%edi, %eax	# r, r
+ 724              	.LVL103:
+  16:pi.c          ****     {                                            
+ 725              		.loc 1 16 0
+ 726 03bb 7DD3     		jge	.L56	#,
+ 727              	.LVL104:
+ 728              	.L36:
+ 729              	.LBE105:
+ 730              	.LBE104:
+ 731              	.LBB106:
+ 732              	.LBB107:
+ 132:pi.c          ****     {
+ 133:pi.c          ****         SET( c, 1 );
+ 134:pi.c          ****         LONGDIV( c, j );
+ 135:pi.c          **** 
+ 136:pi.c          ****         SUBTRACT( a, c, a );
+ 137:pi.c          ****         DIVIDE( a, 25 );
+ 138:pi.c          **** 
+ 139:pi.c          ****         SUBTRACT( b, c, b );
+ 140:pi.c          ****         DIVIDE( b, 239 );
+ 141:pi.c          ****         DIVIDE( b, 239 );
+ 142:pi.c          **** 
+ 143:pi.c          ****         progress();
+ 144:pi.c          ****     }
+ 145:pi.c          **** 
+ 146:pi.c          ****     SET( c, 1 );
+ 147:pi.c          **** 
+ 148:pi.c          ****     SUBTRACT( a, c, a );
+ 149:pi.c          ****     DIVIDE( a, 5 );
+ 150:pi.c          **** 
+ 151:pi.c          ****     SUBTRACT( b, c, b );
+ 152:pi.c          ****     DIVIDE( b, 239 );
+ 153:pi.c          **** 
+ 154:pi.c          ****     MULTIPLY( a, 4 );
+ 155:pi.c          ****     SUBTRACT( a, a, b );
+ 156:pi.c          ****     MULTIPLY( a, 4 );
+ 157:pi.c          **** 
+ 158:pi.c          ****     progress();
+ 159:pi.c          **** }
+ 160:pi.c          **** 
+ 161:pi.c          **** /*
+ 162:pi.c          **** 
+ 163:pi.c          ****  N = 10000                      
+ 164:pi.c          ****  A = 0                          
+ 165:pi.c          ****  B = 0                          
+ 166:pi.c          ****  J = 2 * (N + 4) + 1            
+ 167:pi.c          ****  FOR J = J TO 3 STEP -2         
+ 168:pi.c          ****      A = (1 / J - A) / 5 ^ 2    
+ 169:pi.c          ****      B = (1 / J - B) / 239 ^ 2  
+ 170:pi.c          ****  NEXT J                         
+ 171:pi.c          ****  A = (1 - A) / 5                
+ 172:pi.c          ****  B = (1 - B) / 239              
+ 173:pi.c          ****  PI = (A * 4 - B) * 4           
+ 174:pi.c          **** 
+ 175:pi.c          **** */
+ 176:pi.c          **** 
+ 177:pi.c          **** void progress( void )
+ 178:pi.c          **** {
+ 179:pi.c          ****     printf(".");
+ 733              		.loc 1 179 0
+ 734 03bd BF2E0000 		movl	$46, %edi	#,
+ 734      00
+ 735              	.LBE107:
+ 736              	.LBE106:
+ 131:pi.c          ****     {
+ 737              		.loc 1 131 0
+ 738 03c2 4183EC02 		subl	$2, %r12d	#, j
+ 739              	.LVL105:
+ 740 03c6 4883EB02 		subq	$2, %rbx	#, ivtmp.165
+ 741              	.LBB109:
+ 742              	.LBB108:
+ 743              		.loc 1 179 0
+ 744 03ca E8000000 		call	putchar	#
+ 744      00
+ 745              	.LVL106:
+ 746              	.LBE108:
+ 747              	.LBE109:
+ 131:pi.c          ****     {
+ 748              		.loc 1 131 0
+ 749 03cf 4183FC02 		cmpl	$2, %r12d	#, j
+ 750 03d3 0F8EC700 		jle	.L85	#,
+ 750      0000
+ 751 03d9 448B3D00 		movl	N4(%rip), %r15d	# N4, D.3648
+ 751      000000
+ 752 03e0 E973FEFF 		jmp	.L57	#
+ 752      FF
+ 753              	.LVL107:
+ 754              		.p2align 4,,10
+ 755 03e5 0F1F00   		.p2align 3
+ 756              	.L83:
+ 757              	.LBB110:
+ 758              	.LBB99:
+  90:pi.c          ****     {                                            
+ 759              		.loc 1 90 0
+ 760 03e8 31C9     		xorl	%ecx, %ecx	# ivtmp.131
+ 761 03ea 31C0     		xorl	%eax, %eax	# r
+ 762 03ec 0F1F4000 		.p2align 4,,10
+ 763              		.p2align 3
+ 764              	.L49:
+ 765              	.LVL108:
+ 766              	.LBE99:
+ 767              	.LBE110:
+ 768              	.LBB111:
+ 769              	.LBB84:
+  18:pi.c          ****         q = u / n;                               
+ 770              		.loc 1 18 0
+ 771 03f0 0FBE9100 		movsbl	a(%rcx), %edx	# MEM[symbol: a, index: ivtmp.131_433, offset: 0B], D.3650
+ 771      000000
+ 772 03f7 8D0480   		leal	(%rax,%rax,4), %eax	#, D.3650
+ 773              	.LVL109:
+ 774 03fa 4883C101 		addq	$1, %rcx	#, ivtmp.131
+ 775              	.LVL110:
+ 776 03fe 448D0C42 		leal	(%rdx,%rax,2), %r9d	#, u
+ 777              	.LVL111:
+  19:pi.c          ****         r = u - q * n;                           
+ 778              		.loc 1 19 0
+ 779 0402 4489C8   		movl	%r9d, %eax	# u, tmp683
+ 780 0405 41F7E6   		mull	%r14d	# tmp681
+ 781 0408 C1EA03   		shrl	$3, %edx	#, q
+ 782              	.LVL112:
+  20:pi.c          ****         x[k] = q;                                
+ 783              		.loc 1 20 0
+ 784 040b 8D0492   		leal	(%rdx,%rdx,4), %eax	#, tmp582
+  21:pi.c          ****     }                                           
+ 785              		.loc 1 21 0
+ 786 040e 88910000 		movb	%dl, a-1(%rcx)	# q, MEM[symbol: a, index: ivtmp.131_433, offset: 0B]
+ 786      0000
+  20:pi.c          ****         x[k] = q;                                
+ 787              		.loc 1 20 0
+ 788 0414 8D0480   		leal	(%rax,%rax,4), %eax	#, D.3650
+ 789 0417 4129C1   		subl	%eax, %r9d	# D.3650, r
+ 790              	.LVL113:
+  16:pi.c          ****     {                                            
+ 791              		.loc 1 16 0
+ 792 041a 39CE     		cmpl	%ecx, %esi	# ivtmp.131, k
+  20:pi.c          ****         x[k] = q;                                
+ 793              		.loc 1 20 0
+ 794 041c 4489C8   		movl	%r9d, %eax	# r, r
+ 795              	.LVL114:
+  16:pi.c          ****     {                                            
+ 796              		.loc 1 16 0
+ 797 041f 7DCF     		jge	.L49	#,
+ 798 0421 498D8000 		leaq	b(%r8), %rax	#, ivtmp.128
+ 798      000000
+ 799              	.LVL115:
+ 800 0428 4889FA   		movq	%rdi, %rdx	# ivtmp.139, ivtmp.126
+ 801              	.LVL116:
+ 802 042b EB1A     		jmp	.L53	#
+ 803              	.LVL117:
+ 804 042d 0F1F00   		.p2align 4,,10
+ 805              		.p2align 3
+ 806              	.L87:
+ 807              	.LBE84:
+ 808              	.LBE111:
+ 809              	.LBB112:
+ 810              	.LBB102:
+  92:pi.c          ****         {                                        
+ 811              		.loc 1 92 0
+ 812 0430 8808     		movb	%cl, (%rax)	# D.3653, MEM[base: _542, offset: 0B]
+ 813              	.L51:
+ 814              	.LVL118:
+ 815 0432 4883EA01 		subq	$1, %rdx	#, ivtmp.126
+ 816              	.LVL119:
+ 817 0436 4883E801 		subq	$1, %rax	#, ivtmp.128
+  90:pi.c          ****     {                                            
+ 818              		.loc 1 90 0
+ 819 043a 4881FA00 		cmpq	$c-1, %rdx	#, ivtmp.126
+ 819      000000
+ 820 0441 0F8409FF 		je	.L86	#,
+ 820      FFFF
+ 821              	.L53:
+ 822              	.LVL120:
+  92:pi.c          ****         {                                        
+ 823              		.loc 1 92 0
+ 824 0447 0FB60A   		movzbl	(%rdx), %ecx	# MEM[base: _543, offset: 0B], MEM[base: _543, offset: 0B]
+ 825 044a 2A08     		subb	(%rax), %cl	# MEM[base: _542, offset: 0B], D.3653
+ 826 044c 79E2     		jns	.L87	#,
+  94:pi.c          ****             z[k-1]++;                            
+ 827              		.loc 1 94 0
+ 828 044e 83C10A   		addl	$10, %ecx	#, tmp588
+  95:pi.c          ****         }                                        
+ 829              		.loc 1 95 0
+ 830 0451 8040FF01 		addb	$1, -1(%rax)	#, MEM[base: _542, offset: -1B]
+  94:pi.c          ****             z[k-1]++;                            
+ 831              		.loc 1 94 0
+ 832 0455 8808     		movb	%cl, (%rax)	# tmp588, MEM[base: _542, offset: 0B]
+ 833 0457 EBD9     		jmp	.L51	#
+ 834              	.LVL121:
+ 835 0459 0F1F8000 		.p2align 4,,10
+ 835      000000
+ 836              		.p2align 3
+ 837              	.L33:
+ 838              	.LBE102:
+ 839              	.LBE112:
+ 840              	.LBB113:
+ 841              	.LBB94:
+  34:pi.c          ****         {                                        
+ 842              		.loc 1 34 0
+ 843 0460 4585FF   		testl	%r15d, %r15d	# D.3648
+ 844 0463 0F8891FE 		js	.L37	#,
+ 844      FFFF
+ 845 0469 31C9     		xorl	%ecx, %ecx	# ivtmp.144
+ 846 046b 31F6     		xorl	%esi, %esi	# r
+ 847              	.LVL122:
+ 848 046d 0F1F00   		.p2align 4,,10
+ 849              		.p2align 3
+ 850              	.L38:
+  36:pi.c          ****             q = u / n;                           
+ 851              		.loc 1 36 0
+ 852 0470 0FBE8100 		movsbl	c(%rcx), %eax	# MEM[symbol: c, index: ivtmp.144_432, offset: 0B], D.3650
+ 852      000000
+ 853 0477 8D14B6   		leal	(%rsi,%rsi,4), %edx	#, D.3650
+ 854 047a 4883C101 		addq	$1, %rcx	#, ivtmp.144
+ 855              	.LVL123:
+ 856 047e 8D3450   		leal	(%rax,%rdx,2), %esi	#, u
+ 857              	.LVL124:
+  37:pi.c          ****             r = u - q * n;                       
+ 858              		.loc 1 37 0
+ 859 0481 31D2     		xorl	%edx, %edx	# tmp543
+ 860 0483 89F0     		movl	%esi, %eax	# u, tmp542
+ 861 0485 41F7F4   		divl	%r12d	# j
+ 862              	.LVL125:
+  38:pi.c          ****             x[k] = q;                            
+ 863              		.loc 1 38 0
+ 864 0488 89C2     		movl	%eax, %edx	# tmp542, D.3650
+  39:pi.c          ****         }                                       
+ 865              		.loc 1 39 0
+ 866 048a 88810000 		movb	%al, c-1(%rcx)	# tmp542, MEM[symbol: c, index: ivtmp.144_432, offset: 0B]
+ 866      0000
+  38:pi.c          ****             x[k] = q;                            
+ 867              		.loc 1 38 0
+ 868 0490 410FAFD4 		imull	%r12d, %edx	# j, D.3650
+ 869 0494 29D6     		subl	%edx, %esi	# D.3650, r
+ 870              	.LVL126:
+  34:pi.c          ****         {                                        
+ 871              		.loc 1 34 0
+ 872 0496 4139CF   		cmpl	%ecx, %r15d	# ivtmp.144, D.3648
+ 873 0499 7DD5     		jge	.L38	#,
+ 874 049b E95AFEFF 		jmp	.L37	#
+ 874      FF
+ 875              	.LVL127:
+ 876              	.L85:
+ 877 04a0 8B1D0000 		movl	N4(%rip), %ebx	# N4, D.3648
+ 877      0000
+ 878              	.LVL128:
+ 879              	.L32:
+ 880              	.LBE94:
+ 881              	.LBE113:
+ 882              	.LBB114:
+ 883              	.LBB115:
+  80:pi.c          ****     x[0] = n;                                    
+ 884              		.loc 1 80 0
+ 885 04a6 8D5301   		leal	1(%rbx), %edx	#, D.3648
+ 886 04a9 31F6     		xorl	%esi, %esi	#
+ 887 04ab BF000000 		movl	$c, %edi	#,
+ 887      00
+ 888 04b0 4863D2   		movslq	%edx, %rdx	# D.3648, D.3649
+ 889 04b3 E8000000 		call	memset	#
+ 889      00
+ 890              	.LVL129:
+ 891              	.LBE115:
+ 892              	.LBE114:
+ 893              	.LBB117:
+ 894              	.LBB118:
+  90:pi.c          ****     {                                            
+ 895              		.loc 1 90 0
+ 896 04b8 85DB     		testl	%ebx, %ebx	# D.3648
+ 897              	.LBE118:
+ 898              	.LBE117:
+ 899              	.LBB121:
+ 900              	.LBB116:
+  81:pi.c          **** }
+ 901              		.loc 1 81 0
+ 902 04ba C6050000 		movb	$1, c(%rip)	#, MEM[(char *)&c]
+ 902      000001
+ 903              	.LVL130:
+ 904              	.LBE116:
+ 905              	.LBE121:
+ 906              	.LBB122:
+ 907              	.LBB119:
+  90:pi.c          ****     {                                            
+ 908              		.loc 1 90 0
+ 909 04c1 786E     		js	.L77	#,
+ 910 04c3 4C63C3   		movslq	%ebx, %r8	# D.3648, D.3651
+ 911 04c6 4D8D8800 		leaq	c(%r8), %r9	#, ivtmp.109
+ 911      000000
+ 912 04cd 498D8800 		leaq	a(%r8), %rcx	#, ivtmp.111
+ 912      000000
+ 913 04d4 4C89CF   		movq	%r9, %rdi	# ivtmp.109, ivtmp.109
+ 914 04d7 4889C8   		movq	%rcx, %rax	# ivtmp.111, ivtmp.111
+ 915 04da EB17     		jmp	.L62	#
+ 916              	.LVL131:
+ 917 04dc 0F1F4000 		.p2align 4,,10
+ 918              		.p2align 3
+ 919              	.L89:
+  92:pi.c          ****         {                                        
+ 920              		.loc 1 92 0
+ 921 04e0 8810     		movb	%dl, (%rax)	# D.3653, MEM[base: _556, offset: 0B]
+ 922              	.L60:
+ 923              	.LVL132:
+ 924 04e2 4883EF01 		subq	$1, %rdi	#, ivtmp.109
+ 925              	.LVL133:
+ 926 04e6 4883E801 		subq	$1, %rax	#, ivtmp.111
+  90:pi.c          ****     {                                            
+ 927              		.loc 1 90 0
+ 928 04ea 4881FF00 		cmpq	$c-1, %rdi	#, ivtmp.109
+ 928      000000
+ 929 04f1 7456     		je	.L88	#,
+ 930              	.L62:
+ 931              	.LVL134:
+  92:pi.c          ****         {                                        
+ 932              		.loc 1 92 0
+ 933 04f3 0FB617   		movzbl	(%rdi), %edx	# MEM[base: _557, offset: 0B], MEM[base: _557, offset: 0B]
+ 934 04f6 2A10     		subb	(%rax), %dl	# MEM[base: _556, offset: 0B], D.3653
+ 935 04f8 79E6     		jns	.L89	#,
+  94:pi.c          ****             z[k-1]++;                            
+ 936              		.loc 1 94 0
+ 937 04fa 83C20A   		addl	$10, %edx	#, tmp620
+  95:pi.c          ****         }                                        
+ 938              		.loc 1 95 0
+ 939 04fd 8040FF01 		addb	$1, -1(%rax)	#, MEM[base: _556, offset: -1B]
+  94:pi.c          ****             z[k-1]++;                            
+ 940              		.loc 1 94 0
+ 941 0501 8810     		movb	%dl, (%rax)	# tmp620, MEM[base: _556, offset: 0B]
+ 942 0503 EBDD     		jmp	.L60	#
+ 943              	.LVL135:
+ 944              	.L92:
+ 945              	.LBE119:
+ 946              	.LBE122:
+ 947              	.LBB123:
+ 948              	.LBB124:
+  90:pi.c          ****     {                                            
+ 949              		.loc 1 90 0
+ 950 0505 31D2     		xorl	%edx, %edx	# r
+ 951              	.LBE124:
+ 952              	.LBE123:
+ 953              	.LBB126:
+ 954              	.LBB127:
+  73:pi.c          ****         x[k] = q - r * 10;                   
+ 955              		.loc 1 73 0
+ 956 0507 BFCDCCCC 		movl	$-858993459, %edi	#, tmp671
+ 956      CC
+ 957 050c 0F1F4000 		.p2align 4,,10
+ 958              		.p2align 3
+ 959              	.L78:
+ 960              	.LVL136:
+  72:pi.c          ****         r = q / 10;                          
+ 961              		.loc 1 72 0
+ 962 0510 0FBE01   		movsbl	(%rcx), %eax	# MEM[base: _623, offset: 0B], D.3648
+ 963 0513 4883E901 		subq	$1, %rcx	#, ivtmp.69
+ 964              	.LVL137:
+ 965 0517 8D3482   		leal	(%rdx,%rax,4), %esi	#, q
+ 966              	.LVL138:
+  73:pi.c          ****         x[k] = q - r * 10;                   
+ 967              		.loc 1 73 0
+ 968 051a 89F0     		movl	%esi, %eax	# q, tmp689
+ 969 051c F7E7     		mull	%edi	# tmp671
+ 970              	.LVL139:
+ 971 051e C1EA03   		shrl	$3, %edx	#, r
+ 972              	.LVL140:
+  74:pi.c          ****     }                                        
+ 973              		.loc 1 74 0
+ 974 0521 8D0492   		leal	(%rdx,%rdx,4), %eax	#, D.3653
+ 975 0524 01C0     		addl	%eax, %eax	# tmp669
+ 976 0526 29C6     		subl	%eax, %esi	# tmp669, tmp670
+ 977              	.LVL141:
+ 978 0528 40887101 		movb	%sil, 1(%rcx)	# tmp670, MEM[base: _623, offset: 0B]
+  70:pi.c          ****     {                                        
+ 979              		.loc 1 70 0
+ 980 052c 4939C9   		cmpq	%rcx, %r9	# ivtmp.69, D.3654
+ 981 052f 75DF     		jne	.L78	#,
+ 982              	.LVL142:
+ 983              	.L77:
+ 984              	.LBE127:
+ 985              	.LBE126:
+ 159:pi.c          **** 
+ 986              		.loc 1 159 0
+ 987 0531 4883C408 		addq	$8, %rsp	#,
+ 988              		.cfi_remember_state
+ 989              		.cfi_def_cfa_offset 56
+ 990              	.LBB128:
+ 991              	.LBB129:
+ 992              		.loc 1 179 0
+ 993 0535 BF2E0000 		movl	$46, %edi	#,
+ 993      00
+ 994              	.LBE129:
+ 995              	.LBE128:
+ 159:pi.c          **** 
+ 996              		.loc 1 159 0
+ 997 053a 5B       		popq	%rbx	#
+ 998              		.cfi_def_cfa_offset 48
+ 999 053b 5D       		popq	%rbp	#
+ 1000              		.cfi_def_cfa_offset 40
+ 1001 053c 415C     		popq	%r12	#
+ 1002              		.cfi_def_cfa_offset 32
+ 1003              	.LVL143:
+ 1004 053e 415D     		popq	%r13	#
+ 1005              		.cfi_def_cfa_offset 24
+ 1006 0540 415E     		popq	%r14	#
+ 1007              		.cfi_def_cfa_offset 16
+ 1008 0542 415F     		popq	%r15	#
+ 1009              		.cfi_def_cfa_offset 8
+ 1010              	.LBB131:
+ 1011              	.LBB130:
+ 1012              		.loc 1 179 0
+ 1013 0544 E9000000 		jmp	putchar	#
+ 1013      00
+ 1014              	.LVL144:
+ 1015              	.L88:
+ 1016              		.cfi_restore_state
+ 1017              	.LBE130:
+ 1018              	.LBE131:
+ 1019              	.LBB132:
+ 1020              	.LBB120:
+  90:pi.c          ****     {                                            
+ 1021              		.loc 1 90 0
+ 1022 0549 31F6     		xorl	%esi, %esi	# ivtmp.101
+ 1023 054b 31C0     		xorl	%eax, %eax	# r
+ 1024              	.LBE120:
+ 1025              	.LBE132:
+ 1026              	.LBB133:
+ 1027              	.LBB134:
+  19:pi.c          ****         r = u - q * n;                           
+ 1028              		.loc 1 19 0
+ 1029 054d 41BACDCC 		movl	$-858993459, %r10d	#, tmp674
+ 1029      CCCC
+ 1030              		.p2align 4,,10
+ 1031 0553 0F1F4400 		.p2align 3
+ 1031      00
+ 1032              	.L64:
+ 1033              	.LVL145:
+  18:pi.c          ****         q = u / n;                               
+ 1034              		.loc 1 18 0
+ 1035 0558 0FBE9600 		movsbl	a(%rsi), %edx	# MEM[symbol: a, index: ivtmp.101_435, offset: 0B], D.3650
+ 1035      000000
+ 1036 055f 8D0480   		leal	(%rax,%rax,4), %eax	#, D.3650
+ 1037              	.LVL146:
+ 1038 0562 4883C601 		addq	$1, %rsi	#, ivtmp.101
+ 1039              	.LVL147:
+ 1040 0566 8D3C42   		leal	(%rdx,%rax,2), %edi	#, u
+ 1041              	.LVL148:
+  19:pi.c          ****         r = u - q * n;                           
+ 1042              		.loc 1 19 0
+ 1043 0569 89F8     		movl	%edi, %eax	# u, tmp686
+ 1044 056b 41F7E2   		mull	%r10d	# tmp674
+ 1045 056e C1EA02   		shrl	$2, %edx	#, q
+ 1046              	.LVL149:
+  20:pi.c          ****         x[k] = q;                                
+ 1047              		.loc 1 20 0
+ 1048 0571 8D0492   		leal	(%rdx,%rdx,4), %eax	#, D.3650
+  21:pi.c          ****     }                                           
+ 1049              		.loc 1 21 0
+ 1050 0574 88960000 		movb	%dl, a-1(%rsi)	# q, MEM[symbol: a, index: ivtmp.101_435, offset: 0B]
+ 1050      0000
+  20:pi.c          ****         x[k] = q;                                
+ 1051              		.loc 1 20 0
+ 1052 057a 29C7     		subl	%eax, %edi	# D.3650, r
+ 1053              	.LVL150:
+  16:pi.c          ****     {                                            
+ 1054              		.loc 1 16 0
+ 1055 057c 39F3     		cmpl	%esi, %ebx	# ivtmp.101, D.3648
+  20:pi.c          ****         x[k] = q;                                
+ 1056              		.loc 1 20 0
+ 1057 057e 89F8     		movl	%edi, %eax	# r, r
+ 1058              	.LVL151:
+  16:pi.c          ****     {                                            
+ 1059              		.loc 1 16 0
+ 1060 0580 7DD6     		jge	.L64	#,
+ 1061 0582 498D8000 		leaq	b(%r8), %rax	#, ivtmp.98
+ 1061      000000
+ 1062              	.LVL152:
+ 1063 0589 4C89CE   		movq	%r9, %rsi	# ivtmp.109, ivtmp.96
+ 1064 058c EB15     		jmp	.L68	#
+ 1065              	.LVL153:
+ 1066 058e 6690     		.p2align 4,,10
+ 1067              		.p2align 3
+ 1068              	.L91:
+ 1069              	.LBE134:
+ 1070              	.LBE133:
+ 1071              	.LBB135:
+ 1072              	.LBB136:
+  92:pi.c          ****         {                                        
+ 1073              		.loc 1 92 0
+ 1074 0590 8810     		movb	%dl, (%rax)	# D.3653, MEM[base: _571, offset: 0B]
+ 1075              	.L66:
+ 1076              	.LVL154:
+ 1077 0592 4883EE01 		subq	$1, %rsi	#, ivtmp.96
+ 1078              	.LVL155:
+ 1079 0596 4883E801 		subq	$1, %rax	#, ivtmp.98
+  90:pi.c          ****     {                                            
+ 1080              		.loc 1 90 0
+ 1081 059a 4881FE00 		cmpq	$c-1, %rsi	#, ivtmp.96
+ 1081      000000
+ 1082 05a1 7412     		je	.L90	#,
+ 1083              	.L68:
+ 1084              	.LVL156:
+  92:pi.c          ****         {                                        
+ 1085              		.loc 1 92 0
+ 1086 05a3 0FB616   		movzbl	(%rsi), %edx	# MEM[base: _572, offset: 0B], MEM[base: _572, offset: 0B]
+ 1087 05a6 2A10     		subb	(%rax), %dl	# MEM[base: _571, offset: 0B], D.3653
+ 1088 05a8 79E6     		jns	.L91	#,
+  94:pi.c          ****             z[k-1]++;                            
+ 1089              		.loc 1 94 0
+ 1090 05aa 83C20A   		addl	$10, %edx	#, tmp635
+  95:pi.c          ****         }                                        
+ 1091              		.loc 1 95 0
+ 1092 05ad 8040FF01 		addb	$1, -1(%rax)	#, MEM[base: _571, offset: -1B]
+  94:pi.c          ****             z[k-1]++;                            
+ 1093              		.loc 1 94 0
+ 1094 05b1 8810     		movb	%dl, (%rax)	# tmp635, MEM[base: _571, offset: 0B]
+ 1095 05b3 EBDD     		jmp	.L66	#
+ 1096              	.LVL157:
+ 1097              	.L90:
+  90:pi.c          ****     {                                            
+ 1098              		.loc 1 90 0
+ 1099 05b5 31F6     		xorl	%esi, %esi	# ivtmp.88
+ 1100 05b7 31C0     		xorl	%eax, %eax	# r
+ 1101              	.LBE136:
+ 1102              	.LBE135:
+ 1103              	.LBB137:
+ 1104              	.LBB138:
+  19:pi.c          ****         r = u - q * n;                           
+ 1105              		.loc 1 19 0
+ 1106 05b9 41B93BC7 		movl	$-1994733765, %r9d	#, tmp673
+ 1106      1A89
+ 1107              	.LVL158:
+ 1108 05bf 90       		.p2align 4,,10
+ 1109              		.p2align 3
+ 1110              	.L70:
+  18:pi.c          ****         q = u / n;                               
+ 1111              		.loc 1 18 0
+ 1112 05c0 0FBE9600 		movsbl	b(%rsi), %edx	# MEM[symbol: b, index: ivtmp.88_415, offset: 0B], D.3650
+ 1112      000000
+ 1113 05c7 8D0480   		leal	(%rax,%rax,4), %eax	#, D.3650
+ 1114              	.LVL159:
+ 1115 05ca 4883C601 		addq	$1, %rsi	#, ivtmp.88
+ 1116              	.LVL160:
+ 1117 05ce 8D3C42   		leal	(%rdx,%rax,2), %edi	#, u
+ 1118              	.LVL161:
+  19:pi.c          ****         r = u - q * n;                           
+ 1119              		.loc 1 19 0
+ 1120 05d1 89F8     		movl	%edi, %eax	# u, tmp687
+ 1121 05d3 41F7E1   		mull	%r9d	# tmp673
+ 1122 05d6 C1EA07   		shrl	$7, %edx	#, q
+ 1123              	.LVL162:
+  20:pi.c          ****         x[k] = q;                                
+ 1124              		.loc 1 20 0
+ 1125 05d9 69C2EF00 		imull	$239, %edx, %eax	#, q, D.3650
+ 1125      0000
+  21:pi.c          ****     }                                           
+ 1126              		.loc 1 21 0
+ 1127 05df 88960000 		movb	%dl, b-1(%rsi)	# q, MEM[symbol: b, index: ivtmp.88_415, offset: 0B]
+ 1127      0000
+  20:pi.c          ****         x[k] = q;                                
+ 1128              		.loc 1 20 0
+ 1129 05e5 29C7     		subl	%eax, %edi	# D.3650, r
+ 1130              	.LVL163:
+  16:pi.c          ****     {                                            
+ 1131              		.loc 1 16 0
+ 1132 05e7 39F3     		cmpl	%esi, %ebx	# ivtmp.88, D.3648
+  20:pi.c          ****         x[k] = q;                                
+ 1133              		.loc 1 20 0
+ 1134 05e9 89F8     		movl	%edi, %eax	# r, r
+ 1135              	.LVL164:
+  16:pi.c          ****     {                                            
+ 1136              		.loc 1 16 0
+ 1137 05eb 7DD3     		jge	.L70	#,
+ 1138 05ed 41B90000 		movl	$a-1, %r9d	#, D.3654
+ 1138      0000
+ 1139 05f3 4889CE   		movq	%rcx, %rsi	# ivtmp.111, ivtmp.85
+ 1140 05f6 31D2     		xorl	%edx, %edx	# r
+ 1141              	.LVL165:
+ 1142              	.LBE138:
+ 1143              	.LBE137:
+ 1144              	.LBB139:
+ 1145              	.LBB140:
+  73:pi.c          ****         x[k] = q - r * 10;                   
+ 1146              		.loc 1 73 0
+ 1147 05f8 41BACDCC 		movl	$-858993459, %r10d	#, tmp672
+ 1147      CCCC
+ 1148              	.LVL166:
+ 1149 05fe 6690     		.p2align 4,,10
+ 1150              		.p2align 3
+ 1151              	.L72:
+  72:pi.c          ****         r = q / 10;                          
+ 1152              		.loc 1 72 0
+ 1153 0600 0FBE06   		movsbl	(%rsi), %eax	# MEM[base: _311, offset: 0B], D.3648
+ 1154 0603 4883EE01 		subq	$1, %rsi	#, ivtmp.85
+ 1155              	.LVL167:
+ 1156 0607 8D3C82   		leal	(%rdx,%rax,4), %edi	#, q
+ 1157              	.LVL168:
+  73:pi.c          ****         x[k] = q - r * 10;                   
+ 1158              		.loc 1 73 0
+ 1159 060a 89F8     		movl	%edi, %eax	# q, tmp688
+ 1160 060c 41F7E2   		mull	%r10d	# tmp672
+ 1161              	.LVL169:
+ 1162 060f C1EA03   		shrl	$3, %edx	#, r
+ 1163              	.LVL170:
+  74:pi.c          ****     }                                        
+ 1164              		.loc 1 74 0
+ 1165 0612 8D0492   		leal	(%rdx,%rdx,4), %eax	#, D.3653
+ 1166 0615 01C0     		addl	%eax, %eax	# tmp655
+ 1167 0617 29C7     		subl	%eax, %edi	# tmp655, tmp656
+ 1168              	.LVL171:
+ 1169 0619 40887E01 		movb	%dil, 1(%rsi)	# tmp656, MEM[base: _311, offset: 0B]
+  70:pi.c          ****     {                                        
+ 1170              		.loc 1 70 0
+ 1171 061d 4881FE00 		cmpq	$a-1, %rsi	#, ivtmp.85
+ 1171      000000
+ 1172 0624 75DA     		jne	.L72	#,
+ 1173 0626 498D9000 		leaq	b-1(%r8), %rdx	#, ivtmp.79
+ 1173      000000
+ 1174              	.LVL172:
+ 1175 062d 4889C8   		movq	%rcx, %rax	# ivtmp.111, ivtmp.76
+ 1176 0630 EB1D     		jmp	.L76	#
+ 1177              	.LVL173:
+ 1178              		.p2align 4,,10
+ 1179 0632 660F1F44 		.p2align 3
+ 1179      0000
+ 1180              	.L93:
+ 1181              	.LBE140:
+ 1182              	.LBE139:
+ 1183              	.LBB141:
+ 1184              	.LBB125:
+  92:pi.c          ****         {                                        
+ 1185              		.loc 1 92 0
+ 1186 0638 408830   		movb	%sil, (%rax)	# D.3653, MEM[base: _603, offset: 0B]
+ 1187              	.L74:
+ 1188              	.LVL174:
+ 1189 063b 4883E801 		subq	$1, %rax	#, ivtmp.76
+ 1190              	.LVL175:
+ 1191 063f 4883EA01 		subq	$1, %rdx	#, ivtmp.79
+  90:pi.c          ****     {                                            
+ 1192              		.loc 1 90 0
+ 1193 0643 483D0000 		cmpq	$a-1, %rax	#, ivtmp.76
+ 1193      0000
+ 1194 0649 0F84B6FE 		je	.L92	#,
+ 1194      FFFF
+ 1195              	.L76:
+ 1196              	.LVL176:
+  92:pi.c          ****         {                                        
+ 1197              		.loc 1 92 0
+ 1198 064f 0FB630   		movzbl	(%rax), %esi	# MEM[base: _603, offset: 0B], MEM[base: _603, offset: 0B]
+ 1199 0652 402A7201 		subb	1(%rdx), %sil	# MEM[base: _602, offset: 1B], D.3653
+ 1200 0656 79E0     		jns	.L93	#,
+  94:pi.c          ****             z[k-1]++;                            
+ 1201              		.loc 1 94 0
+ 1202 0658 83C60A   		addl	$10, %esi	#, tmp660
+  95:pi.c          ****         }                                        
+ 1203              		.loc 1 95 0
+ 1204 065b 800201   		addb	$1, (%rdx)	#, MEM[base: _602, offset: 0B]
+  94:pi.c          ****             z[k-1]++;                            
+ 1205              		.loc 1 94 0
+ 1206 065e 408830   		movb	%sil, (%rax)	# tmp660, MEM[base: _603, offset: 0B]
+ 1207 0661 EBD8     		jmp	.L74	#
+ 1208              	.LVL177:
+ 1209              	.L79:
+ 1210              	.LBE125:
+ 1211              	.LBE141:
+ 131:pi.c          ****     {
+ 1212              		.loc 1 131 0
+ 1213 0663 4489FB   		movl	%r15d, %ebx	# N4.8, D.3648
+ 1214 0666 E93BFEFF 		jmp	.L32	#
+ 1214      FF
+ 1215              		.cfi_endproc
+ 1216              	.LFE39:
+ 1218 066b 0F1F4400 		.p2align 4,,15
+ 1218      00
+ 1219              		.globl	progress
+ 1221              	progress:
+ 1222              	.LFB40:
+ 178:pi.c          ****     printf(".");
+ 1223              		.loc 1 178 0
+ 1224              		.cfi_startproc
+ 1225              		.loc 1 179 0
+ 1226 0670 BF2E0000 		movl	$46, %edi	#,
+ 1226      00
+ 1227 0675 E9000000 		jmp	putchar	#
+ 1227      00
+ 1228              	.LVL178:
+ 1229              		.cfi_endproc
+ 1230              	.LFE40:
+ 1232              		.section	.rodata.str1.1,"aMS",@progbits,1
+ 1233              	.LC0:
+ 1234 0000 200A332E 		.string	" \n3."
+ 1234      00
+ 1235              	.LC1:
+ 1236 0005 256400   		.string	"%d"
+ 1237              	.LC2:
+ 1238 0008 20202020 		.string	"    <%d>\n\n   "
+ 1238      3C25643E 
+ 1238      0A0A2020 
+ 1238      2000
+ 1239              	.LC3:
+ 1240 0016 0A202020 		.string	"\n   "
+ 1240      00
+ 1241              		.text
+ 1242 067a 660F1F44 		.p2align 4,,15
+ 1242      0000
+ 1243              		.globl	epilog
+ 1245              	epilog:
+ 1246              	.LFB41:
+ 180:pi.c          **** }
+ 181:pi.c          **** 
+ 182:pi.c          **** void epilog( void )
+ 183:pi.c          **** {
+ 1247              		.loc 1 183 0
+ 1248              		.cfi_startproc
+ 1249 0680 4154     		pushq	%r12	#
+ 1250              		.cfi_def_cfa_offset 16
+ 1251              		.cfi_offset 12, -16
+ 184:pi.c          ****     int j;
+ 185:pi.c          **** 
+ 186:pi.c          ****     {
+ 187:pi.c          ****         fprintf( stdout, " \n3.");
+ 1252              		.loc 1 187 0
+ 1253 0682 488B0D00 		movq	stdout(%rip), %rcx	# stdout,
+ 1253      000000
+ 1254 0689 BA040000 		movl	$4, %edx	#,
+ 1254      00
+ 1255 068e BE010000 		movl	$1, %esi	#,
+ 1255      00
+ 1256 0693 BF000000 		movl	$.LC0, %edi	#,
+ 1256      00
+ 183:pi.c          ****     int j;
+ 1257              		.loc 1 183 0
+ 1258 0698 55       		pushq	%rbp	#
+ 1259              		.cfi_def_cfa_offset 24
+ 1260              		.cfi_offset 6, -24
+ 1261 0699 53       		pushq	%rbx	#
+ 1262              		.cfi_def_cfa_offset 32
+ 1263              		.cfi_offset 3, -32
+ 1264              		.loc 1 187 0
+ 1265 069a E8000000 		call	fwrite	#
+ 1265      00
+ 1266              	.LVL179:
+ 188:pi.c          ****         for( j = 1; j <= N; j++ )
+ 1267              		.loc 1 188 0
+ 1268 069f 8B150000 		movl	N(%rip), %edx	# N,
+ 1268      0000
+ 1269 06a5 85D2     		testl	%edx, %edx	#
+ 1270 06a7 0F8E0301 		jle	.L95	#,
+ 1270      0000
+ 189:pi.c          ****         {
+ 190:pi.c          ****             fprintf( stdout, "%d", a[j]);
+ 1271              		.loc 1 190 0
+ 1272 06ad 0FBE1500 		movsbl	a+1(%rip), %edx	# a, D.3680
+ 1272      000000
+ 1273 06b4 488B3D00 		movq	stdout(%rip), %rdi	# stdout,
+ 1273      000000
+ 1274 06bb BE000000 		movl	$.LC1, %esi	#,
+ 1274      00
+ 1275 06c0 31C0     		xorl	%eax, %eax	#
+ 1276 06c2 BD000000 		movl	$a+2, %ebp	#, ivtmp.175
+ 1276      00
+ 188:pi.c          ****         for( j = 1; j <= N; j++ )
+ 1277              		.loc 1 188 0
+ 1278 06c7 BB010000 		movl	$1, %ebx	#, j
+ 1278      00
+ 191:pi.c          ****             if( j % 5  == 0 )
+ 1279              		.loc 1 191 0
+ 1280 06cc 41BC6766 		movl	$1717986919, %r12d	#, tmp114
+ 1280      6666
+ 190:pi.c          ****             if( j % 5  == 0 )
+ 1281              		.loc 1 190 0
+ 1282 06d2 E8000000 		call	fprintf	#
+ 1282      00
+ 1283              	.LVL180:
+ 1284 06d7 EB23     		jmp	.L102	#
+ 1285              	.LVL181:
+ 1286 06d9 0F1F8000 		.p2align 4,,10
+ 1286      000000
+ 1287              		.p2align 3
+ 1288              	.L104:
+ 192:pi.c          ****                 if( j % 50 == 0 )
+ 193:pi.c          ****                     if( j % 250  == 0 )
+ 194:pi.c          ****                         fprintf( stdout, "    <%d>\n\n   ", j );
+ 1289              		.loc 1 194 0
+ 1290 06e0 488B3D00 		movq	stdout(%rip), %rdi	# stdout,
+ 1290      000000
+ 1291 06e7 89DA     		movl	%ebx, %edx	# j,
+ 1292 06e9 BE000000 		movl	$.LC2, %esi	#,
+ 1292      00
+ 1293 06ee 31C0     		xorl	%eax, %eax	#
+ 1294 06f0 E8000000 		call	fprintf	#
+ 1294      00
+ 1295              	.LVL182:
+ 1296              		.p2align 4,,10
+ 1297 06f5 0F1F00   		.p2align 3
+ 1298              	.L97:
+ 1299 06f8 4883C501 		addq	$1, %rbp	#, ivtmp.175
+ 1300              	.LVL183:
+ 1301              	.L102:
+ 188:pi.c          ****         {
+ 1302              		.loc 1 188 0
+ 1303 06fc 83C301   		addl	$1, %ebx	#, j
+ 1304              	.LVL184:
+ 1305 06ff 391D0000 		cmpl	%ebx, N(%rip)	# j, N
+ 1305      0000
+ 1306 0705 0F8CA500 		jl	.L95	#,
+ 1306      0000
+ 190:pi.c          ****             if( j % 5  == 0 )
+ 1307              		.loc 1 190 0
+ 1308 070b 0FBE5500 		movsbl	0(%rbp), %edx	# MEM[base: _1, offset: 0B], D.3680
+ 1309 070f 488B3D00 		movq	stdout(%rip), %rdi	# stdout,
+ 1309      000000
+ 1310 0716 31C0     		xorl	%eax, %eax	#
+ 1311 0718 BE000000 		movl	$.LC1, %esi	#,
+ 1311      00
+ 1312 071d E8000000 		call	fprintf	#
+ 1312      00
+ 1313              	.LVL185:
+ 191:pi.c          ****                 if( j % 50 == 0 )
+ 1314              		.loc 1 191 0
+ 1315 0722 89D8     		movl	%ebx, %eax	# j, tmp115
+ 1316 0724 89D9     		movl	%ebx, %ecx	# j, tmp93
+ 1317 0726 41F7EC   		imull	%r12d	# tmp114
+ 1318 0729 C1F91F   		sarl	$31, %ecx	#, tmp93
+ 1319 072c D1FA     		sarl	%edx	# tmp89
+ 1320 072e 29CA     		subl	%ecx, %edx	# tmp93, tmp89
+ 1321 0730 8D0492   		leal	(%rdx,%rdx,4), %eax	#, tmp96
+ 1322 0733 39C3     		cmpl	%eax, %ebx	# tmp96, j
+ 1323 0735 75C1     		jne	.L97	#,
+ 192:pi.c          ****                 if( j % 50 == 0 )
+ 1324              		.loc 1 192 0
+ 1325 0737 89D8     		movl	%ebx, %eax	# j, tmp116
+ 1326 0739 BA1F85EB 		movl	$1374389535, %edx	#, tmp100
+ 1326      51
+ 1327 073e F7EA     		imull	%edx	# tmp100
+ 1328 0740 B8320000 		movl	$50, %eax	#,
+ 1328      00
+ 1329 0745 C1FA04   		sarl	$4, %edx	#, tmp98
+ 1330 0748 29CA     		subl	%ecx, %edx	# tmp93, tmp98
+ 1331 074a 0FAFD0   		imull	%eax, %edx	#, tmp103
+ 1332 074d 39D3     		cmpl	%edx, %ebx	# tmp103, j
+ 1333 074f 753F     		jne	.L98	#,
+ 193:pi.c          ****                         fprintf( stdout, "    <%d>\n\n   ", j );
+ 1334              		.loc 1 193 0
+ 1335 0751 BAD34D62 		movl	$274877907, %edx	#, tmp107
+ 1335      10
+ 1336 0756 89D8     		movl	%ebx, %eax	# j, tmp117
+ 1337 0758 F7EA     		imull	%edx	# tmp107
+ 1338 075a C1FA04   		sarl	$4, %edx	#, tmp105
+ 1339 075d 29CA     		subl	%ecx, %edx	# tmp93, tmp105
+ 1340 075f 69D2FA00 		imull	$250, %edx, %edx	#, tmp105, tmp110
+ 1340      0000
+ 1341 0765 39D3     		cmpl	%edx, %ebx	# tmp110, j
+ 1342 0767 0F8473FF 		je	.L104	#,
+ 1342      FFFF
+ 195:pi.c          ****                     else
+ 196:pi.c          ****                         fprintf( stdout, "\n   " );
+ 1343              		.loc 1 196 0
+ 1344 076d 488B0D00 		movq	stdout(%rip), %rcx	# stdout,
+ 1344      000000
+ 1345 0774 BA040000 		movl	$4, %edx	#,
+ 1345      00
+ 1346 0779 BE010000 		movl	$1, %esi	#,
+ 1346      00
+ 1347 077e BF000000 		movl	$.LC3, %edi	#,
+ 1347      00
+ 1348 0783 E8000000 		call	fwrite	#
+ 1348      00
+ 1349              	.LVL186:
+ 1350 0788 E96BFFFF 		jmp	.L97	#
+ 1350      FF
+ 1351 078d 0F1F00   		.p2align 4,,10
+ 1352              		.p2align 3
+ 1353              	.L98:
+ 197:pi.c          ****                 else
+ 198:pi.c          ****                     fprintf( stdout, " " );
+ 1354              		.loc 1 198 0
+ 1355 0790 488B3500 		movq	stdout(%rip), %rsi	# stdout,
+ 1355      000000
+ 1356 0797 BF200000 		movl	$32, %edi	#,
+ 1356      00
+ 1357 079c E8000000 		call	fputc	#
+ 1357      00
+ 1358              	.LVL187:
+ 1359 07a1 E952FFFF 		jmp	.L97	#
+ 1359      FF
+ 1360              	.LVL188:
+ 1361 07a6 662E0F1F 		.p2align 4,,10
+ 1361      84000000 
+ 1361      0000
+ 1362              		.p2align 3
+ 1363              	.L95:
+ 199:pi.c          ****         }
+ 200:pi.c          ****     }
+ 201:pi.c          **** }
+ 1364              		.loc 1 201 0
+ 1365 07b0 5B       		popq	%rbx	#
+ 1366              		.cfi_def_cfa_offset 24
+ 1367 07b1 5D       		popq	%rbp	#
+ 1368              		.cfi_def_cfa_offset 16
+ 1369 07b2 415C     		popq	%r12	#
+ 1370              		.cfi_def_cfa_offset 8
+ 1371 07b4 C3       		ret
+ 1372              		.cfi_endproc
+ 1373              	.LFE41:
+ 1375              		.section	.text.startup,"ax",@progbits
+ 1376              		.p2align 4,,15
+ 1377              		.globl	main
+ 1379              	main:
+ 1380              	.LFB38:
+ 107:pi.c          ****     N = 10000;
+ 1381              		.loc 1 107 0
+ 1382              		.cfi_startproc
+ 1383              	.LVL189:
+ 1384 0000 4883EC08 		subq	$8, %rsp	#,
+ 1385              		.cfi_def_cfa_offset 16
+ 110:pi.c          ****       N = atoi(argv[1]);
+ 1386              		.loc 1 110 0
+ 1387 0004 83FF01   		cmpl	$1, %edi	#, argc
+ 108:pi.c          **** 
+ 1388              		.loc 1 108 0
+ 1389 0007 C7050000 		movl	$10000, N(%rip)	#, N
+ 1389      00001027 
+ 1389      0000
+ 110:pi.c          ****       N = atoi(argv[1]);
+ 1390              		.loc 1 110 0
+ 1391 0011 7E16     		jle	.L106	#,
+ 1392              	.LVL190:
+ 1393              	.LBB142:
+ 1394              	.LBB143:
+ 1395              		.file 2 "/usr/include/stdlib.h"
+   1:/usr/include/stdlib.h **** /* Copyright (C) 1991-2014 Free Software Foundation, Inc.
+   2:/usr/include/stdlib.h ****    This file is part of the GNU C Library.
+   3:/usr/include/stdlib.h **** 
+   4:/usr/include/stdlib.h ****    The GNU C Library is free software; you can redistribute it and/or
+   5:/usr/include/stdlib.h ****    modify it under the terms of the GNU Lesser General Public
+   6:/usr/include/stdlib.h ****    License as published by the Free Software Foundation; either
+   7:/usr/include/stdlib.h ****    version 2.1 of the License, or (at your option) any later version.
+   8:/usr/include/stdlib.h **** 
+   9:/usr/include/stdlib.h ****    The GNU C Library is distributed in the hope that it will be useful,
+  10:/usr/include/stdlib.h ****    but WITHOUT ANY WARRANTY; without even the implied warranty of
+  11:/usr/include/stdlib.h ****    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+  12:/usr/include/stdlib.h ****    Lesser General Public License for more details.
+  13:/usr/include/stdlib.h **** 
+  14:/usr/include/stdlib.h ****    You should have received a copy of the GNU Lesser General Public
+  15:/usr/include/stdlib.h ****    License along with the GNU C Library; if not, see
+  16:/usr/include/stdlib.h ****    <http://www.gnu.org/licenses/>.  */
+  17:/usr/include/stdlib.h **** 
+  18:/usr/include/stdlib.h **** /*
+  19:/usr/include/stdlib.h ****  *	ISO C99 Standard: 7.20 General utilities	<stdlib.h>
+  20:/usr/include/stdlib.h ****  */
+  21:/usr/include/stdlib.h **** 
+  22:/usr/include/stdlib.h **** #ifndef	_STDLIB_H
+  23:/usr/include/stdlib.h **** 
+  24:/usr/include/stdlib.h **** #include <features.h>
+  25:/usr/include/stdlib.h **** 
+  26:/usr/include/stdlib.h **** /* Get size_t, wchar_t and NULL from <stddef.h>.  */
+  27:/usr/include/stdlib.h **** #define		__need_size_t
+  28:/usr/include/stdlib.h **** #ifndef __need_malloc_and_calloc
+  29:/usr/include/stdlib.h **** # define	__need_wchar_t
+  30:/usr/include/stdlib.h **** # define	__need_NULL
+  31:/usr/include/stdlib.h **** #endif
+  32:/usr/include/stdlib.h **** #include <stddef.h>
+  33:/usr/include/stdlib.h **** 
+  34:/usr/include/stdlib.h **** __BEGIN_DECLS
+  35:/usr/include/stdlib.h **** 
+  36:/usr/include/stdlib.h **** #ifndef __need_malloc_and_calloc
+  37:/usr/include/stdlib.h **** #define	_STDLIB_H	1
+  38:/usr/include/stdlib.h **** 
+  39:/usr/include/stdlib.h **** #if (defined __USE_XOPEN || defined __USE_XOPEN2K8) && !defined _SYS_WAIT_H
+  40:/usr/include/stdlib.h **** /* XPG requires a few symbols from <sys/wait.h> being defined.  */
+  41:/usr/include/stdlib.h **** # include <bits/waitflags.h>
+  42:/usr/include/stdlib.h **** # include <bits/waitstatus.h>
+  43:/usr/include/stdlib.h **** 
+  44:/usr/include/stdlib.h **** # ifdef __USE_BSD
+  45:/usr/include/stdlib.h **** 
+  46:/usr/include/stdlib.h **** /* Lots of hair to allow traditional BSD use of `union wait'
+  47:/usr/include/stdlib.h ****    as well as POSIX.1 use of `int' for the status word.  */
+  48:/usr/include/stdlib.h **** 
+  49:/usr/include/stdlib.h **** #  if defined __GNUC__ && !defined __cplusplus
+  50:/usr/include/stdlib.h **** #   define __WAIT_INT(status) \
+  51:/usr/include/stdlib.h ****   (__extension__ (((union { __typeof(status) __in; int __i; }) \
+  52:/usr/include/stdlib.h **** 		   { .__in = (status) }).__i))
+  53:/usr/include/stdlib.h **** #  else
+  54:/usr/include/stdlib.h **** #   define __WAIT_INT(status)	(*(int *) &(status))
+  55:/usr/include/stdlib.h **** #  endif
+  56:/usr/include/stdlib.h **** 
+  57:/usr/include/stdlib.h **** /* This is the type of the argument to `wait'.  The funky union
+  58:/usr/include/stdlib.h ****    causes redeclarations with either `int *' or `union wait *' to be
+  59:/usr/include/stdlib.h ****    allowed without complaint.  __WAIT_STATUS_DEFN is the type used in
+  60:/usr/include/stdlib.h ****    the actual function definitions.  */
+  61:/usr/include/stdlib.h **** 
+  62:/usr/include/stdlib.h **** #  if !defined __GNUC__ || __GNUC__ < 2 || defined __cplusplus
+  63:/usr/include/stdlib.h **** #   define __WAIT_STATUS	void *
+  64:/usr/include/stdlib.h **** #   define __WAIT_STATUS_DEFN	void *
+  65:/usr/include/stdlib.h **** #  else
+  66:/usr/include/stdlib.h **** /* This works in GCC 2.6.1 and later.  */
+  67:/usr/include/stdlib.h **** typedef union
+  68:/usr/include/stdlib.h ****   {
+  69:/usr/include/stdlib.h ****     union wait *__uptr;
+  70:/usr/include/stdlib.h ****     int *__iptr;
+  71:/usr/include/stdlib.h ****   } __WAIT_STATUS __attribute__ ((__transparent_union__));
+  72:/usr/include/stdlib.h **** #   define __WAIT_STATUS_DEFN	int *
+  73:/usr/include/stdlib.h **** #  endif
+  74:/usr/include/stdlib.h **** 
+  75:/usr/include/stdlib.h **** # else /* Don't use BSD.  */
+  76:/usr/include/stdlib.h **** 
+  77:/usr/include/stdlib.h **** #  define __WAIT_INT(status)	(status)
+  78:/usr/include/stdlib.h **** #  define __WAIT_STATUS		int *
+  79:/usr/include/stdlib.h **** #  define __WAIT_STATUS_DEFN	int *
+  80:/usr/include/stdlib.h **** 
+  81:/usr/include/stdlib.h **** # endif /* Use BSD.  */
+  82:/usr/include/stdlib.h **** 
+  83:/usr/include/stdlib.h **** /* Define the macros <sys/wait.h> also would define this way.  */
+  84:/usr/include/stdlib.h **** # define WEXITSTATUS(status)	__WEXITSTATUS (__WAIT_INT (status))
+  85:/usr/include/stdlib.h **** # define WTERMSIG(status)	__WTERMSIG (__WAIT_INT (status))
+  86:/usr/include/stdlib.h **** # define WSTOPSIG(status)	__WSTOPSIG (__WAIT_INT (status))
+  87:/usr/include/stdlib.h **** # define WIFEXITED(status)	__WIFEXITED (__WAIT_INT (status))
+  88:/usr/include/stdlib.h **** # define WIFSIGNALED(status)	__WIFSIGNALED (__WAIT_INT (status))
+  89:/usr/include/stdlib.h **** # define WIFSTOPPED(status)	__WIFSTOPPED (__WAIT_INT (status))
+  90:/usr/include/stdlib.h **** # ifdef __WIFCONTINUED
+  91:/usr/include/stdlib.h **** #  define WIFCONTINUED(status)	__WIFCONTINUED (__WAIT_INT (status))
+  92:/usr/include/stdlib.h **** # endif
+  93:/usr/include/stdlib.h **** #endif	/* X/Open or XPG7 and <sys/wait.h> not included.  */
+  94:/usr/include/stdlib.h **** 
+  95:/usr/include/stdlib.h **** __BEGIN_NAMESPACE_STD
+  96:/usr/include/stdlib.h **** /* Returned by `div'.  */
+  97:/usr/include/stdlib.h **** typedef struct
+  98:/usr/include/stdlib.h ****   {
+  99:/usr/include/stdlib.h ****     int quot;			/* Quotient.  */
+ 100:/usr/include/stdlib.h ****     int rem;			/* Remainder.  */
+ 101:/usr/include/stdlib.h ****   } div_t;
+ 102:/usr/include/stdlib.h **** 
+ 103:/usr/include/stdlib.h **** /* Returned by `ldiv'.  */
+ 104:/usr/include/stdlib.h **** #ifndef __ldiv_t_defined
+ 105:/usr/include/stdlib.h **** typedef struct
+ 106:/usr/include/stdlib.h ****   {
+ 107:/usr/include/stdlib.h ****     long int quot;		/* Quotient.  */
+ 108:/usr/include/stdlib.h ****     long int rem;		/* Remainder.  */
+ 109:/usr/include/stdlib.h ****   } ldiv_t;
+ 110:/usr/include/stdlib.h **** # define __ldiv_t_defined	1
+ 111:/usr/include/stdlib.h **** #endif
+ 112:/usr/include/stdlib.h **** __END_NAMESPACE_STD
+ 113:/usr/include/stdlib.h **** 
+ 114:/usr/include/stdlib.h **** #if defined __USE_ISOC99 && !defined __lldiv_t_defined
+ 115:/usr/include/stdlib.h **** __BEGIN_NAMESPACE_C99
+ 116:/usr/include/stdlib.h **** /* Returned by `lldiv'.  */
+ 117:/usr/include/stdlib.h **** __extension__ typedef struct
+ 118:/usr/include/stdlib.h ****   {
+ 119:/usr/include/stdlib.h ****     long long int quot;		/* Quotient.  */
+ 120:/usr/include/stdlib.h ****     long long int rem;		/* Remainder.  */
+ 121:/usr/include/stdlib.h ****   } lldiv_t;
+ 122:/usr/include/stdlib.h **** # define __lldiv_t_defined	1
+ 123:/usr/include/stdlib.h **** __END_NAMESPACE_C99
+ 124:/usr/include/stdlib.h **** #endif
+ 125:/usr/include/stdlib.h **** 
+ 126:/usr/include/stdlib.h **** 
+ 127:/usr/include/stdlib.h **** /* The largest number rand will return (same as INT_MAX).  */
+ 128:/usr/include/stdlib.h **** #define	RAND_MAX	2147483647
+ 129:/usr/include/stdlib.h **** 
+ 130:/usr/include/stdlib.h **** 
+ 131:/usr/include/stdlib.h **** /* We define these the same for all machines.
+ 132:/usr/include/stdlib.h ****    Changes from this to the outside world should be done in `_exit'.  */
+ 133:/usr/include/stdlib.h **** #define	EXIT_FAILURE	1	/* Failing exit status.  */
+ 134:/usr/include/stdlib.h **** #define	EXIT_SUCCESS	0	/* Successful exit status.  */
+ 135:/usr/include/stdlib.h **** 
+ 136:/usr/include/stdlib.h **** 
+ 137:/usr/include/stdlib.h **** /* Maximum length of a multibyte character in the current locale.  */
+ 138:/usr/include/stdlib.h **** #define	MB_CUR_MAX	(__ctype_get_mb_cur_max ())
+ 139:/usr/include/stdlib.h **** extern size_t __ctype_get_mb_cur_max (void) __THROW __wur;
+ 140:/usr/include/stdlib.h **** 
+ 141:/usr/include/stdlib.h **** 
+ 142:/usr/include/stdlib.h **** __BEGIN_NAMESPACE_STD
+ 143:/usr/include/stdlib.h **** /* Convert a string to a floating-point number.  */
+ 144:/usr/include/stdlib.h **** extern double atof (const char *__nptr)
+ 145:/usr/include/stdlib.h ****      __THROW __attribute_pure__ __nonnull ((1)) __wur;
+ 146:/usr/include/stdlib.h **** /* Convert a string to an integer.  */
+ 147:/usr/include/stdlib.h **** extern int atoi (const char *__nptr)
+ 148:/usr/include/stdlib.h ****      __THROW __attribute_pure__ __nonnull ((1)) __wur;
+ 149:/usr/include/stdlib.h **** /* Convert a string to a long integer.  */
+ 150:/usr/include/stdlib.h **** extern long int atol (const char *__nptr)
+ 151:/usr/include/stdlib.h ****      __THROW __attribute_pure__ __nonnull ((1)) __wur;
+ 152:/usr/include/stdlib.h **** __END_NAMESPACE_STD
+ 153:/usr/include/stdlib.h **** 
+ 154:/usr/include/stdlib.h **** #if defined __USE_ISOC99 || defined __USE_MISC
+ 155:/usr/include/stdlib.h **** __BEGIN_NAMESPACE_C99
+ 156:/usr/include/stdlib.h **** /* Convert a string to a long long integer.  */
+ 157:/usr/include/stdlib.h **** __extension__ extern long long int atoll (const char *__nptr)
+ 158:/usr/include/stdlib.h ****      __THROW __attribute_pure__ __nonnull ((1)) __wur;
+ 159:/usr/include/stdlib.h **** __END_NAMESPACE_C99
+ 160:/usr/include/stdlib.h **** #endif
+ 161:/usr/include/stdlib.h **** 
+ 162:/usr/include/stdlib.h **** __BEGIN_NAMESPACE_STD
+ 163:/usr/include/stdlib.h **** /* Convert a string to a floating-point number.  */
+ 164:/usr/include/stdlib.h **** extern double strtod (const char *__restrict __nptr,
+ 165:/usr/include/stdlib.h **** 		      char **__restrict __endptr)
+ 166:/usr/include/stdlib.h ****      __THROW __nonnull ((1));
+ 167:/usr/include/stdlib.h **** __END_NAMESPACE_STD
+ 168:/usr/include/stdlib.h **** 
+ 169:/usr/include/stdlib.h **** #ifdef	__USE_ISOC99
+ 170:/usr/include/stdlib.h **** __BEGIN_NAMESPACE_C99
+ 171:/usr/include/stdlib.h **** /* Likewise for `float' and `long double' sizes of floating-point numbers.  */
+ 172:/usr/include/stdlib.h **** extern float strtof (const char *__restrict __nptr,
+ 173:/usr/include/stdlib.h **** 		     char **__restrict __endptr) __THROW __nonnull ((1));
+ 174:/usr/include/stdlib.h **** 
+ 175:/usr/include/stdlib.h **** extern long double strtold (const char *__restrict __nptr,
+ 176:/usr/include/stdlib.h **** 			    char **__restrict __endptr)
+ 177:/usr/include/stdlib.h ****      __THROW __nonnull ((1));
+ 178:/usr/include/stdlib.h **** __END_NAMESPACE_C99
+ 179:/usr/include/stdlib.h **** #endif
+ 180:/usr/include/stdlib.h **** 
+ 181:/usr/include/stdlib.h **** __BEGIN_NAMESPACE_STD
+ 182:/usr/include/stdlib.h **** /* Convert a string to a long integer.  */
+ 183:/usr/include/stdlib.h **** extern long int strtol (const char *__restrict __nptr,
+ 184:/usr/include/stdlib.h **** 			char **__restrict __endptr, int __base)
+ 185:/usr/include/stdlib.h ****      __THROW __nonnull ((1));
+ 186:/usr/include/stdlib.h **** /* Convert a string to an unsigned long integer.  */
+ 187:/usr/include/stdlib.h **** extern unsigned long int strtoul (const char *__restrict __nptr,
+ 188:/usr/include/stdlib.h **** 				  char **__restrict __endptr, int __base)
+ 189:/usr/include/stdlib.h ****      __THROW __nonnull ((1));
+ 190:/usr/include/stdlib.h **** __END_NAMESPACE_STD
+ 191:/usr/include/stdlib.h **** 
+ 192:/usr/include/stdlib.h **** #ifdef __USE_BSD
+ 193:/usr/include/stdlib.h **** /* Convert a string to a quadword integer.  */
+ 194:/usr/include/stdlib.h **** __extension__
+ 195:/usr/include/stdlib.h **** extern long long int strtoq (const char *__restrict __nptr,
+ 196:/usr/include/stdlib.h **** 			     char **__restrict __endptr, int __base)
+ 197:/usr/include/stdlib.h ****      __THROW __nonnull ((1));
+ 198:/usr/include/stdlib.h **** /* Convert a string to an unsigned quadword integer.  */
+ 199:/usr/include/stdlib.h **** __extension__
+ 200:/usr/include/stdlib.h **** extern unsigned long long int strtouq (const char *__restrict __nptr,
+ 201:/usr/include/stdlib.h **** 				       char **__restrict __endptr, int __base)
+ 202:/usr/include/stdlib.h ****      __THROW __nonnull ((1));
+ 203:/usr/include/stdlib.h **** #endif /* Use BSD.  */
+ 204:/usr/include/stdlib.h **** 
+ 205:/usr/include/stdlib.h **** #if defined __USE_ISOC99 || defined __USE_MISC
+ 206:/usr/include/stdlib.h **** __BEGIN_NAMESPACE_C99
+ 207:/usr/include/stdlib.h **** /* Convert a string to a quadword integer.  */
+ 208:/usr/include/stdlib.h **** __extension__
+ 209:/usr/include/stdlib.h **** extern long long int strtoll (const char *__restrict __nptr,
+ 210:/usr/include/stdlib.h **** 			      char **__restrict __endptr, int __base)
+ 211:/usr/include/stdlib.h ****      __THROW __nonnull ((1));
+ 212:/usr/include/stdlib.h **** /* Convert a string to an unsigned quadword integer.  */
+ 213:/usr/include/stdlib.h **** __extension__
+ 214:/usr/include/stdlib.h **** extern unsigned long long int strtoull (const char *__restrict __nptr,
+ 215:/usr/include/stdlib.h **** 					char **__restrict __endptr, int __base)
+ 216:/usr/include/stdlib.h ****      __THROW __nonnull ((1));
+ 217:/usr/include/stdlib.h **** __END_NAMESPACE_C99
+ 218:/usr/include/stdlib.h **** #endif /* ISO C99 or use MISC.  */
+ 219:/usr/include/stdlib.h **** 
+ 220:/usr/include/stdlib.h **** 
+ 221:/usr/include/stdlib.h **** #ifdef __USE_GNU
+ 222:/usr/include/stdlib.h **** /* The concept of one static locale per category is not very well
+ 223:/usr/include/stdlib.h ****    thought out.  Many applications will need to process its data using
+ 224:/usr/include/stdlib.h ****    information from several different locales.  Another problem is
+ 225:/usr/include/stdlib.h ****    the implementation of the internationalization handling in the
+ 226:/usr/include/stdlib.h ****    ISO C++ standard library.  To support this another set of
+ 227:/usr/include/stdlib.h ****    the functions using locale data exist which take an additional
+ 228:/usr/include/stdlib.h ****    argument.
+ 229:/usr/include/stdlib.h **** 
+ 230:/usr/include/stdlib.h ****    Attention: even though several *_l interfaces are part of POSIX:2008,
+ 231:/usr/include/stdlib.h ****    these are not.  */
+ 232:/usr/include/stdlib.h **** 
+ 233:/usr/include/stdlib.h **** /* Structure for reentrant locale using functions.  This is an
+ 234:/usr/include/stdlib.h ****    (almost) opaque type for the user level programs.  */
+ 235:/usr/include/stdlib.h **** # include <xlocale.h>
+ 236:/usr/include/stdlib.h **** 
+ 237:/usr/include/stdlib.h **** /* Special versions of the functions above which take the locale to
+ 238:/usr/include/stdlib.h ****    use as an additional parameter.  */
+ 239:/usr/include/stdlib.h **** extern long int strtol_l (const char *__restrict __nptr,
+ 240:/usr/include/stdlib.h **** 			  char **__restrict __endptr, int __base,
+ 241:/usr/include/stdlib.h **** 			  __locale_t __loc) __THROW __nonnull ((1, 4));
+ 242:/usr/include/stdlib.h **** 
+ 243:/usr/include/stdlib.h **** extern unsigned long int strtoul_l (const char *__restrict __nptr,
+ 244:/usr/include/stdlib.h **** 				    char **__restrict __endptr,
+ 245:/usr/include/stdlib.h **** 				    int __base, __locale_t __loc)
+ 246:/usr/include/stdlib.h ****      __THROW __nonnull ((1, 4));
+ 247:/usr/include/stdlib.h **** 
+ 248:/usr/include/stdlib.h **** __extension__
+ 249:/usr/include/stdlib.h **** extern long long int strtoll_l (const char *__restrict __nptr,
+ 250:/usr/include/stdlib.h **** 				char **__restrict __endptr, int __base,
+ 251:/usr/include/stdlib.h **** 				__locale_t __loc)
+ 252:/usr/include/stdlib.h ****      __THROW __nonnull ((1, 4));
+ 253:/usr/include/stdlib.h **** 
+ 254:/usr/include/stdlib.h **** __extension__
+ 255:/usr/include/stdlib.h **** extern unsigned long long int strtoull_l (const char *__restrict __nptr,
+ 256:/usr/include/stdlib.h **** 					  char **__restrict __endptr,
+ 257:/usr/include/stdlib.h **** 					  int __base, __locale_t __loc)
+ 258:/usr/include/stdlib.h ****      __THROW __nonnull ((1, 4));
+ 259:/usr/include/stdlib.h **** 
+ 260:/usr/include/stdlib.h **** extern double strtod_l (const char *__restrict __nptr,
+ 261:/usr/include/stdlib.h **** 			char **__restrict __endptr, __locale_t __loc)
+ 262:/usr/include/stdlib.h ****      __THROW __nonnull ((1, 3));
+ 263:/usr/include/stdlib.h **** 
+ 264:/usr/include/stdlib.h **** extern float strtof_l (const char *__restrict __nptr,
+ 265:/usr/include/stdlib.h **** 		       char **__restrict __endptr, __locale_t __loc)
+ 266:/usr/include/stdlib.h ****      __THROW __nonnull ((1, 3));
+ 267:/usr/include/stdlib.h **** 
+ 268:/usr/include/stdlib.h **** extern long double strtold_l (const char *__restrict __nptr,
+ 269:/usr/include/stdlib.h **** 			      char **__restrict __endptr,
+ 270:/usr/include/stdlib.h **** 			      __locale_t __loc)
+ 271:/usr/include/stdlib.h ****      __THROW __nonnull ((1, 3));
+ 272:/usr/include/stdlib.h **** #endif /* GNU */
+ 273:/usr/include/stdlib.h **** 
+ 274:/usr/include/stdlib.h **** 
+ 275:/usr/include/stdlib.h **** #ifdef __USE_EXTERN_INLINES
+ 276:/usr/include/stdlib.h **** __BEGIN_NAMESPACE_STD
+ 277:/usr/include/stdlib.h **** __extern_inline int
+ 278:/usr/include/stdlib.h **** __NTH (atoi (const char *__nptr))
+ 279:/usr/include/stdlib.h **** {
+ 280:/usr/include/stdlib.h ****   return (int) strtol (__nptr, (char **) NULL, 10);
+ 1396              		.loc 2 280 0
+ 1397 0013 488B7E08 		movq	8(%rsi), %rdi	# MEM[(char * *)argv_5(D) + 8B], MEM[(char * *)argv_5(D) + 8B]
+ 1398              	.LVL191:
+ 1399 0017 BA0A0000 		movl	$10, %edx	#,
+ 1399      00
+ 1400 001c 31F6     		xorl	%esi, %esi	#
+ 1401              	.LVL192:
+ 1402 001e E8000000 		call	strtol	#
+ 1402      00
+ 1403              	.LVL193:
+ 1404 0023 89050000 		movl	%eax, N(%rip)	# D.3688, N
+ 1404      0000
+ 1405              	.L106:
+ 1406              	.LBE143:
+ 1407              	.LBE142:
+ 113:pi.c          **** 
+ 1408              		.loc 1 113 0
+ 1409 0029 488B3D00 		movq	stdout(%rip), %rdi	# stdout,
+ 1409      000000
+ 1410 0030 31F6     		xorl	%esi, %esi	#
+ 1411 0032 E8000000 		call	setbuf	#
+ 1411      00
+ 1412              	.LVL194:
+ 115:pi.c          **** 
+ 1413              		.loc 1 115 0
+ 1414 0037 E8000000 		call	calculate	#
+ 1414      00
+ 1415              	.LVL195:
+ 117:pi.c          **** 
+ 1416              		.loc 1 117 0
+ 1417 003c E8000000 		call	epilog	#
+ 1417      00
+ 1418              	.LVL196:
+ 120:pi.c          **** 
+ 1419              		.loc 1 120 0
+ 1420 0041 31C0     		xorl	%eax, %eax	#
+ 1421 0043 4883C408 		addq	$8, %rsp	#,
+ 1422              		.cfi_def_cfa_offset 8
+ 1423 0047 C3       		ret
+ 1424              		.cfi_endproc
+ 1425              	.LFE38:
+ 1427              		.comm	string,100,32
+ 1428              		.comm	c,10240,32
+ 1429              		.comm	b,10240,32
+ 1430              		.comm	a,10240,32
+ 1431              		.comm	N4,4,4
+ 1432              		.comm	N,4,4
+ 1433              		.text
+ 1434              	.Letext0:
+ 1435              		.file 3 "/usr/lib64/gcc/x86_64-suse-linux/4.8/include/stddef.h"
+ 1436              		.file 4 "/usr/include/bits/types.h"
+ 1437              		.file 5 "/usr/include/stdio.h"
+ 1438              		.file 6 "/usr/include/libio.h"
+ 1439              		.file 7 "<built-in>"

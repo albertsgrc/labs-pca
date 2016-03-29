@@ -1,0 +1,22 @@
+  4005c8:	e8 83 00 00 00       	callq  400650 <__gmon_start__@plt>
+  40069e:	e8 bd ff ff ff       	callq  400660 <strtol@plt>
+  4006b2:	e8 49 ff ff ff       	callq  400600 <setbuf@plt>
+  4006b7:	e8 e4 02 00 00       	callq  4009a0 <calculate>
+  4006bc:	e8 7f 07 00 00       	callq  400e40 <epilog>
+  4006ec:	e8 3f ff ff ff       	callq  400630 <__libc_start_main@plt>
+  40077d:	e8 7e ff ff ff       	callq  400700 <deregister_tm_clones>
+  4007ad:	ff d0                	callq  *%rax
+  400939:	e8 d2 fc ff ff       	callq  400610 <memset@plt>
+  4009d4:	e8 37 fc ff ff       	callq  400610 <memset@plt>
+  4009ea:	e8 21 fc ff ff       	callq  400610 <memset@plt>
+  400a26:	e8 e5 fb ff ff       	callq  400610 <memset@plt>
+  400b8a:	e8 61 fa ff ff       	callq  4005f0 <putchar@plt>
+  400c73:	e8 98 f9 ff ff       	callq  400610 <memset@plt>
+  400e5a:	e8 11 f8 ff ff       	callq  400670 <fwrite@plt>
+  400e92:	e8 a9 f7 ff ff       	callq  400640 <fprintf@plt>
+  400eb0:	e8 8b f7 ff ff       	callq  400640 <fprintf@plt>
+  400edd:	e8 5e f7 ff ff       	callq  400640 <fprintf@plt>
+  400f43:	e8 28 f7 ff ff       	callq  400670 <fwrite@plt>
+  400f5c:	e8 bf f6 ff ff       	callq  400620 <fputc@plt>
+  400fae:	e8 05 f6 ff ff       	callq  4005b8 <_init>
+  400fc9:	41 ff 14 dc          	callq  *(%r12,%rbx,8)

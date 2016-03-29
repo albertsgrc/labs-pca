@@ -1,0 +1,36 @@
+  4005c8:	e8 83 00 00 00       	callq  400650 <__gmon_start__@plt>
+  400697:	e8 c4 ff ff ff       	callq  400660 <atoi@plt>
+  4006ab:	e8 50 ff ff ff       	callq  400600 <setbuf@plt>
+  4006b0:	e8 0b 04 00 00       	callq  400ac0 <calculate>
+  4006b5:	e8 06 05 00 00       	callq  400bc0 <epilog>
+  4006e5:	e8 46 ff ff ff       	callq  400630 <__libc_start_main@plt>
+  40076d:	e8 7e ff ff ff       	callq  4006f0 <deregister_tm_clones>
+  40079d:	ff d0                	callq  *%rax
+  400827:	e8 e4 fd ff ff       	callq  400610 <memset@plt>
+  400a49:	e8 c2 fb ff ff       	callq  400610 <memset@plt>
+  400ad7:	e8 54 ff ff ff       	callq  400a30 <SET>
+  400ae3:	e8 48 ff ff ff       	callq  400a30 <SET>
+  400b00:	e8 0b fd ff ff       	callq  400810 <SET.constprop.1>
+  400b0c:	e8 ff fd ff ff       	callq  400910 <LONGDIV>
+  400b1b:	e8 90 fc ff ff       	callq  4007b0 <SUBTRACT.constprop.0>
+  400b28:	e8 13 fd ff ff       	callq  400840 <DIVIDE.constprop.2>
+  400b3a:	e8 21 ff ff ff       	callq  400a60 <SUBTRACT>
+  400b3f:	e8 3c fd ff ff       	callq  400880 <DIVIDE.constprop.3>
+  400b44:	e8 37 fd ff ff       	callq  400880 <DIVIDE.constprop.3>
+  400b49:	e8 62 ff ff ff       	callq  400ab0 <progress>
+  400b53:	e8 b8 fc ff ff       	callq  400810 <SET.constprop.1>
+  400b62:	e8 49 fc ff ff       	callq  4007b0 <SUBTRACT.constprop.0>
+  400b6c:	e8 cf fc ff ff       	callq  400840 <DIVIDE.constprop.2>
+  400b7e:	e8 dd fe ff ff       	callq  400a60 <SUBTRACT>
+  400b83:	e8 f8 fc ff ff       	callq  400880 <DIVIDE.constprop.3>
+  400b92:	e8 49 fe ff ff       	callq  4009e0 <MULTIPLY>
+  400ba1:	e8 0a fc ff ff       	callq  4007b0 <SUBTRACT.constprop.0>
+  400bb0:	e8 2b fe ff ff       	callq  4009e0 <MULTIPLY>
+  400bda:	e8 91 fa ff ff       	callq  400670 <fwrite@plt>
+  400c12:	e8 29 fa ff ff       	callq  400640 <fprintf@plt>
+  400c30:	e8 0b fa ff ff       	callq  400640 <fprintf@plt>
+  400c5d:	e8 de f9 ff ff       	callq  400640 <fprintf@plt>
+  400cc3:	e8 a8 f9 ff ff       	callq  400670 <fwrite@plt>
+  400cdc:	e8 3f f9 ff ff       	callq  400620 <fputc@plt>
+  400d2e:	e8 85 f8 ff ff       	callq  4005b8 <_init>
+  400d49:	41 ff 14 dc          	callq  *(%r12,%rbx,8)
