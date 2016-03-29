@@ -1,4 +1,3 @@
-
 #include <math.h>
 #include <stdio.h>
 #include <unistd.h>
@@ -12,7 +11,7 @@ int main(int argc, char *argv[])
 {
 	unsigned int i, r, j, n;
 	double d, x, y;
-
+	
 	if (argc == 1) n = N; else n = atoi(argv[1]);
 
 	srand(0);

@@ -4,18 +4,20 @@
 #include <assert.h>
 
 typedef unsigned long long bignum;
+typedef unsigned long t_elem;
 
 typedef struct {
-    uint *p;		/* pointer to array */
+    t_elem *p;		/* pointer to array */
+
     uint bitsPerByte;		/* 8 on normal systems */
-    uint bytesPerInt;		/* sizeof(unsigned int) */
-    uint bitsPerInt;		/* for bit arithmetic */
+    uint bytesPerElem;		/* sizeof(unsigned int) */
+    uint bitsPerElem;		/* for bit arithmetic */
+
     bignum bitsInArray;		/* how many bits in array */
-    uint intsInArray;		/* how many uints to give necessary bits */
+    bignum intsInArray;		/* how many uints to give necessary bits */
 
-    uint bitsPerIntMask;
-    uint bitsPerIntLog2;
-
+    uint bitsPerElemMask;
+    uint bitsPerElemLog2;
 } BITARRAY;
 
 void freeBitArray(BITARRAY * ba)
@@ -29,63 +31,62 @@ BITARRAY *createBitArray(bignum bits)
     BITARRAY *ba = malloc(sizeof(BITARRAY));
     assert(ba != NULL);
     ba->bitsPerByte = 8;
-    ba->bytesPerInt = sizeof(unsigned int);
-    ba->bitsPerInt = ba->bitsPerByte * ba->bytesPerInt;
-    ba->bytesPerInt = sizeof(unsigned int);
+    ba->bytesPerElem = sizeof(t_elem);
+    ba->bitsPerElem = ba->bitsPerByte * ba->bytesPerElem;
     ba->bitsInArray = bits;
-    ba->intsInArray = bits / ba->bitsPerInt + 1;
-    
+    ba->intsInArray = bits / ba->bitsPerElem + 1;
 
-    ba->bitsPerIntLog2 = __builtin_ctz(ba->bitsPerInt);
-    ba->bitsPerIntMask = ba->bitsPerInt - 1;
+    ba->bitsPerElemLog2 = __builtin_ctz(ba->bitsPerElem);
+    ba->bitsPerElemMask = ba->bitsPerElem - 1;
 
-    ba->p = malloc(ba->intsInArray * ba->bytesPerInt);
+    ba->p = malloc(ba->intsInArray * ba->bytesPerElem);
     assert(ba->p != NULL);
+
     return ba;
 }
 
-void setBit(BITARRAY * ba, bignum bitSS)
+inline void setBit(BITARRAY * ba, bignum bitSS)
 {
-    unsigned int *pInt = ba->p + (bitSS >> ba->bitsPerIntLog2);
-    unsigned int remainder = (bitSS & ba->bitsPerIntMask);
-    *pInt |= (1 << remainder);
+    t_elem *pElem = ba->p + (bitSS >> ba->bitsPerElemLog2);
+    t_elem remainder = (bitSS & ba->bitsPerElemMask);
+    *pElem |= ((t_elem)(1) << remainder);
 } 
 
-void clearBit(BITARRAY * ba, bignum bitSS)
+inline void clearBit(BITARRAY * ba, bignum bitSS)
 {
-    unsigned int *pInt = ba->p + (bitSS >> ba->bitsPerIntLog2);
-    unsigned int remainder = (bitSS & ba->bitsPerIntMask);
-    unsigned int mask = 1 << remainder;
+    t_elem *pElem = ba->p + (bitSS >> ba->bitsPerElemLog2);
+    t_elem remainder = (bitSS & ba->bitsPerElemMask);
+    t_elem mask = (t_elem)(1) << remainder;
     mask = ~mask;
-    *pInt &= mask;
+    *pElem &= mask;
 } 
 
-int getBit(BITARRAY * ba, bignum bitSS)
+inline int getBit(BITARRAY * ba, bignum bitSS)
 {
-    unsigned int *pInt = ba->p + (bitSS >> ba->bitsPerIntLog2);
-    unsigned int remainder = (bitSS & ba->bitsPerIntMask);
-    unsigned int ret = *pInt;
-    ret &= (1 << remainder);
-    return (ret != 0);
+    t_elem *pElem = ba->p + (bitSS >> ba->bitsPerElemLog2);
+    t_elem remainder = (bitSS & ba->bitsPerElemMask);
+    t_elem ret = *pElem;
+    ret >>= remainder;
+    return (ret & (t_elem)(1));
 }
 
-void clearAll(BITARRAY * ba)
-{
-    bignum intSS;
-    for (intSS = 0; intSS <= ba->intsInArray; intSS++) {
-	*(ba->p + intSS) = 0;
-    }
-}
-
-void setAll(BITARRAY * ba)
+inline void clearAll(BITARRAY * ba)
 {
     bignum intSS;
     for (intSS = 0; intSS <= ba->intsInArray; intSS++) {
-	*(ba->p + intSS) = ~0;
+	*(ba->p + intSS) = (t_elem)(0);
     }
 }
 
-void printPrime(bignum bn)
+inline void setAll(BITARRAY * ba)
+{
+    bignum intSS;
+    for (intSS = 0; intSS <= ba->intsInArray; intSS++) {
+	*(ba->p + intSS) = ~(t_elem)(0);
+    }
+}
+
+inline void printPrime(bignum bn)
 {
     static char buf[1000];
     sprintf(buf, "%ull", bn);
@@ -101,7 +102,6 @@ void findPrimes(bignum topCandidate)
     clearBit(ba, 0);
     clearBit(ba, 1);		/* MARK ALL THE NON-PRIMES */
     bignum thisFactor = 2;
-    bignum lastSquare = 0;
     bignum thisSquare = 0;
     while (thisFactor * thisFactor <= topCandidate) {	/* MARK THE MULTIPLES OF THIS FACTOR */
 	bignum mark = thisFactor + thisFactor;
@@ -110,19 +110,18 @@ void findPrimes(bignum topCandidate)
 	    mark += thisFactor;
 	}			/* PRINT THE PROVEN PRIMES SO FAR */
 	thisSquare = thisFactor * thisFactor;
-	for (; lastSquare < thisSquare; lastSquare++) {
-	    if (getBit(ba, lastSquare))
-		printPrime(lastSquare);
-	}			/* SET thisFactor TO NEXT PRIME */
+	/* SET thisFactor TO NEXT PRIME */
 	thisFactor++;
 	while (getBit(ba, thisFactor) == 0)
 	    thisFactor++;
 	assert(thisFactor <= topCandidate);
-    }				/* PRINT THE REMAINING PRIMES */
-    for (; lastSquare <= topCandidate; lastSquare++) {
-	if (getBit(ba, lastSquare))
-	    printPrime(lastSquare);
     }
+
+    bignum i;		/* PRINT ALL THE PRIMES */
+    for (i = 2; i <= topCandidate; i++)
+	   if (getBit(ba, i))
+	       printPrime(i);
+    
     freeBitArray(ba);
 }
 
