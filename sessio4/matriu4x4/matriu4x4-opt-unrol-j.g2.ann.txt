@@ -1,0 +1,93 @@
+/* 
+ * Command line: opannotate --source matriu4x4-opt-unrol-j.g2 
+ * 
+ * Interpretation of command line:
+ * Output annotated source file with samples
+ * Output all files
+ * 
+ * CPU: Intel Ivy Bridge microarchitecture, speed 2.7e+06 MHz (estimated)
+ * Counted CPU_CLK_UNHALTED events (Clock cycles when not halted) with a unit mask of 0x00 (No unit mask) count 100000
+ */
+/* 
+ * Total samples for file : "/home/albert/Dropbox/UPC/FIB/6eQuatri/PCA/Lab/sessio4/matriu4x4/matriu4x4-opt-unrol-j.c"
+ * 
+ *   9408 99.7138
+ */
+
+
+               :#include <stdio.h>
+               :#include <stdlib.h>
+               :#include <assert.h>
+               :
+               :#define N_ITER 10000000
+               :
+               :#define k_iter(_j, __k) {\
+               :    C[i][_j] = C[i][_j] + A[i][(__k)] * B[(__k)][_j];\
+               :}\
+               :
+               :#define j_iter(__j) {\
+               :  k_iter(__j, 0)\
+               :  k_iter(__j, 1)\
+               :  k_iter(__j, 2)\
+               :  k_iter(__j, 3)\
+               :}\
+               :
+               :void __attribute__((always_inline)) inline multiplica(int A[4][4], int B[4][4], int C[4][4], unsigned int n_iter)
+               :{
+               :   int iter;
+               :   int i;
+               :
+   161  1.7064 :   for (iter=0; iter<n_iter; iter++)
+    56  0.5935 :     for (i = 0; i < 4; i++) {
+  3618 38.3466 :       j_iter(0)
+  2487 26.3593 :       j_iter(1)
+  1716 18.1876 :       j_iter(2)
+  1268 13.4393 :       j_iter(3)
+               :     }
+               :
+               :}
+               :
+               :void print_matriu(int C[][4])
+               :{
+               :   int i,j,k;
+               :
+               :   for (i = 0; i < 4; i++)
+               :   {
+               :     for (j = 0; j < 4; j++)
+               :     {
+               :       printf("%d ", C[i][j]);
+               :     }
+               :     printf("\n");
+               :   }
+               :}
+               :
+               :int main(int argc, char *argv[])
+               :{ /* main total:   9408 99.7138 */
+    28  0.2968 :    int A[4][4], B[4][4], C[4][4] = {{0,0,0,0},{0,0,0,0},{0,0,0,0},{0,0,0,0}};
+    74  0.7843 :    unsigned int n_iter=N_ITER, i,j;
+               :
+               :    for (i=0; i<4; i++) {
+               :        for (j=0; j<4; j++) {
+               :            A[i][j] = rand();
+               :            B[i][j] = rand();
+               :        }
+               :    }
+               :
+               :    if (argc > 1) {
+               :	n_iter = atoi(argv[1]);
+               :    }
+               :
+               :    multiplica(A, B, C, n_iter);
+               :
+               :    print_matriu(C);
+               :
+               :    return 0;
+               :}
+/* 
+ * Total samples for file : "/build/eglibc-3GlaMS/eglibc-2.19/elf/rtld.c"
+ * 
+ *      1  0.0106
+ */
+
+
+ /* dl_main total:      1  0.0106 */

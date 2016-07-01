@@ -1,0 +1,34 @@
+/* 
+ * Command line: opannotate --source primers.3g 
+ * 
+ * Interpretation of command line:
+ * Output annotated source file with samples
+ * Output all files
+ * 
+ * CPU: Intel Core/i7, speed 2.801e+06 MHz (estimated)
+ * Counted CPU_CLK_UNHALTED events (Clock cycles when not halted) with a unit mask of 0x00 (No unit mask) count 100000
+ */
+/* 
+ * Total samples for file : "/build/eglibc-3GlaMS/eglibc-2.19/io/../sysdeps/unix/syscall-template.S"
+ * 
+ *      1  7.6923
+ */
+
+
+ /* open64 total:      1  7.6923 */
+/* 
+ * Total samples for file : "/build/eglibc-3GlaMS/eglibc-2.19/elf/dl-lookup.c"
+ * 
+ *      1  7.6923
+ */
+
+
+ /* do_lookup_x total:      1  7.6923 */
+/* 
+ * Total samples for file : "/build/eglibc-3GlaMS/eglibc-2.19/elf/dl-addr.c"
+ * 
+ *      1  7.6923
+ */
+
+
+ /* _dl_addr total:      1  7.6923 */

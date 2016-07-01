@@ -1,0 +1,2092 @@
+/* 
+ * Command line: opannotate --assembly matriu4x4-opt-unrol-i-ni.2g 
+ * 
+ * Interpretation of command line:
+ * Output annotated assembly listing with samples
+ * 
+ * CPU: Intel Ivy Bridge microarchitecture, speed 2.7e+06 MHz (estimated)
+ * Counted CPU_CLK_UNHALTED events (Clock cycles when not halted) with a unit mask of 0x00 (No unit mask) count 100000
+ */
+               :
+               :/home/albert/Dropbox/UPC/FIB/6eQuatri/PCA/Lab/sessio4/matriu4x4/matriu4x4-opt-unrol-i-ni.2g:     file format elf64-x86-64
+               :
+               :
+               :Disassembly of section .text:
+               :
+00000000004006f0 <multiplica>: /* multiplica total:  11127 99.7132 */
+               :  4006f0:	push   %r15
+               :  4006f2:	test   %ecx,%ecx
+               :  4006f4:	push   %r14
+               :  4006f6:	push   %r13
+               :  4006f8:	push   %r12
+               :  4006fa:	push   %rbp
+               :  4006fb:	push   %rbx
+               :  4006fc:	mov    %ecx,-0x4(%rsp)
+               :  400700:	je     400b50 <multiplica+0x460>
+               :  400706:	mov    0x1c(%rdx),%eax
+               :  400709:	mov    (%rdx),%r13d
+               :  40070c:	mov    0x4(%rdx),%r12d
+               :  400710:	mov    0x8(%rdx),%ebp
+               :  400713:	mov    0xc(%rdx),%ebx
+               :  400716:	mov    0x10(%rdx),%r11d
+               :  40071a:	mov    %eax,-0x2c(%rsp)
+               :  40071e:	mov    0x20(%rdx),%eax
+               :  400721:	mov    0x14(%rdx),%r10d
+               :  400725:	mov    0x18(%rdx),%r9d
+               :  400729:	movl   $0x0,-0x8(%rsp)
+               :  400731:	mov    %eax,-0x28(%rsp)
+               :  400735:	mov    0x24(%rdx),%eax
+               :  400738:	mov    %eax,-0x24(%rsp)
+               :  40073c:	mov    0x28(%rdx),%eax
+               :  40073f:	mov    %eax,-0x20(%rsp)
+               :  400743:	mov    0x2c(%rdx),%eax
+               :  400746:	mov    %eax,-0x1c(%rsp)
+               :  40074a:	mov    0x30(%rdx),%eax
+               :  40074d:	mov    %eax,-0x18(%rsp)
+               :  400751:	mov    0x34(%rdx),%eax
+               :  400754:	mov    %eax,-0x14(%rsp)
+               :  400758:	mov    0x38(%rdx),%eax
+               :  40075b:	mov    %eax,-0x10(%rsp)
+               :  40075f:	mov    0x3c(%rdx),%eax
+               :  400762:	mov    %eax,-0xc(%rsp)
+               :  400766:	nopw   %cs:0x0(%rax,%rax,1)
+    20  0.1792 :  400770:	mov    (%rdi),%eax
+    65  0.5825 :  400772:	imul   (%rsi),%eax
+    63  0.5646 :  400775:	add    %eax,%r13d
+     6  0.0538 :  400778:	mov    %r13d,(%rdx)
+   122  1.0933 :  40077b:	mov    0x4(%rdi),%eax
+    27  0.2420 :  40077e:	imul   0x10(%rsi),%eax
+    42  0.3764 :  400782:	add    %eax,%r13d
+     3  0.0269 :  400785:	mov    %r13d,(%rdx)
+   129  1.1560 :  400788:	mov    0x8(%rdi),%r14d
+    24  0.2151 :  40078c:	mov    0x20(%rsi),%eax
+    23  0.2061 :  40078f:	imul   %r14d,%eax
+               :  400793:	add    %eax,%r13d
+    86  0.7707 :  400796:	mov    %r13d,(%rdx)
+    72  0.6452 :  400799:	mov    0xc(%rdi),%ecx
+    17  0.1523 :  40079c:	mov    0x30(%rsi),%eax
+               :  40079f:	imul   %ecx,%eax
+    49  0.4391 :  4007a2:	add    %eax,%r13d
+    42  0.3764 :  4007a5:	mov    %r13d,(%rdx)
+    63  0.5646 :  4007a8:	mov    (%rdi),%eax
+     2  0.0179 :  4007aa:	mov    0x4(%rsi),%r8d
+    25  0.2240 :  4007ae:	imul   %eax,%r8d
+    41  0.3674 :  4007b2:	add    %r8d,%r12d
+    45  0.4033 :  4007b5:	mov    %r12d,0x4(%rdx)
+    28  0.2509 :  4007b9:	mov    0x4(%rdi),%r8d
+    29  0.2599 :  4007bd:	imul   0x14(%rsi),%r8d
+    38  0.3405 :  4007c2:	add    %r8d,%r12d
+    37  0.3316 :  4007c5:	mov    %r12d,0x4(%rdx)
+    50  0.4481 :  4007c9:	imul   0x24(%rsi),%r14d
+    14  0.1255 :  4007ce:	add    %r14d,%r12d
+    17  0.1523 :  4007d1:	mov    %r12d,0x4(%rdx)
+    82  0.7348 :  4007d5:	mov    0x34(%rsi),%r8d
+    20  0.1792 :  4007d9:	imul   %ecx,%r8d
+    21  0.1882 :  4007dd:	add    %r8d,%r12d
+    16  0.1434 :  4007e0:	mov    %r12d,0x4(%rdx)
+    98  0.8782 :  4007e4:	mov    0x8(%rsi),%r8d
+    19  0.1703 :  4007e8:	imul   %eax,%r8d
+     9  0.0807 :  4007ec:	add    %r8d,%ebp
+     9  0.0807 :  4007ef:	mov    %ebp,0x8(%rdx)
+   126  1.1291 :  4007f2:	mov    0x4(%rdi),%r14d
+    13  0.1165 :  4007f6:	mov    0x18(%rsi),%r8d
+     3  0.0269 :  4007fa:	imul   %r14d,%r8d
+    11  0.0986 :  4007fe:	add    %r8d,%ebp
+    79  0.7079 :  400801:	mov    %ebp,0x8(%rdx)
+    66  0.5915 :  400804:	mov    0x8(%rdi),%r8d
+     3  0.0269 :  400808:	imul   0x28(%rsi),%r8d
+    12  0.1075 :  40080d:	add    %ebp,%r8d
+    66  0.5915 :  400810:	mov    %r8d,0x8(%rdx)
+   104  0.9320 :  400814:	imul   0x38(%rsi),%ecx
+     5  0.0448 :  400818:	mov    %ecx,%ebp
+     3  0.0269 :  40081a:	add    %r8d,%ebp
+    46  0.4122 :  40081d:	mov    %ebp,0x8(%rdx)
+   129  1.1560 :  400820:	imul   0xc(%rsi),%eax
+     1  0.0090 :  400824:	add    %ebx,%eax
+     7  0.0627 :  400826:	mov    %eax,0xc(%rdx)
+   111  0.9947 :  400829:	mov    0x1c(%rsi),%ebx
+    41  0.3674 :  40082c:	imul   %r14d,%ebx
+               :  400830:	add    %eax,%ebx
+     2  0.0179 :  400832:	mov    %ebx,0xc(%rdx)
+   140  1.2546 :  400835:	mov    0x8(%rdi),%ecx
+    24  0.2151 :  400838:	imul   0x2c(%rsi),%ecx
+     1  0.0090 :  40083c:	add    %ecx,%ebx
+     4  0.0358 :  40083e:	mov    %ebx,0xc(%rdx)
+   152  1.3621 :  400841:	mov    0xc(%rdi),%ecx
+     6  0.0538 :  400844:	imul   0x3c(%rsi),%ecx
+     8  0.0717 :  400848:	add    %ecx,%ebx
+     2  0.0179 :  40084a:	mov    %ebx,0xc(%rdx)
+   141  1.2636 :  40084d:	mov    0x10(%rdi),%eax
+    15  0.1344 :  400850:	imul   (%rsi),%eax
+     2  0.0179 :  400853:	add    %eax,%r11d
+     7  0.0627 :  400856:	mov    %r11d,0x10(%rdx)
+   154  1.3801 :  40085a:	mov    0x14(%rdi),%eax
+     5  0.0448 :  40085d:	imul   0x10(%rsi),%eax
+     7  0.0627 :  400861:	add    %eax,%r11d
+     3  0.0269 :  400864:	mov    %r11d,0x10(%rdx)
+   144  1.2904 :  400868:	mov    0x18(%rdi),%r14d
+     3  0.0269 :  40086c:	mov    0x20(%rsi),%eax
+               :  40086f:	imul   %r14d,%eax
+     4  0.0358 :  400873:	add    %eax,%r11d
+    80  0.7169 :  400876:	mov    %r11d,0x10(%rdx)
+    69  0.6183 :  40087a:	mov    0x1c(%rdi),%ecx
+               :  40087d:	mov    0x30(%rsi),%eax
+     2  0.0179 :  400880:	imul   %ecx,%eax
+    80  0.7169 :  400883:	add    %eax,%r11d
+    50  0.4481 :  400886:	mov    %r11d,0x10(%rdx)
+    42  0.3764 :  40088a:	mov    0x10(%rdi),%eax
+               :  40088d:	mov    0x4(%rsi),%r8d
+    47  0.4212 :  400891:	imul   %eax,%r8d
+    25  0.2240 :  400895:	add    %r8d,%r10d
+    22  0.1972 :  400898:	mov    %r10d,0x14(%rdx)
+    27  0.2420 :  40089c:	mov    0x14(%rdi),%r8d
+    33  0.2957 :  4008a0:	imul   0x14(%rsi),%r8d
+    45  0.4033 :  4008a5:	add    %r8d,%r10d
+    18  0.1613 :  4008a8:	mov    %r10d,0x14(%rdx)
+    61  0.5466 :  4008ac:	imul   0x24(%rsi),%r14d
+    21  0.1882 :  4008b1:	add    %r14d,%r10d
+    17  0.1523 :  4008b4:	mov    %r10d,0x14(%rdx)
+    50  0.4481 :  4008b8:	mov    0x34(%rsi),%r8d
+    40  0.3585 :  4008bc:	imul   %ecx,%r8d
+    24  0.2151 :  4008c0:	add    %r8d,%r10d
+    13  0.1165 :  4008c3:	mov    %r10d,0x14(%rdx)
+    83  0.7438 :  4008c7:	mov    0x8(%rsi),%r8d
+    30  0.2688 :  4008cb:	imul   %eax,%r8d
+    18  0.1613 :  4008cf:	add    %r8d,%r9d
+    14  0.1255 :  4008d2:	mov    %r9d,0x18(%rdx)
+    96  0.8603 :  4008d6:	mov    0x14(%rdi),%r14d
+    14  0.1255 :  4008da:	mov    0x18(%rsi),%r8d
+     9  0.0807 :  4008de:	imul   %r14d,%r8d
+     8  0.0717 :  4008e2:	add    %r8d,%r9d
+    57  0.5108 :  4008e5:	mov    %r9d,0x18(%rdx)
+    58  0.5198 :  4008e9:	mov    0x18(%rdi),%r8d
+     6  0.0538 :  4008ed:	imul   0x28(%rsi),%r8d
+    14  0.1255 :  4008f2:	add    %r9d,%r8d
+    52  0.4660 :  4008f5:	mov    %r8d,0x18(%rdx)
+    80  0.7169 :  4008f9:	imul   0x38(%rsi),%ecx
+     4  0.0358 :  4008fd:	mov    %ecx,%r9d
+     5  0.0448 :  400900:	add    %r8d,%r9d
+    31  0.2778 :  400903:	mov    -0x2c(%rsp),%r8d
+    50  0.4481 :  400908:	mov    %r9d,0x18(%rdx)
+    24  0.2151 :  40090c:	imul   0xc(%rsi),%eax
+     8  0.0717 :  400910:	add    %eax,%r8d
+    27  0.2420 :  400913:	mov    %r8d,0x1c(%rdx)
+    95  0.8513 :  400917:	imul   0x1c(%rsi),%r14d
+    17  0.1523 :  40091c:	add    %r8d,%r14d
+     3  0.0269 :  40091f:	mov    %r14d,0x1c(%rdx)
+    84  0.7528 :  400923:	mov    0x18(%rdi),%r8d
+    51  0.4570 :  400927:	imul   0x2c(%rsi),%r8d
+    17  0.1523 :  40092c:	add    %r14d,%r8d
+     8  0.0717 :  40092f:	mov    %r8d,0x1c(%rdx)
+    91  0.8155 :  400933:	mov    0x1c(%rdi),%ecx
+    27  0.2420 :  400936:	imul   0x3c(%rsi),%ecx
+     9  0.0807 :  40093a:	lea    (%r8,%rcx,1),%eax
+     3  0.0269 :  40093e:	mov    %eax,0x1c(%rdx)
+   110  0.9858 :  400941:	mov    %eax,-0x2c(%rsp)
+    87  0.7796 :  400945:	mov    0x20(%rdi),%eax
+     3  0.0269 :  400948:	imul   (%rsi),%eax
+     6  0.0538 :  40094b:	add    -0x28(%rsp),%eax
+    43  0.3853 :  40094f:	mov    %eax,0x20(%rdx)
+    92  0.8244 :  400952:	mov    0x24(%rdi),%ecx
+     2  0.0179 :  400955:	imul   0x10(%rsi),%ecx
+     4  0.0358 :  400959:	add    %ecx,%eax
+    37  0.3316 :  40095b:	mov    %eax,0x20(%rdx)
+   100  0.8961 :  40095e:	mov    0x28(%rdi),%r14d
+               :  400962:	mov    0x20(%rsi),%ecx
+               :  400965:	imul   %r14d,%ecx
+    23  0.2061 :  400969:	add    %ecx,%eax
+    93  0.8334 :  40096b:	mov    %eax,0x20(%rdx)
+    46  0.4122 :  40096e:	mov    0x2c(%rdi),%ecx
+     1  0.0090 :  400971:	mov    0x30(%rsi),%r8d
+    10  0.0896 :  400975:	imul   %ecx,%r8d
+    78  0.6990 :  400979:	add    %r8d,%eax
+    30  0.2688 :  40097c:	mov    %eax,0x20(%rdx)
+    69  0.6183 :  40097f:	mov    %eax,-0x28(%rsp)
+    70  0.6273 :  400983:	mov    0x4(%rsi),%r15d
+    13  0.1165 :  400987:	mov    0x20(%rdi),%eax
+    16  0.1434 :  40098a:	imul   %eax,%r15d
+    33  0.2957 :  40098e:	add    -0x24(%rsp),%r15d
+    50  0.4481 :  400993:	mov    %r15d,0x24(%rdx)
+    76  0.6811 :  400997:	mov    0x24(%rdi),%r8d
+     5  0.0448 :  40099b:	imul   0x14(%rsi),%r8d
+    21  0.1882 :  4009a0:	add    %r15d,%r8d
+    37  0.3316 :  4009a3:	mov    %r8d,0x24(%rdx)
+    93  0.8334 :  4009a7:	imul   0x24(%rsi),%r14d
+     8  0.0717 :  4009ac:	add    %r8d,%r14d
+    14  0.1255 :  4009af:	mov    %r14d,0x24(%rdx)
+    70  0.6273 :  4009b3:	mov    0x34(%rsi),%r15d
+    26  0.2330 :  4009b7:	imul   %ecx,%r15d
+     2  0.0179 :  4009bb:	add    %r14d,%r15d
+    11  0.0986 :  4009be:	mov    %r15d,0x24(%rdx)
+    83  0.7438 :  4009c2:	mov    %r15d,-0x24(%rsp)
+   105  0.9409 :  4009c7:	mov    0x8(%rsi),%r15d
+     2  0.0179 :  4009cb:	imul   %eax,%r15d
+     4  0.0358 :  4009cf:	add    -0x20(%rsp),%r15d
+    41  0.3674 :  4009d4:	mov    %r15d,0x28(%rdx)
+   118  1.0574 :  4009d8:	mov    0x24(%rdi),%r14d
+     2  0.0179 :  4009dc:	mov    0x18(%rsi),%r8d
+     2  0.0179 :  4009e0:	imul   %r14d,%r8d
+    42  0.3764 :  4009e4:	add    %r8d,%r15d
+    67  0.6004 :  4009e7:	mov    %r15d,0x28(%rdx)
+    55  0.4929 :  4009eb:	mov    0x28(%rdi),%r8d
+     2  0.0179 :  4009ef:	imul   0x28(%rsi),%r8d
+    26  0.2330 :  4009f4:	add    %r15d,%r8d
+    47  0.4212 :  4009f7:	mov    %r8d,0x28(%rdx)
+    58  0.5198 :  4009fb:	imul   0x38(%rsi),%ecx
+     1  0.0090 :  4009ff:	add    %r8d,%ecx
+    11  0.0986 :  400a02:	mov    -0x1c(%rsp),%r8d
+    31  0.2778 :  400a07:	mov    %ecx,0x28(%rdx)
+    99  0.8872 :  400a0a:	mov    %ecx,-0x20(%rsp)
+    90  0.8065 :  400a0e:	imul   0xc(%rsi),%eax
+     6  0.0538 :  400a12:	add    %eax,%r8d
+    10  0.0896 :  400a15:	mov    %r8d,0x2c(%rdx)
+    95  0.8513 :  400a19:	imul   0x1c(%rsi),%r14d
+    26  0.2330 :  400a1e:	add    %r8d,%r14d
+     1  0.0090 :  400a21:	mov    %r14d,0x2c(%rdx)
+    76  0.6811 :  400a25:	mov    0x28(%rdi),%r8d
+    38  0.3405 :  400a29:	imul   0x2c(%rsi),%r8d
+    17  0.1523 :  400a2e:	add    %r14d,%r8d
+     5  0.0448 :  400a31:	mov    %r8d,0x2c(%rdx)
+    93  0.8334 :  400a35:	mov    0x2c(%rdi),%ecx
+    25  0.2240 :  400a38:	imul   0x3c(%rsi),%ecx
+    10  0.0896 :  400a3c:	lea    (%r8,%rcx,1),%eax
+     5  0.0448 :  400a40:	mov    %eax,0x2c(%rdx)
+   140  1.2546 :  400a43:	mov    %eax,-0x1c(%rsp)
+    94  0.8424 :  400a47:	mov    0x30(%rdi),%eax
+     1  0.0090 :  400a4a:	imul   (%rsi),%eax
+     4  0.0358 :  400a4d:	add    -0x18(%rsp),%eax
+    48  0.4301 :  400a51:	mov    %eax,0x30(%rdx)
+   106  0.9499 :  400a54:	mov    0x34(%rdi),%ecx
+     1  0.0090 :  400a57:	imul   0x10(%rsi),%ecx
+     6  0.0538 :  400a5b:	add    %ecx,%eax
+    37  0.3316 :  400a5d:	mov    %eax,0x30(%rdx)
+   128  1.1471 :  400a60:	mov    0x38(%rdi),%r14d
+     1  0.0090 :  400a64:	mov    0x20(%rsi),%ecx
+               :  400a67:	imul   %r14d,%ecx
+    30  0.2688 :  400a6b:	add    %ecx,%eax
+    57  0.5108 :  400a6d:	mov    %eax,0x30(%rdx)
+    43  0.3853 :  400a70:	mov    0x3c(%rdi),%ecx
+               :  400a73:	mov    0x30(%rsi),%r8d
+    13  0.1165 :  400a77:	imul   %ecx,%r8d
+    73  0.6542 :  400a7b:	add    %r8d,%eax
+    32  0.2868 :  400a7e:	mov    %eax,0x30(%rdx)
+    42  0.3764 :  400a81:	mov    %eax,-0x18(%rsp)
+    67  0.6004 :  400a85:	mov    0x4(%rsi),%r15d
+    21  0.1882 :  400a89:	mov    0x30(%rdi),%eax
+    19  0.1703 :  400a8c:	imul   %eax,%r15d
+    33  0.2957 :  400a90:	add    -0x14(%rsp),%r15d
+    39  0.3495 :  400a95:	mov    %r15d,0x34(%rdx)
+    55  0.4929 :  400a99:	mov    0x34(%rdi),%r8d
+    10  0.0896 :  400a9d:	imul   0x14(%rsi),%r8d
+    22  0.1972 :  400aa2:	add    %r15d,%r8d
+    32  0.2868 :  400aa5:	mov    %r8d,0x34(%rdx)
+    75  0.6721 :  400aa9:	imul   0x24(%rsi),%r14d
+    13  0.1165 :  400aae:	add    %r8d,%r14d
+    20  0.1792 :  400ab1:	mov    %r14d,0x34(%rdx)
+    62  0.5556 :  400ab5:	mov    0x34(%rsi),%r15d
+    39  0.3495 :  400ab9:	imul   %ecx,%r15d
+     8  0.0717 :  400abd:	add    %r15d,%r14d
+    10  0.0896 :  400ac0:	mov    %r14d,0x34(%rdx)
+    98  0.8782 :  400ac4:	mov    0x8(%rsi),%r15d
+    28  0.2509 :  400ac8:	mov    %r14d,-0x14(%rsp)
+    77  0.6900 :  400acd:	imul   %eax,%r15d
+     2  0.0179 :  400ad1:	add    -0x10(%rsp),%r15d
+    54  0.4839 :  400ad6:	mov    %r15d,0x38(%rdx)
+   120  1.0754 :  400ada:	mov    0x34(%rdi),%r14d
+    26  0.2330 :  400ade:	mov    0x18(%rsi),%r8d
+               :  400ae2:	imul   %r14d,%r8d
+    22  0.1972 :  400ae6:	add    %r8d,%r15d
+    61  0.5466 :  400ae9:	mov    %r15d,0x38(%rdx)
+    74  0.6631 :  400aed:	mov    0x38(%rdi),%r8d
+     2  0.0179 :  400af1:	imul   0x28(%rsi),%r8d
+    17  0.1523 :  400af6:	add    %r15d,%r8d
+    43  0.3853 :  400af9:	mov    %r8d,0x38(%rdx)
+    87  0.7796 :  400afd:	imul   0x38(%rsi),%ecx
+     5  0.0448 :  400b01:	add    %r8d,%ecx
+    10  0.0896 :  400b04:	mov    %ecx,-0x10(%rsp)
+   120  1.0754 :  400b08:	mov    %ecx,0x38(%rdx)
+    86  0.7707 :  400b0b:	imul   0xc(%rsi),%eax
+               :  400b0f:	addl   $0x1,-0x8(%rsp)
+   155  1.3890 :  400b14:	add    -0xc(%rsp),%eax
+    37  0.3316 :  400b18:	mov    %eax,0x3c(%rdx)
+   116  1.0395 :  400b1b:	imul   0x1c(%rsi),%r14d
+     3  0.0269 :  400b20:	add    %r14d,%eax
+    41  0.3674 :  400b23:	mov    %eax,0x3c(%rdx)
+   202  1.8102 :  400b26:	mov    0x38(%rdi),%ecx
+    17  0.1523 :  400b29:	imul   0x2c(%rsi),%ecx
+     7  0.0627 :  400b2d:	add    %ecx,%eax
+    16  0.1434 :  400b2f:	mov    %eax,0x3c(%rdx)
+   192  1.7206 :  400b32:	mov    0x3c(%rdi),%ecx
+    16  0.1434 :  400b35:	imul   0x3c(%rsi),%ecx
+    12  0.1075 :  400b39:	add    %ecx,%eax
+    20  0.1792 :  400b3b:	mov    %eax,-0xc(%rsp)
+   216  1.9357 :  400b3f:	mov    %eax,0x3c(%rdx)
+   130  1.1650 :  400b42:	mov    -0x4(%rsp),%eax
+               :  400b46:	cmp    %eax,-0x8(%rsp)
+               :  400b4a:	jne    400770 <multiplica+0x80>
+               :  400b50:	pop    %rbx
+               :  400b51:	pop    %rbp
+               :  400b52:	pop    %r12
+               :  400b54:	pop    %r13
+               :  400b56:	pop    %r14
+               :  400b58:	pop    %r15
+               :  400b5a:	retq   
+               :  400b5b:	nopl   0x0(%rax,%rax,1)
+/* 
+ * Command line: opannotate --assembly matriu4x4-opt-unrol-i-ni.2g 
+ * 
+ * Interpretation of command line:
+ * Output annotated assembly listing with samples
+ * 
+ * CPU: Intel Ivy Bridge microarchitecture, speed 2.7e+06 MHz (estimated)
+ * Counted CPU_CLK_UNHALTED events (Clock cycles when not halted) with a unit mask of 0x00 (No unit mask) count 100000
+ */
+               :
+               :/lib/x86_64-linux-gnu/ld-2.19.so:     file format elf64-x86-64
+               :
+               :
+               :Disassembly of section .text:
+               :
+000000000000c0d0 <_dl_rtld_di_serinfo+0x29c0>: /* _dl_relocate_object total:      1  0.0090 */
+               :    c0d0:	push   %rbp
+               :    c0d1:	mov    %rsp,%rbp
+               :    c0d4:	push   %r15
+               :    c0d6:	mov    %rdi,%r15
+               :    c0d9:	push   %r14
+               :    c0db:	push   %r13
+               :    c0dd:	push   %r12
+               :    c0df:	push   %rbx
+               :    c0e0:	mov    %edx,%ebx
+               :    c0e2:	sub    $0x108,%rsp
+               :    c0e9:	test   $0x8000000,%edx
+               :    c0ef:	mov    %rsi,-0xb8(%rbp)
+               :    c0f6:	mov    %ecx,-0xac(%rbp)
+               :    c0fc:	jne    c111 <_dl_rtld_di_serinfo+0x2a01>
+               :    c0fe:	xor    %eax,%eax
+               :    c100:	cmpq   $0x0,0x216cd8(%rip)        # 222de0 <_rtld_global_ro+0x120>
+               :    c108:	setne  %al
+               :    c10b:	or     %eax,-0xac(%rbp)
+               :    c111:	testb  $0x4,0x314(%r15)
+               :    c119:	jne    c3a8 <_dl_rtld_di_serinfo+0x2c98>
+               :    c11f:	mov    -0xac(%rbp),%r14d
+               :    c126:	test   %r14d,%r14d
+               :    c129:	je     c620 <_dl_rtld_di_serinfo+0x2f10>
+               :    c12f:	mov    %ebx,%r12d
+               :    c132:	and    $0x1,%r12d
+               :    c136:	testb  $0x20,0x216b83(%rip)        # 222cc0 <_rtld_global_ro>
+               :    c13d:	jne    d30d <_dl_rtld_di_serinfo+0x3bfd>
+               :    c143:	cmpq   $0x0,0xf0(%r15)
+               :    c14b:	jne    d1b7 <_dl_rtld_di_serinfo+0x3aa7>
+               :    c151:	movq   $0x0,-0xf8(%rbp)
+               :    c15c:	mov    0x68(%r15),%rax
+               :    c160:	cmpq   $0x0,0xf8(%r15)
+               :    c168:	mov    0x8(%rax),%rax
+               :    c16c:	mov    %rax,-0xd0(%rbp)
+               :    c173:	je     c3c0 <_dl_rtld_di_serinfo+0x2cb0>
+               :    c179:	test   %r12d,%r12d
+               :    c17c:	jne    c668 <_dl_rtld_di_serinfo+0x2f58>
+               :    c182:	lea    -0x70(%rbp),%rsi
+               :    c186:	xor    %eax,%eax
+               :    c188:	mov    $0x8,%ecx
+               :    c18d:	mov    %rsi,%rdi
+               :    c190:	rep stos %rax,%es:(%rdi)
+               :    c193:	mov    0x78(%r15),%rax
+               :    c197:	test   %rax,%rax
+               :    c19a:	je     caf8 <_dl_rtld_di_serinfo+0x33e8>
+               :    c1a0:	mov    0x8(%rax),%rdi
+               :    c1a4:	mov    0x80(%r15),%rax
+               :    c1ab:	mov    0x180(%r15),%r8
+               :    c1b2:	mov    0x8(%rax),%rcx
+               :    c1b6:	mov    %rdi,-0x70(%rbp)
+               :    c1ba:	test   %r8,%r8
+               :    c1bd:	mov    %rcx,-0x68(%rbp)
+               :    c1c1:	je     c1e6 <_dl_rtld_di_serinfo+0x2ad6>
+               :    c1c3:	mov    %rcx,%rax
+               :    c1c6:	movabs $0xaaaaaaaaaaaaaaab,%rdx
+               :    c1d0:	mul    %rdx
+               :    c1d3:	mov    0x8(%r8),%rax
+               :    c1d7:	shr    $0x4,%rdx
+               :    c1db:	cmp    %rax,%rdx
+               :    c1de:	cmovbe %rdx,%rax
+               :    c1e2:	mov    %rax,-0x60(%rbp)
+               :    c1e6:	add    %rcx,%rdi
+               :    c1e9:	cmpq   $0x0,0xe0(%r15)
+               :    c1f1:	je     c228 <_dl_rtld_di_serinfo+0x2b18>
+               :    c1f3:	mov    0xf8(%r15),%rax
+               :    c1fa:	mov    0x8(%rax),%rdx
+               :    c1fe:	mov    0x50(%r15),%rax
+               :    c202:	mov    0x8(%rax),%rax
+               :    c206:	lea    (%rax,%rdx,1),%r8
+               :    c20a:	cmp    %rdi,%r8
+               :    c20d:	je     ca30 <_dl_rtld_di_serinfo+0x3320>
+               :    c213:	test   %r12d,%r12d
+               :    c216:	je     c650 <_dl_rtld_di_serinfo+0x2f40>
+               :    c21c:	mov    %rdx,-0x50(%rbp)
+               :    c220:	mov    %rax,-0x48(%rbp)
+               :    c224:	mov    %r12d,-0x38(%rbp)
+               :    c228:	lea    0x18(%rsi),%rax
+               :    c22c:	and    $0x2000000,%ebx
+               :    c232:	mov    %ebx,-0xb0(%rbp)
+               :    c238:	mov    %rax,-0xc0(%rbp)
+               :    c23f:	lea    -0x18(%rbp),%rax
+               :    c243:	mov    %rax,-0xf0(%rbp)
+               :    c24a:	lea    -0x80(%rbp),%rax
+               :    c24e:	mov    %rax,-0xd8(%rbp)
+               :    c255:	lea    -0x78(%rbp),%rax
+               :    c259:	mov    %rax,-0x100(%rbp)
+               :    c260:	lea    -0x88(%rbp),%rax
+               :    c267:	mov    %rax,-0x108(%rbp)
+               :    c26e:	lea    -0x90(%rbp),%rax
+               :    c275:	mov    %rax,-0x110(%rbp)
+               :    c27c:	mov    -0xc0(%rbp),%rdi
+               :    c283:	mov    (%r15),%rbx
+               :    c286:	mov    -0x18(%rdi),%rax
+               :    c28a:	mov    (%rdi),%r12d
+               :    c28d:	mov    -0x8(%rdi),%rdx
+               :    c291:	mov    %rax,%r11
+               :    c294:	add    -0x10(%rdi),%r11
+               :    c298:	test   %r12d,%r12d
+               :    c29b:	je     c3f0 <_dl_rtld_di_serinfo+0x2ce0>
+               :    c2a1:	xor    %r13d,%r13d
+               :    c2a4:	xor    %r12d,%r12d
+               :    c2a7:	cmp    %r11,%rax
+               :    c2aa:	jb     c2e4 <_dl_rtld_di_serinfo+0x2bd4>
+               :    c2ac:	jmpq   c358 <_dl_rtld_di_serinfo+0x2c48>
+               :    c2b1:	nopl   0x0(%rax)
+               :    c2b8:	mov    %rbx,%rdx
+               :    c2bb:	add    (%rax),%rdx
+               :    c2be:	cmp    $0x7,%rsi
+               :    c2c2:	jne    cfe0 <_dl_rtld_di_serinfo+0x38d0>
+               :    c2c8:	mov    0x3e0(%r15),%rcx
+               :    c2cf:	test   %rcx,%rcx
+               :    c2d2:	jne    d004 <_dl_rtld_di_serinfo+0x38f4>
+               :    c2d8:	add    %rbx,(%rdx)
+               :    c2db:	add    $0x18,%rax
+               :    c2df:	cmp    %rax,%r11
+               :    c2e2:	jbe    c308 <_dl_rtld_di_serinfo+0x2bf8>
+               :    c2e4:	mov    0x8(%rax),%esi
+               :    c2e7:	cmp    $0x25,%rsi
+               :    c2eb:	jne    c2b8 <_dl_rtld_di_serinfo+0x2ba8>
+               :    c2ed:	test   %r12,%r12
+               :    c2f0:	mov    %rax,%r13
+               :    c2f3:	jne    c2db <_dl_rtld_di_serinfo+0x2bcb>
+               :    c2f5:	mov    %rax,%r13
+               :    c2f8:	mov    %rax,%r12
+               :    c2fb:	add    $0x18,%rax
+               :    c2ff:	cmp    %rax,%r11
+               :    c302:	ja     c2e4 <_dl_rtld_di_serinfo+0x2bd4>
+               :    c304:	nopl   0x0(%rax)
+               :    c308:	test   %r12,%r12
+               :    c30b:	je     c358 <_dl_rtld_di_serinfo+0x2c48>
+               :    c30d:	cmp    %r12,%r13
+               :    c310:	jb     c358 <_dl_rtld_di_serinfo+0x2c48>
+               :    c312:	mov    -0xb0(%rbp),%r11d
+               :    c319:	test   %r11d,%r11d
+               :    c31c:	je     c331 <_dl_rtld_di_serinfo+0x2c21>
+               :    c31e:	jmpq   d2c6 <_dl_rtld_di_serinfo+0x3bb6>
+               :    c323:	nopl   0x0(%rax,%rax,1)
+               :    c328:	add    $0x18,%r12
+               :    c32c:	cmp    %r13,%r12
+               :    c32f:	ja     c358 <_dl_rtld_di_serinfo+0x2c48>
+               :    c331:	cmpl   $0x25,0x8(%r12)
+               :    c337:	jne    c328 <_dl_rtld_di_serinfo+0x2c18>
+               :    c339:	mov    (%r12),%r14
+               :    c33d:	mov    0x10(%r12),%rax
+               :    c342:	add    $0x18,%r12
+               :    c346:	add    (%r15),%rax
+               :    c349:	callq  *%rax
+               :    c34b:	cmp    %r13,%r12
+               :    c34e:	mov    %rax,(%r14,%rbx,1)
+               :    c352:	jbe    c331 <_dl_rtld_di_serinfo+0x2c21>
+               :    c354:	nopl   0x0(%rax)
+               :    c358:	addq   $0x20,-0xc0(%rbp)
+               :    c360:	mov    -0xf0(%rbp),%rax
+               :    c367:	cmp    %rax,-0xc0(%rbp)
+               :    c36e:	jne    c27c <_dl_rtld_di_serinfo+0x2b6c>
+               :    c374:	mov    -0xac(%rbp),%eax
+               :    c37a:	test   %eax,%eax
+               :    c37c:	jne    d123 <_dl_rtld_di_serinfo+0x3a13>
+               :    c382:	orb    $0x4,0x314(%r15)
+               :    c38a:	cmpq   $0x0,-0xf8(%rbp)
+               :    c392:	jne    d18a <_dl_rtld_di_serinfo+0x3a7a>
+               :    c398:	mov    0x460(%r15),%rax
+               :    c39f:	test   %rax,%rax
+               :    c3a2:	jne    ca48 <_dl_rtld_di_serinfo+0x3338>
+               :    c3a8:	lea    -0x28(%rbp),%rsp
+               :    c3ac:	pop    %rbx
+               :    c3ad:	pop    %r12
+               :    c3af:	pop    %r13
+               :    c3b1:	pop    %r14
+               :    c3b3:	pop    %r15
+               :    c3b5:	pop    %rbp
+               :    c3b6:	retq   
+               :    c3b7:	nopw   0x0(%rax,%rax,1)
+               :    c3c0:	mov    0x288(%r15),%rax
+               :    c3c7:	test   %rax,%rax
+               :    c3ca:	je     c182 <_dl_rtld_di_serinfo+0x2a72>
+               :    c3d0:	test   %r12d,%r12d
+               :    c3d3:	je     c182 <_dl_rtld_di_serinfo+0x2a72>
+               :    c3d9:	mov    (%r15),%rdx
+               :    c3dc:	mov    0x8(%rax),%rax
+               :    c3e0:	lea    0xcb19(%rip),%rdi        # 18f00 <realloc+0x1150>
+               :    c3e7:	mov    %rdi,(%rdx,%rax,1)
+               :    c3eb:	jmpq   c182 <_dl_rtld_di_serinfo+0x2a72>
+               :    c3f0:	mov    0x70(%r15),%rcx
+               :    c3f4:	lea    (%rdx,%rdx,2),%rdx
+               :    c3f8:	lea    (%rax,%rdx,8),%r12
+               :    c3fc:	lea    0x2175f5(%rip),%rdx        # 2239f8 <_rtld_global+0x998>
+               :    c403:	mov    0x8(%rcx),%rdi
+               :    c407:	cmp    %rdx,%r15
+               :    c40a:	mov    %rdi,-0x98(%rbp)
+               :    c411:	je     c454 <_dl_rtld_di_serinfo+0x2d44>
+               :    c413:	test   %rbx,%rbx
+               :    c416:	je     ca18 <_dl_rtld_di_serinfo+0x3308>
+               :    c41c:	cmp    %r12,%rax
+               :    c41f:	jae    c454 <_dl_rtld_di_serinfo+0x2d44>
+               :    c421:	nopl   0x0(%rax)
+               :    c428:	mov    0x8(%rax),%edx
+               :    c42b:	mov    %rbx,%rcx
+               :    c42e:	add    (%rax),%rcx
+               :    c431:	cmp    $0x26,%rdx
+               :    c435:	je     c441 <_dl_rtld_di_serinfo+0x2d31>
+               :    c437:	cmp    $0x8,%rdx
+               :    c43b:	jne    d02a <_dl_rtld_di_serinfo+0x391a>
+               :    c441:	mov    %rbx,%rdx
+               :    c444:	add    0x10(%rax),%rdx
+     1  0.0090 :    c448:	add    $0x18,%rax
+               :    c44c:	cmp    %rax,%r12
+               :    c44f:	mov    %rdx,(%rcx)
+               :    c452:	ja     c428 <_dl_rtld_di_serinfo+0x2d18>
+               :    c454:	mov    0x1c8(%r15),%rax
+               :    c45b:	test   %rax,%rax
+               :    c45e:	je     cb01 <_dl_rtld_di_serinfo+0x33f1>
+               :    c464:	mov    0x8(%rax),%rax
+               :    c468:	cmp    %r12,%r11
+               :    c46b:	mov    %rax,-0xa8(%rbp)
+               :    c472:	jbe    c358 <_dl_rtld_di_serinfo+0x2c48>
+               :    c478:	mov    %r15,%rax
+               :    c47b:	xor    %r10d,%r10d
+               :    c47e:	mov    %rbx,%r15
+               :    c481:	movq   $0x0,-0xe8(%rbp)
+               :    c48c:	mov    %r11,-0xa0(%rbp)
+               :    c493:	mov    %rax,%rbx
+               :    c496:	mov    %r10,-0xe0(%rbp)
+               :    c49d:	nopl   (%rax)
+               :    c4a0:	mov    0x8(%r12),%rax
+               :    c4a5:	mov    %eax,%r13d
+               :    c4a8:	cmp    $0x25,%r13
+               :    c4ac:	je     c860 <_dl_rtld_di_serinfo+0x3150>
+               :    c4b2:	mov    -0xa8(%rbp),%rdi
+               :    c4b9:	shr    $0x20,%rax
+               :    c4bd:	mov    %r15,%r11
+               :    c4c0:	add    (%r12),%r11
+               :    c4c4:	cmp    $0x8,%r13
+               :    c4c8:	mov    0x2e0(%rbx),%rdx
+               :    c4cf:	movzwl (%rdi,%rax,2),%ecx
+               :    c4d3:	mov    -0x98(%rbp),%rdi
+               :    c4da:	lea    (%rax,%rax,2),%rax
+               :    c4de:	lea    (%rdi,%rax,8),%r14
+               :    c4e2:	mov    %r14,-0x80(%rbp)
+               :    c4e6:	je     d01a <_dl_rtld_di_serinfo+0x390a>
+               :    c4ec:	cmp    $0x26,%r13
+               :    c4f0:	je     d01a <_dl_rtld_di_serinfo+0x390a>
+               :    c4f6:	test   %r13,%r13
+               :    c4f9:	je     c6d0 <_dl_rtld_di_serinfo+0x2fc0>
+               :    c4ff:	movzbl 0x4(%r14),%eax
+               :    c504:	shr    $0x4,%al
+               :    c507:	test   %al,%al
+               :    c509:	je     c850 <_dl_rtld_di_serinfo+0x3140>
+               :    c50f:	cmp    0x3f8(%rbx),%r14
+               :    c516:	lea    -0x10(%r13),%rax
+               :    c51a:	je     d088 <_dl_rtld_di_serinfo+0x3978>
+               :    c520:	cmp    $0x2,%rax
+               :    c524:	setbe  %al
+               :    c527:	cmp    $0x7,%r13
+               :    c52b:	sete   %sil
+               :    c52f:	or     %esi,%eax
+               :    c531:	test   %al,%al
+               :    c533:	mov    $0x1,%esi
+               :    c538:	jne    c544 <_dl_rtld_di_serinfo+0x2e34>
+               :    c53a:	xor    %esi,%esi
+               :    c53c:	cmp    $0x24,%r13
+               :    c540:	sete   %sil
+               :    c544:	xor    %r9d,%r9d
+               :    c547:	cmp    $0x5,%r13
+               :    c54b:	mov    %r14,0x3f8(%rbx)
+               :    c552:	sete   %r9b
+               :    c556:	and    $0x7fff,%ecx
+               :    c55c:	lea    (%rcx,%rcx,2),%rax
+               :    c560:	add    %r9d,%r9d
+               :    c563:	or     %esi,%r9d
+               :    c566:	lea    (%rdx,%rax,8),%r8
+               :    c56a:	mov    %r9d,0x400(%rbx)
+               :    c571:	test   %r8,%r8
+               :    c574:	je     c586 <_dl_rtld_di_serinfo+0x2e76>
+               :    c576:	mov    0x8(%r8),%r10d
+               :    c57a:	mov    $0x0,%eax
+               :    c57f:	test   %r10d,%r10d
+               :    c582:	cmove  %rax,%r8
+               :    c586:	mov    (%r14),%edi
+               :    c589:	mov    -0xb8(%rbp),%rcx
+               :    c590:	mov    %rbx,%rsi
+               :    c593:	add    -0xd0(%rbp),%rdi
+               :    c59a:	mov    -0xd8(%rbp),%rdx
+               :    c5a1:	movq   $0x0,0x8(%rsp)
+               :    c5aa:	movl   $0x1,(%rsp)
+               :    c5b1:	mov    %r11,-0xc8(%rbp)
+               :    c5b8:	callq  a860 <_dl_rtld_di_serinfo+0x1150>
+               :    c5bd:	mov    -0x80(%rbp),%rcx
+               :    c5c1:	mov    -0xc8(%rbp),%r11
+               :    c5c8:	mov    %rax,%r8
+               :    c5cb:	mov    %rax,0x408(%rbx)
+               :    c5d2:	mov    %rcx,0x410(%rbx)
+               :    c5d9:	xor    %esi,%esi
+               :    c5db:	test   %rcx,%rcx
+               :    c5de:	je     c5f7 <_dl_rtld_di_serinfo+0x2ee7>
+               :    c5e0:	movzbl 0x4(%rcx),%edx
+               :    c5e4:	mov    0x8(%rcx),%rsi
+               :    c5e8:	add    (%r8),%rsi
+               :    c5eb:	and    $0xf,%edx
+               :    c5ee:	cmp    $0xa,%dl
+               :    c5f1:	je     d049 <_dl_rtld_di_serinfo+0x3939>
+               :    c5f7:	cmp    $0x25,%r13
+               :    c5fb:	ja     cac0 <_dl_rtld_di_serinfo+0x33b0>
+               :    c601:	lea    0xf458(%rip),%rax        # 1ba60 <realloc+0x3cb0>
+               :    c608:	lea    0xf451(%rip),%rdi        # 1ba60 <realloc+0x3cb0>
+               :    c60f:	movslq (%rax,%r13,4),%rax
+               :    c613:	add    %rdi,%rax
+               :    c616:	jmpq   *%rax
+               :    c618:	nopl   0x0(%rax,%rax,1)
+               :    c620:	cmpq   $0x0,0x100(%r15)
+               :    c628:	je     c12f <_dl_rtld_di_serinfo+0x2a1f>
+               :    c62e:	xor    %r12d,%r12d
+               :    c631:	testb  $0x20,0x216688(%rip)        # 222cc0 <_rtld_global_ro>
+               :    c638:	je     c143 <_dl_rtld_di_serinfo+0x2a33>
+               :    c63e:	lea    0xfd82(%rip),%rdx        # 1c3c7 <realloc+0x4617>
+               :    c645:	jmpq   d326 <_dl_rtld_di_serinfo+0x3c16>
+               :    c64a:	nopw   0x0(%rax,%rax,1)
+               :    c650:	test   %rcx,%rcx
+               :    c653:	je     c21c <_dl_rtld_di_serinfo+0x2b0c>
+               :    c659:	add    %rcx,%rax
+               :    c65c:	mov    %rax,-0x68(%rbp)
+               :    c660:	jmpq   c228 <_dl_rtld_di_serinfo+0x2b18>
+               :    c665:	nopl   (%rax)
+               :    c668:	mov    0x58(%r15),%rax
+               :    c66c:	mov    0x8(%rax),%rax
+               :    c670:	mov    0x8(%rax),%rdx
+               :    c674:	test   %rdx,%rdx
+               :    c677:	jne    caa0 <_dl_rtld_di_serinfo+0x3390>
+               :    c67d:	mov    -0xac(%rbp),%r13d
+               :    c684:	mov    %r15,0x8(%rax)
+               :    c688:	test   %r13d,%r13d
+               :    c68b:	jne    d35a <_dl_rtld_di_serinfo+0x3c4a>
+               :    c691:	lea    0x9e48(%rip),%rdi        # 164e0 <_dl_find_dso_for_object+0x22c0>
+               :    c698:	mov    %rdi,0x10(%rax)
+               :    c69c:	mov    0x288(%r15),%rax
+               :    c6a3:	test   %rax,%rax
+               :    c6a6:	jne    c3d9 <_dl_rtld_di_serinfo+0x2cc9>
+               :    c6ac:	jmpq   c182 <_dl_rtld_di_serinfo+0x2a72>
+               :    c6b1:	nopl   0x0(%rax)
+               :    c6b8:	mov    -0x80(%rbp),%rax
+               :    c6bc:	mov    0x10(%rax),%rsi
+               :    c6c0:	add    0x10(%r12),%rsi
+               :    c6c5:	mov    %rsi,(%r11)
+               :    c6c8:	nopl   0x0(%rax,%rax,1)
+               :    c6d0:	add    $0x18,%r12
+               :    c6d4:	cmp    %r12,-0xa0(%rbp)
+               :    c6db:	ja     c4a0 <_dl_rtld_di_serinfo+0x2d90>
+               :    c6e1:	mov    -0xe0(%rbp),%r10
+               :    c6e8:	mov    %rbx,%rax
+               :    c6eb:	mov    %r15,%rbx
+               :    c6ee:	mov    %rax,%r15
+               :    c6f1:	test   %r10,%r10
+               :    c6f4:	je     c358 <_dl_rtld_di_serinfo+0x2c48>
+               :    c6fa:	mov    -0xe8(%rbp),%r12
+               :    c701:	cmp    %r10,%r12
+               :    c704:	jb     c358 <_dl_rtld_di_serinfo+0x2c48>
+               :    c70a:	mov    %r10,%r14
+               :    c70d:	jmp    c71d <_dl_rtld_di_serinfo+0x300d>
+               :    c70f:	nop
+               :    c710:	add    $0x18,%r14
+               :    c714:	cmp    %r12,%r14
+               :    c717:	ja     c358 <_dl_rtld_di_serinfo+0x2c48>
+               :    c71d:	mov    0x8(%r14),%rax
+               :    c721:	cmp    $0x25,%eax
+               :    c724:	jne    c710 <_dl_rtld_di_serinfo+0x3000>
+               :    c726:	mov    -0xa8(%rbp),%rdi
+               :    c72d:	shr    $0x20,%rax
+               :    c731:	mov    %rbx,%r13
+               :    c734:	add    (%r14),%r13
+               :    c737:	mov    0x2e0(%r15),%rcx
+               :    c73e:	movzwl (%rdi,%rax,2),%esi
+               :    c742:	mov    -0x98(%rbp),%rdi
+               :    c749:	lea    (%rax,%rax,2),%rax
+               :    c74d:	lea    (%rdi,%rax,8),%rdx
+               :    c751:	mov    %rdx,-0x78(%rbp)
+               :    c755:	movzbl 0x4(%rdx),%eax
+               :    c759:	shr    $0x4,%al
+               :    c75c:	test   %al,%al
+               :    c75e:	je     cad0 <_dl_rtld_di_serinfo+0x33c0>
+               :    c764:	cmp    0x3f8(%r15),%rdx
+               :    c76b:	je     d511 <_dl_rtld_di_serinfo+0x3e01>
+               :    c771:	mov    %rsi,%rax
+               :    c774:	movl   $0x0,0x400(%r15)
+               :    c77f:	mov    %rdx,0x3f8(%r15)
+               :    c786:	and    $0x7fff,%eax
+               :    c78b:	lea    (%rax,%rax,2),%rax
+               :    c78f:	lea    (%rcx,%rax,8),%r8
+               :    c793:	test   %r8,%r8
+               :    c796:	je     c7a7 <_dl_rtld_di_serinfo+0x3097>
+               :    c798:	mov    0x8(%r8),%ecx
+               :    c79c:	mov    $0x0,%eax
+               :    c7a1:	test   %ecx,%ecx
+               :    c7a3:	cmove  %rax,%r8
+               :    c7a7:	mov    (%rdx),%edi
+               :    c7a9:	mov    -0xb8(%rbp),%rcx
+               :    c7b0:	xor    %r9d,%r9d
+               :    c7b3:	add    -0xd0(%rbp),%rdi
+               :    c7ba:	mov    -0x100(%rbp),%rdx
+               :    c7c1:	mov    %r15,%rsi
+               :    c7c4:	movq   $0x0,0x8(%rsp)
+               :    c7cd:	movl   $0x1,(%rsp)
+               :    c7d4:	callq  a860 <_dl_rtld_di_serinfo+0x1150>
+               :    c7d9:	mov    -0x78(%rbp),%rdx
+               :    c7dd:	mov    %rax,0x408(%r15)
+               :    c7e4:	mov    %rdx,0x410(%r15)
+               :    c7eb:	test   %rdx,%rdx
+               :    c7ee:	je     c806 <_dl_rtld_di_serinfo+0x30f6>
+               :    c7f0:	mov    (%rax),%rcx
+               :    c7f3:	movzbl 0x4(%rdx),%eax
+               :    c7f7:	mov    0x8(%rdx),%rsi
+               :    c7fb:	and    $0xf,%eax
+               :    c7fe:	cmp    $0xa,%al
+               :    c800:	je     d4ef <_dl_rtld_di_serinfo+0x3ddf>
+               :    c806:	mov    0x10(%r14),%rax
+               :    c80a:	add    (%r15),%rax
+               :    c80d:	callq  *%rax
+               :    c80f:	mov    %rax,0x0(%r13)
+               :    c813:	jmpq   c710 <_dl_rtld_di_serinfo+0x3000>
+               :    c818:	nopl   0x0(%rax,%rax,1)
+               :    c820:	mov    -0x80(%rbp),%rax
+               :    c824:	mov    0x10(%rax),%rsi
+               :    c828:	add    0x10(%r12),%rsi
+               :    c82d:	mov    $0xffffffff,%eax
+               :    c832:	cmp    %rax,%rsi
+               :    c835:	mov    %esi,(%r11)
+               :    c838:	jbe    c6d0 <_dl_rtld_di_serinfo+0x2fc0>
+               :    c83e:	lea    0x1200b(%rip),%rsi        # 1e850 <realloc+0x6aa0>
+               :    c845:	jmpq   c9de <_dl_rtld_di_serinfo+0x32ce>
+               :    c84a:	nopw   0x0(%rax,%rax,1)
+               :    c850:	mov    %r14,%rcx
+               :    c853:	mov    %rbx,%r8
+               :    c856:	jmpq   c5e0 <_dl_rtld_di_serinfo+0x2ed0>
+               :    c85b:	nopl   0x0(%rax,%rax,1)
+               :    c860:	cmpq   $0x0,-0xe0(%rbp)
+               :    c868:	je     cae0 <_dl_rtld_di_serinfo+0x33d0>
+               :    c86e:	mov    %r12,-0xe8(%rbp)
+               :    c875:	jmpq   c6d0 <_dl_rtld_di_serinfo+0x2fc0>
+               :    c87a:	nopw   0x0(%rax,%rax,1)
+               :    c880:	mov    -0x80(%rbp),%rdx
+               :    c884:	test   %rdx,%rdx
+               :    c887:	je     cf95 <_dl_rtld_di_serinfo+0x3885>
+               :    c88d:	mov    0x440(%r8),%rax
+               :    c894:	cmp    $0xffffffffffffffff,%rax
+               :    c898:	je     d0e4 <_dl_rtld_di_serinfo+0x39d4>
+               :    c89e:	test   %rax,%rax
+               :    c8a1:	je     d3f5 <_dl_rtld_di_serinfo+0x3ce5>
+               :    c8a7:	mov    %rax,%rcx
+               :    c8aa:	mov    0x10(%r12),%rax
+               :    c8af:	add    0x8(%rdx),%rax
+               :    c8b3:	sub    %rcx,%rax
+               :    c8b6:	mov    %rax,0x8(%r11)
+               :    c8ba:	lea    0xc57f(%rip),%rax        # 18e40 <realloc+0x1090>
+               :    c8c1:	mov    %rax,(%r11)
+               :    c8c4:	jmpq   c6d0 <_dl_rtld_di_serinfo+0x2fc0>
+               :    c8c9:	nopl   0x0(%rax)
+               :    c8d0:	mov    -0x80(%rbp),%rax
+               :    c8d4:	test   %rax,%rax
+               :    c8d7:	je     c6d0 <_dl_rtld_di_serinfo+0x2fc0>
+               :    c8dd:	mov    0x440(%r8),%rdx
+               :    c8e4:	lea    0x1(%rdx),%rcx
+               :    c8e8:	cmp    $0x1,%rcx
+               :    c8ec:	jbe    d3c1 <_dl_rtld_di_serinfo+0x3cb1>
+               :    c8f2:	mov    %rax,%rcx
+               :    c8f5:	mov    0x10(%r12),%rax
+               :    c8fa:	add    0x8(%rcx),%rax
+               :    c8fe:	sub    %rdx,%rax
+               :    c901:	mov    %rax,(%r11)
+               :    c904:	jmpq   c6d0 <_dl_rtld_di_serinfo+0x2fc0>
+               :    c909:	nopl   0x0(%rax)
+               :    c910:	mov    -0x80(%rbp),%rdx
+               :    c914:	test   %rdx,%rdx
+               :    c917:	je     c6d0 <_dl_rtld_di_serinfo+0x2fc0>
+               :    c91d:	mov    0x10(%r12),%rax
+               :    c922:	add    0x8(%rdx),%rax
+               :    c926:	mov    %rax,(%r11)
+               :    c929:	jmpq   c6d0 <_dl_rtld_di_serinfo+0x2fc0>
+               :    c92e:	xchg   %ax,%ax
+               :    c930:	test   %r8,%r8
+               :    c933:	je     c6d0 <_dl_rtld_di_serinfo+0x2fc0>
+               :    c939:	mov    0x448(%r8),%rax
+               :    c940:	mov    %rax,(%r11)
+               :    c943:	jmpq   c6d0 <_dl_rtld_di_serinfo+0x2fc0>
+               :    c948:	nopl   0x0(%rax,%rax,1)
+               :    c950:	mov    0x10(%r12),%rax
+               :    c955:	add    (%rbx),%rax
+               :    c958:	mov    %r11,-0xc8(%rbp)
+               :    c95f:	callq  *%rax
+               :    c961:	mov    -0xc8(%rbp),%r11
+               :    c968:	mov    %rax,(%r11)
+               :    c96b:	jmpq   c6d0 <_dl_rtld_di_serinfo+0x2fc0>
+               :    c970:	mov    -0x80(%rbp),%r13
+               :    c974:	test   %r13,%r13
+               :    c977:	je     c6d0 <_dl_rtld_di_serinfo+0x2fc0>
+               :    c97d:	mov    0x10(%r14),%rax
+               :    c981:	cmp    %rax,0x10(%r13)
+               :    c985:	mov    %r11,%rdi
+               :    c988:	cmovbe 0x10(%r13),%rax
+               :    c98d:	mov    %rax,%rdx
+               :    c990:	callq  1abf0 <realloc+0x2e40>
+               :    c995:	mov    0x10(%r14),%rax
+               :    c999:	cmp    %rax,0x10(%r13)
+               :    c99d:	ja     c9b2 <_dl_rtld_di_serinfo+0x32a2>
+               :    c99f:	jae    c6d0 <_dl_rtld_di_serinfo+0x2fc0>
+               :    c9a5:	cmpl   $0x0,0x216350(%rip)        # 222cfc <_rtld_global_ro+0x3c>
+               :    c9ac:	je     c6d0 <_dl_rtld_di_serinfo+0x2fc0>
+               :    c9b2:	lea    0x11f17(%rip),%rsi        # 1e8d0 <realloc+0x6b20>
+               :    c9b9:	jmp    c9de <_dl_rtld_di_serinfo+0x32ce>
+               :    c9bb:	nopl   0x0(%rax,%rax,1)
+               :    c9c0:	sub    %r11,%rsi
+               :    c9c3:	add    0x10(%r12),%rsi
+               :    c9c8:	movslq %esi,%rax
+               :    c9cb:	mov    %esi,(%r11)
+               :    c9ce:	cmp    %rax,%rsi
+               :    c9d1:	je     c6d0 <_dl_rtld_di_serinfo+0x2fc0>
+               :    c9d7:	lea    0x11eb2(%rip),%rsi        # 1e890 <realloc+0x6ae0>
+               :    c9de:	mov    0x68(%rbx),%rax
+               :    c9e2:	mov    (%r14),%ecx
+               :    c9e5:	lea    0xf704(%rip),%rdx        # 1c0f0 <realloc+0x4340>
+               :    c9ec:	mov    $0x2,%edi
+               :    c9f1:	add    0x8(%rax),%rcx
+               :    c9f5:	mov    0x216404(%rip),%rax        # 222e00 <_dl_argv>
+               :    c9fc:	mov    (%rax),%rax
+               :    c9ff:	test   %rax,%rax
+               :    ca02:	cmovne %rax,%rdx
+               :    ca06:	xor    %eax,%eax
+               :    ca08:	callq  11170 <_dl_debug_state+0x800>
+               :    ca0d:	jmpq   c6d0 <_dl_rtld_di_serinfo+0x2fc0>
+               :    ca12:	nopw   0x0(%rax,%rax,1)
+               :    ca18:	cmpq   $0x0,0x238(%r15)
+               :    ca20:	jne    c454 <_dl_rtld_di_serinfo+0x2d44>
+               :    ca26:	jmpq   c41c <_dl_rtld_di_serinfo+0x2d0c>
+               :    ca2b:	nopl   0x0(%rax,%rax,1)
+               :    ca30:	sub    %rax,%rcx
+               :    ca33:	test   %r12d,%r12d
+               :    ca36:	mov    %rcx,-0x68(%rbp)
+               :    ca3a:	jne    c21c <_dl_rtld_di_serinfo+0x2b0c>
+               :    ca40:	jmpq   c650 <_dl_rtld_di_serinfo+0x2f40>
+               :    ca45:	nopl   (%rax)
+               :    ca48:	mov    0x458(%r15),%rcx
+               :    ca4f:	add    (%r15),%rcx
+               :    ca52:	mov    0x21627f(%rip),%rdx        # 222cd8 <_rtld_global_ro+0x18>
+               :    ca59:	lea    (%rcx,%rax,1),%rsi
+               :    ca5d:	neg    %rdx
+               :    ca60:	mov    %rdx,%rdi
+               :    ca63:	and    %rcx,%rdi
+               :    ca66:	and    %rdx,%rsi
+               :    ca69:	cmp    %rsi,%rdi
+               :    ca6c:	je     c3a8 <_dl_rtld_di_serinfo+0x2c98>
+               :    ca72:	sub    %rdi,%rsi
+               :    ca75:	mov    $0x1,%edx
+               :    ca7a:	callq  196a0 <realloc+0x18f0>
+               :    ca7f:	test   %eax,%eax
+               :    ca81:	jns    c3a8 <_dl_rtld_di_serinfo+0x2c98>
+               :    ca87:	mov    0x8(%r15),%rsi
+               :    ca8b:	mov    0x2176ef(%rip),%edi        # 224180 <_rtld_global+0x1120>
+               :    ca91:	lea    0x12d08(%rip),%rcx        # 1f7a0 <realloc+0x79f0>
+               :    ca98:	xor    %edx,%edx
+               :    ca9a:	callq  fd50 <_dl_rtld_di_serinfo+0x6640>
+               :    ca9f:	nop
+               :    caa0:	add    (%r15),%rdx
+               :    caa3:	mov    %rdx,0x3e0(%r15)
+               :    caaa:	lea    0x18(%rax),%rdx
+               :    caae:	mov    %rdx,0x3e8(%r15)
+               :    cab5:	jmpq   c67d <_dl_rtld_di_serinfo+0x2f6d>
+               :    caba:	nopw   0x0(%rax,%rax,1)
+               :    cac0:	xor    %edx,%edx
+               :    cac2:	mov    %r13d,%esi
+               :    cac5:	mov    %rbx,%rdi
+               :    cac8:	callq  bff0 <_dl_rtld_di_serinfo+0x28e0>
+               :    cacd:	nopl   (%rax)
+               :    cad0:	mov    %r15,%rax
+               :    cad3:	jmpq   c7f0 <_dl_rtld_di_serinfo+0x30e0>
+               :    cad8:	nopl   0x0(%rax,%rax,1)
+               :    cae0:	mov    %r12,-0xe8(%rbp)
+               :    cae7:	mov    %r12,-0xe0(%rbp)
+               :    caee:	jmpq   c6d0 <_dl_rtld_di_serinfo+0x2fc0>
+               :    caf3:	nopl   0x0(%rax,%rax,1)
+               :    caf8:	xor    %edi,%edi
+               :    cafa:	xor    %ecx,%ecx
+               :    cafc:	jmpq   c1e9 <_dl_rtld_di_serinfo+0x2ad9>
+               :    cb01:	cmp    %r12,%r11
+               :    cb04:	movq   $0x0,-0xe0(%rbp)
+               :    cb0f:	movq   $0x0,-0xc8(%rbp)
+               :    cb1a:	jbe    c358 <_dl_rtld_di_serinfo+0x2c48>
+               :    cb20:	mov    %rbx,-0xa8(%rbp)
+               :    cb27:	mov    %r11,-0xa0(%rbp)
+               :    cb2e:	mov    %r15,%rbx
+               :    cb31:	nopl   0x0(%rax)
+               :    cb38:	mov    0x8(%r12),%rax
+               :    cb3d:	mov    %eax,%r13d
+               :    cb40:	cmp    $0x25,%r13
+               :    cb44:	je     cdf0 <_dl_rtld_di_serinfo+0x36e0>
+               :    cb4a:	shr    $0x20,%rax
+               :    cb4e:	mov    -0x98(%rbp),%rdi
+               :    cb55:	mov    -0xa8(%rbp),%r15
+               :    cb5c:	lea    (%rax,%rax,2),%rax
+               :    cb60:	add    (%r12),%r15
+               :    cb64:	cmp    $0x8,%r13
+               :    cb68:	lea    (%rdi,%rax,8),%r14
+               :    cb6c:	mov    %r14,-0x88(%rbp)
+               :    cb73:	je     d4df <_dl_rtld_di_serinfo+0x3dcf>
+               :    cb79:	cmp    $0x26,%r13
+               :    cb7d:	je     d4df <_dl_rtld_di_serinfo+0x3dcf>
+               :    cb83:	test   %r13,%r13
+               :    cb86:	je     cc80 <_dl_rtld_di_serinfo+0x3570>
+               :    cb8c:	movzbl 0x4(%r14),%eax
+               :    cb91:	shr    $0x4,%al
+               :    cb94:	test   %al,%al
+               :    cb96:	je     cde0 <_dl_rtld_di_serinfo+0x36d0>
+               :    cb9c:	cmp    0x3f8(%rbx),%r14
+               :    cba3:	je     d461 <_dl_rtld_di_serinfo+0x3d51>
+               :    cba9:	cmp    $0x7,%r13
+               :    cbad:	je     cbbd <_dl_rtld_di_serinfo+0x34ad>
+               :    cbaf:	lea    -0x10(%r13),%rax
+               :    cbb3:	cmp    $0x2,%rax
+               :    cbb7:	ja     cda3 <_dl_rtld_di_serinfo+0x3693>
+               :    cbbd:	mov    $0x1,%eax
+               :    cbc2:	mov    (%r14),%edi
+               :    cbc5:	xor    %r9d,%r9d
+               :    cbc8:	cmp    $0x5,%r13
+               :    cbcc:	sete   %r9b
+               :    cbd0:	add    -0xd0(%rbp),%rdi
+               :    cbd7:	mov    -0xb8(%rbp),%rcx
+               :    cbde:	add    %r9d,%r9d
+               :    cbe1:	mov    -0x108(%rbp),%rdx
+               :    cbe8:	mov    %r14,0x3f8(%rbx)
+               :    cbef:	or     %eax,%r9d
+               :    cbf2:	xor    %r8d,%r8d
+               :    cbf5:	mov    %rbx,%rsi
+               :    cbf8:	mov    %r9d,0x400(%rbx)
+               :    cbff:	movq   $0x0,0x8(%rsp)
+               :    cc08:	movl   $0x1,(%rsp)
+               :    cc0f:	callq  a860 <_dl_rtld_di_serinfo+0x1150>
+               :    cc14:	mov    -0x88(%rbp),%rcx
+               :    cc1b:	mov    %rax,%r8
+               :    cc1e:	mov    %rax,0x408(%rbx)
+               :    cc25:	mov    %rcx,0x410(%rbx)
+               :    cc2c:	xor    %esi,%esi
+               :    cc2e:	test   %rcx,%rcx
+               :    cc31:	je     cc4a <_dl_rtld_di_serinfo+0x353a>
+               :    cc33:	movzbl 0x4(%rcx),%edx
+               :    cc37:	mov    0x8(%rcx),%rsi
+               :    cc3b:	add    (%r8),%rsi
+               :    cc3e:	and    $0xf,%edx
+               :    cc41:	cmp    $0xa,%dl
+               :    cc44:	je     d431 <_dl_rtld_di_serinfo+0x3d21>
+               :    cc4a:	cmp    $0x25,%r13
+               :    cc4e:	ja     cf80 <_dl_rtld_di_serinfo+0x3870>
+               :    cc54:	lea    0xee9d(%rip),%rax        # 1baf8 <realloc+0x3d48>
+               :    cc5b:	lea    0xee96(%rip),%rdi        # 1baf8 <realloc+0x3d48>
+               :    cc62:	movslq (%rax,%r13,4),%rax
+               :    cc66:	add    %rdi,%rax
+               :    cc69:	jmpq   *%rax
+               :    cc6b:	mov    -0x88(%rbp),%rax
+               :    cc72:	mov    0x10(%rax),%rsi
+               :    cc76:	add    0x10(%r12),%rsi
+               :    cc7b:	mov    %rsi,(%r15)
+               :    cc7e:	xchg   %ax,%ax
+               :    cc80:	add    $0x18,%r12
+               :    cc84:	cmp    %r12,-0xa0(%rbp)
+               :    cc8b:	ja     cb38 <_dl_rtld_di_serinfo+0x3428>
+               :    cc91:	mov    -0xc8(%rbp),%rax
+               :    cc98:	mov    %rbx,%r15
+               :    cc9b:	mov    -0xa8(%rbp),%rbx
+               :    cca2:	test   %rax,%rax
+               :    cca5:	je     c358 <_dl_rtld_di_serinfo+0x2c48>
+               :    ccab:	mov    -0xe0(%rbp),%r12
+               :    ccb2:	cmp    %rax,%r12
+               :    ccb5:	jb     c358 <_dl_rtld_di_serinfo+0x2c48>
+               :    ccbb:	mov    %r15,%r14
+               :    ccbe:	mov    %rax,%r15
+               :    ccc1:	jmp    ccd5 <_dl_rtld_di_serinfo+0x35c5>
+               :    ccc3:	nopl   0x0(%rax,%rax,1)
+               :    ccc8:	add    $0x18,%r15
+               :    cccc:	cmp    %r12,%r15
+               :    cccf:	ja     cfc0 <_dl_rtld_di_serinfo+0x38b0>
+               :    ccd5:	mov    0x8(%r15),%rax
+               :    ccd9:	cmp    $0x25,%eax
+               :    ccdc:	jne    ccc8 <_dl_rtld_di_serinfo+0x35b8>
+               :    ccde:	shr    $0x20,%rax
+               :    cce2:	mov    -0x98(%rbp),%rdi
+               :    cce9:	mov    %rbx,%r13
+               :    ccec:	lea    (%rax,%rax,2),%rax
+               :    ccf0:	add    (%r15),%r13
+               :    ccf3:	lea    (%rdi,%rax,8),%rdx
+               :    ccf7:	mov    %rdx,-0x90(%rbp)
+               :    ccfe:	movzbl 0x4(%rdx),%eax
+               :    cd02:	shr    $0x4,%al
+               :    cd05:	test   %al,%al
+               :    cd07:	je     cf8d <_dl_rtld_di_serinfo+0x387d>
+               :    cd0d:	cmp    0x3f8(%r14),%rdx
+               :    cd14:	je     d391 <_dl_rtld_di_serinfo+0x3c81>
+               :    cd1a:	mov    (%rdx),%edi
+               :    cd1c:	mov    %rdx,0x3f8(%r14)
+               :    cd23:	xor    %r9d,%r9d
+               :    cd26:	add    -0xd0(%rbp),%rdi
+               :    cd2d:	mov    -0x110(%rbp),%rdx
+               :    cd34:	xor    %r8d,%r8d
+               :    cd37:	mov    -0xb8(%rbp),%rcx
+               :    cd3e:	movl   $0x0,0x400(%r14)
+               :    cd49:	mov    %r14,%rsi
+               :    cd4c:	movq   $0x0,0x8(%rsp)
+               :    cd55:	movl   $0x1,(%rsp)
+               :    cd5c:	callq  a860 <_dl_rtld_di_serinfo+0x1150>
+               :    cd61:	mov    -0x90(%rbp),%rdx
+               :    cd68:	mov    %rax,0x408(%r14)
+               :    cd6f:	mov    %rdx,0x410(%r14)
+               :    cd76:	test   %rdx,%rdx
+               :    cd79:	je     cd91 <_dl_rtld_di_serinfo+0x3681>
+               :    cd7b:	mov    (%rax),%rcx
+               :    cd7e:	movzbl 0x4(%rdx),%eax
+               :    cd82:	mov    0x8(%rdx),%rsi
+               :    cd86:	and    $0xf,%eax
+               :    cd89:	cmp    $0xa,%al
+               :    cd8b:	je     d4bd <_dl_rtld_di_serinfo+0x3dad>
+               :    cd91:	mov    0x10(%r15),%rax
+               :    cd95:	add    (%r14),%rax
+               :    cd98:	callq  *%rax
+               :    cd9a:	mov    %rax,0x0(%r13)
+               :    cd9e:	jmpq   ccc8 <_dl_rtld_di_serinfo+0x35b8>
+               :    cda3:	xor    %eax,%eax
+               :    cda5:	cmp    $0x24,%r13
+               :    cda9:	sete   %al
+               :    cdac:	jmpq   cbc2 <_dl_rtld_di_serinfo+0x34b2>
+               :    cdb1:	mov    -0x88(%rbp),%rax
+               :    cdb8:	mov    0x10(%rax),%rsi
+               :    cdbc:	add    0x10(%r12),%rsi
+               :    cdc1:	mov    $0xffffffff,%eax
+               :    cdc6:	cmp    %rax,%rsi
+               :    cdc9:	mov    %esi,(%r15)
+               :    cdcc:	jbe    cc80 <_dl_rtld_di_serinfo+0x3570>
+               :    cdd2:	lea    0x11a77(%rip),%rsi        # 1e850 <realloc+0x6aa0>
+               :    cdd9:	jmpq   cf11 <_dl_rtld_di_serinfo+0x3801>
+               :    cdde:	xchg   %ax,%ax
+               :    cde0:	mov    %r14,%rcx
+               :    cde3:	mov    %rbx,%r8
+               :    cde6:	jmpq   cc33 <_dl_rtld_di_serinfo+0x3523>
+               :    cdeb:	nopl   0x0(%rax,%rax,1)
+               :    cdf0:	cmpq   $0x0,-0xc8(%rbp)
+               :    cdf8:	je     cfad <_dl_rtld_di_serinfo+0x389d>
+               :    cdfe:	mov    %r12,-0xe0(%rbp)
+               :    ce05:	jmpq   cc80 <_dl_rtld_di_serinfo+0x3570>
+               :    ce0a:	mov    -0x88(%rbp),%rdx
+               :    ce11:	test   %rdx,%rdx
+               :    ce14:	je     cfc8 <_dl_rtld_di_serinfo+0x38b8>
+               :    ce1a:	mov    0x440(%r8),%rax
+               :    ce21:	cmp    $0xffffffffffffffff,%rax
+               :    ce25:	je     d594 <_dl_rtld_di_serinfo+0x3e84>
+               :    ce2b:	test   %rax,%rax
+               :    ce2e:	je     d53e <_dl_rtld_di_serinfo+0x3e2e>
+               :    ce34:	mov    %rax,%rcx
+               :    ce37:	mov    0x10(%r12),%rax
+               :    ce3c:	add    0x8(%rdx),%rax
+               :    ce40:	sub    %rcx,%rax
+               :    ce43:	mov    %rax,0x8(%r15)
+               :    ce47:	lea    0xbff2(%rip),%rax        # 18e40 <realloc+0x1090>
+               :    ce4e:	mov    %rax,(%r15)
+               :    ce51:	jmpq   cc80 <_dl_rtld_di_serinfo+0x3570>
+               :    ce56:	mov    -0x88(%rbp),%rax
+               :    ce5d:	test   %rax,%rax
+               :    ce60:	je     cc80 <_dl_rtld_di_serinfo+0x3570>
+               :    ce66:	mov    0x440(%r8),%rdx
+               :    ce6d:	lea    0x1(%rdx),%rcx
+               :    ce71:	cmp    $0x1,%rcx
+               :    ce75:	jbe    d56b <_dl_rtld_di_serinfo+0x3e5b>
+               :    ce7b:	mov    %rax,%rcx
+               :    ce7e:	mov    0x10(%r12),%rax
+               :    ce83:	add    0x8(%rcx),%rax
+               :    ce87:	sub    %rdx,%rax
+               :    ce8a:	mov    %rax,(%r15)
+               :    ce8d:	jmpq   cc80 <_dl_rtld_di_serinfo+0x3570>
+               :    ce92:	mov    -0x88(%rbp),%rdx
+               :    ce99:	test   %rdx,%rdx
+               :    ce9c:	je     cc80 <_dl_rtld_di_serinfo+0x3570>
+               :    cea2:	mov    0x10(%r12),%rax
+               :    cea7:	add    0x8(%rdx),%rax
+               :    ceab:	mov    %rax,(%r15)
+               :    ceae:	jmpq   cc80 <_dl_rtld_di_serinfo+0x3570>
+               :    ceb3:	mov    0x10(%r12),%rax
+               :    ceb8:	add    (%rbx),%rax
+               :    cebb:	callq  *%rax
+               :    cebd:	mov    %rax,(%r15)
+               :    cec0:	jmpq   cc80 <_dl_rtld_di_serinfo+0x3570>
+               :    cec5:	mov    -0x88(%rbp),%r13
+               :    cecc:	test   %r13,%r13
+               :    cecf:	je     cc80 <_dl_rtld_di_serinfo+0x3570>
+               :    ced5:	mov    0x10(%r14),%rax
+               :    ced9:	cmp    %rax,0x10(%r13)
+               :    cedd:	mov    %r15,%rdi
+               :    cee0:	cmovbe 0x10(%r13),%rax
+               :    cee5:	mov    %rax,%rdx
+               :    cee8:	callq  1abf0 <realloc+0x2e40>
+               :    ceed:	mov    0x10(%r14),%rax
+               :    cef1:	cmp    %rax,0x10(%r13)
+               :    cef5:	ja     cf0a <_dl_rtld_di_serinfo+0x37fa>
+               :    cef7:	jae    cc80 <_dl_rtld_di_serinfo+0x3570>
+               :    cefd:	cmpl   $0x0,0x215df8(%rip)        # 222cfc <_rtld_global_ro+0x3c>
+               :    cf04:	je     cc80 <_dl_rtld_di_serinfo+0x3570>
+               :    cf0a:	lea    0x119bf(%rip),%rsi        # 1e8d0 <realloc+0x6b20>
+               :    cf11:	mov    0x68(%rbx),%rax
+               :    cf15:	mov    (%r14),%ecx
+               :    cf18:	lea    0xf1d1(%rip),%rdx        # 1c0f0 <realloc+0x4340>
+               :    cf1f:	mov    $0x2,%edi
+               :    cf24:	add    0x8(%rax),%rcx
+               :    cf28:	mov    0x215ed1(%rip),%rax        # 222e00 <_dl_argv>
+               :    cf2f:	mov    (%rax),%rax
+               :    cf32:	test   %rax,%rax
+               :    cf35:	cmovne %rax,%rdx
+               :    cf39:	xor    %eax,%eax
+               :    cf3b:	callq  11170 <_dl_debug_state+0x800>
+               :    cf40:	jmpq   cc80 <_dl_rtld_di_serinfo+0x3570>
+               :    cf45:	nopl   (%rax)
+               :    cf48:	test   %r8,%r8
+               :    cf4b:	je     cc80 <_dl_rtld_di_serinfo+0x3570>
+               :    cf51:	mov    0x448(%r8),%rax
+               :    cf58:	mov    %rax,(%r15)
+               :    cf5b:	jmpq   cc80 <_dl_rtld_di_serinfo+0x3570>
+               :    cf60:	sub    %r15,%rsi
+               :    cf63:	add    0x10(%r12),%rsi
+               :    cf68:	movslq %esi,%rax
+               :    cf6b:	mov    %esi,(%r15)
+               :    cf6e:	cmp    %rax,%rsi
+               :    cf71:	je     cc80 <_dl_rtld_di_serinfo+0x3570>
+               :    cf77:	lea    0x11912(%rip),%rsi        # 1e890 <realloc+0x6ae0>
+               :    cf7e:	jmp    cf11 <_dl_rtld_di_serinfo+0x3801>
+               :    cf80:	xor    %edx,%edx
+               :    cf82:	mov    %r13d,%esi
+               :    cf85:	mov    %rbx,%rdi
+               :    cf88:	callq  bff0 <_dl_rtld_di_serinfo+0x28e0>
+               :    cf8d:	mov    %r14,%rax
+               :    cf90:	jmpq   cd7b <_dl_rtld_di_serinfo+0x366b>
+               :    cf95:	mov    0x10(%r12),%rax
+               :    cf9a:	mov    %rax,0x8(%r11)
+               :    cf9e:	lea    0xbeab(%rip),%rax        # 18e50 <realloc+0x10a0>
+               :    cfa5:	mov    %rax,(%r11)
+               :    cfa8:	jmpq   c6d0 <_dl_rtld_di_serinfo+0x2fc0>
+               :    cfad:	mov    %r12,-0xe0(%rbp)
+               :    cfb4:	mov    %r12,-0xc8(%rbp)
+               :    cfbb:	jmpq   cc80 <_dl_rtld_di_serinfo+0x3570>
+               :    cfc0:	mov    %r14,%r15
+               :    cfc3:	jmpq   c358 <_dl_rtld_di_serinfo+0x2c48>
+               :    cfc8:	mov    0x10(%r12),%rax
+               :    cfcd:	mov    %rax,0x8(%r15)
+               :    cfd1:	lea    0xbe78(%rip),%rax        # 18e50 <realloc+0x10a0>
+               :    cfd8:	mov    %rax,(%r15)
+               :    cfdb:	jmpq   cc80 <_dl_rtld_di_serinfo+0x3570>
+               :    cfe0:	cmp    $0x24,%rsi
+               :    cfe4:	jne    d116 <_dl_rtld_di_serinfo+0x3a06>
+               :    cfea:	mov    %rax,0x8(%rdx)
+               :    cfee:	mov    0x290(%r15),%rsi
+               :    cff5:	mov    (%r15),%rcx
+               :    cff8:	add    0x8(%rsi),%rcx
+               :    cffc:	mov    %rcx,(%rdx)
+               :    cfff:	jmpq   c2db <_dl_rtld_di_serinfo+0x2bcb>
+               :    d004:	mov    %rdx,%rsi
+               :    d007:	sub    0x3e8(%r15),%rsi
+               :    d00e:	lea    (%rcx,%rsi,2),%rcx
+               :    d012:	mov    %rcx,(%rdx)
+               :    d015:	jmpq   c2db <_dl_rtld_di_serinfo+0x2bcb>
+               :    d01a:	mov    0x10(%r12),%rax
+               :    d01f:	add    (%rbx),%rax
+               :    d022:	mov    %rax,(%r11)
+               :    d025:	jmpq   c6d0 <_dl_rtld_di_serinfo+0x2fc0>
+               :    d02a:	lea    0x1240f(%rip),%rcx        # 1f440 <realloc+0x7690>
+               :    d031:	lea    0x10d78(%rip),%rsi        # 1ddb0 <realloc+0x6000>
+               :    d038:	lea    0x10d91(%rip),%rdi        # 1ddd0 <realloc+0x6020>
+               :    d03f:	mov    $0x1ec,%edx
+               :    d044:	callq  17d60 <free+0x120>
+               :    d049:	cmpw   $0x0,0x6(%rcx)
+               :    d04e:	je     c5f7 <_dl_rtld_di_serinfo+0x2ee7>
+               :    d054:	mov    -0xb0(%rbp),%edi
+               :    d05a:	test   %edi,%edi
+               :    d05c:	jne    c5f7 <_dl_rtld_di_serinfo+0x2ee7>
+               :    d062:	mov    %r8,-0x118(%rbp)
+               :    d069:	mov    %r11,-0xc8(%rbp)
+               :    d070:	callq  *%rsi
+               :    d072:	mov    -0x118(%rbp),%r8
+               :    d079:	mov    %rax,%rsi
+               :    d07c:	mov    -0xc8(%rbp),%r11
+               :    d083:	jmpq   c5f7 <_dl_rtld_di_serinfo+0x2ee7>
+               :    d088:	cmp    $0x2,%rax
+               :    d08c:	mov    $0x1,%edi
+               :    d091:	setbe  %sil
+               :    d095:	cmp    $0x7,%r13
+               :    d099:	sete   %al
+               :    d09c:	or     %sil,%al
+               :    d09f:	jne    d0ab <_dl_rtld_di_serinfo+0x399b>
+               :    d0a1:	xor    %edi,%edi
+               :    d0a3:	cmp    $0x24,%r13
+               :    d0a7:	sete   %dil
+               :    d0ab:	xor    %esi,%esi
+               :    d0ad:	cmp    $0x5,%r13
+               :    d0b1:	sete   %sil
+               :    d0b5:	add    %esi,%esi
+               :    d0b7:	or     %edi,%esi
+               :    d0b9:	cmp    0x400(%rbx),%esi
+               :    d0bf:	jne    c531 <_dl_rtld_di_serinfo+0x2e21>
+               :    d0c5:	mov    0x410(%rbx),%rcx
+               :    d0cc:	addq   $0x1,0x21690c(%rip)        # 2239e0 <_rtld_global+0x980>
+               :    d0d4:	mov    0x408(%rbx),%r8
+               :    d0db:	mov    %rcx,-0x80(%rbp)
+               :    d0df:	jmpq   c5d9 <_dl_rtld_di_serinfo+0x2ec9>
+               :    d0e4:	mov    0x10(%r12),%rsi
+               :    d0e9:	add    0x8(%rdx),%rsi
+               :    d0ed:	mov    %r8,%rdi
+               :    d0f0:	mov    %r11,-0xc8(%rbp)
+               :    d0f7:	callq  188c0 <realloc+0xb10>
+               :    d0fc:	mov    -0xc8(%rbp),%r11
+               :    d103:	mov    %rax,0x8(%r11)
+               :    d107:	lea    0xbd52(%rip),%rax        # 18e60 <realloc+0x10b0>
+               :    d10e:	mov    %rax,(%r11)
+               :    d111:	jmpq   c6d0 <_dl_rtld_di_serinfo+0x2fc0>
+               :    d116:	mov    $0x1,%edx
+               :    d11b:	mov    %r15,%rdi
+               :    d11e:	callq  bff0 <_dl_rtld_di_serinfo+0x28e0>
+               :    d123:	mov    0x50(%r15),%rax
+               :    d127:	lea    0x117f2(%rip),%rsi        # 1e920 <realloc+0x6b70>
+               :    d12e:	test   %rax,%rax
+               :    d131:	je     d158 <_dl_rtld_di_serinfo+0x3a48>
+               :    d133:	mov    0x8(%rax),%rsi
+               :    d137:	mov    $0x20,%edi
+               :    d13c:	callq  ab0 <calloc@plt>
+               :    d141:	test   %rax,%rax
+               :    d144:	mov    %rax,0x328(%r15)
+               :    d14b:	jne    c382 <_dl_rtld_di_serinfo+0x2c72>
+               :    d151:	lea    0x117f0(%rip),%rsi        # 1e948 <realloc+0x6b98>
+               :    d158:	mov    0x215ca1(%rip),%rax        # 222e00 <_dl_argv>
+               :    d15f:	mov    0x8(%r15),%rcx
+               :    d163:	lea    0xef86(%rip),%rdx        # 1c0f0 <realloc+0x4340>
+               :    d16a:	mov    $0x2,%edi
+               :    d16f:	mov    (%rax),%rax
+               :    d172:	test   %rax,%rax
+               :    d175:	cmovne %rax,%rdx
+               :    d179:	xor    %eax,%eax
+               :    d17b:	callq  11170 <_dl_debug_state+0x800>
+               :    d180:	mov    $0x7f,%edi
+               :    d185:	callq  19700 <realloc+0x1950>
+               :    d18a:	mov    -0xf8(%rbp),%rbx
+               :    d191:	mov    0x10(%rbx),%edx
+               :    d194:	mov    0x8(%rbx),%rsi
+               :    d198:	mov    (%rbx),%rdi
+               :    d19b:	callq  196a0 <realloc+0x18f0>
+               :    d1a0:	test   %eax,%eax
+               :    d1a2:	js     d2ec <_dl_rtld_di_serinfo+0x3bdc>
+               :    d1a8:	mov    0x18(%rbx),%rbx
+               :    d1ac:	test   %rbx,%rbx
+               :    d1af:	je     c398 <_dl_rtld_di_serinfo+0x2c88>
+               :    d1b5:	jmp    d191 <_dl_rtld_di_serinfo+0x3a81>
+               :    d1b7:	movzwl 0x2b0(%r15),%ecx
+               :    d1bf:	mov    0x2a0(%r15),%r13
+               :    d1c6:	movzwl %cx,%eax
+               :    d1c9:	imul   $0x38,%rax,%rax
+               :    d1cd:	add    %r13,%rax
+               :    d1d0:	cmp    %rax,%r13
+               :    d1d3:	jae    c151 <_dl_rtld_di_serinfo+0x2a41>
+               :    d1d9:	mov    %r13,%rdx
+               :    d1dc:	movq   $0x0,-0xf8(%rbp)
+               :    d1e7:	movabs $0x2ffffffff,%r8
+               :    d1f1:	jmp    d21a <_dl_rtld_di_serinfo+0x3b0a>
+               :    d1f3:	nopl   0x0(%rax,%rax,1)
+               :    d1f8:	movzwl %cx,%eax
+               :    d1fb:	add    $0x38,%r13
+               :    d1ff:	lea    0x0(,%rax,8),%rsi
+               :    d207:	shl    $0x6,%rax
+               :    d20b:	sub    %rsi,%rax
+               :    d20e:	add    %rdx,%rax
+               :    d211:	cmp    %rax,%r13
+               :    d214:	jae    c15c <_dl_rtld_di_serinfo+0x2a4c>
+               :    d21a:	mov    %r8,%rax
+               :    d21d:	and    0x0(%r13),%rax
+               :    d221:	cmp    $0x1,%rax
+               :    d225:	jne    d1f8 <_dl_rtld_di_serinfo+0x3ae8>
+               :    d227:	mov    0x10(%r13),%rcx
+               :    d22b:	mov    0x215aa6(%rip),%rdx        # 222cd8 <_rtld_global_ro+0x18>
+               :    d232:	sub    $0x30,%rsp
+               :    d236:	lea    0x1f(%rsp),%r14
+               :    d23b:	mov    %r8,-0x98(%rbp)
+               :    d242:	lea    -0x1(%rcx,%rdx,1),%rsi
+               :    d247:	add    0x28(%r13),%rsi
+               :    d24b:	mov    %rdx,%rax
+               :    d24e:	neg    %rax
+               :    d251:	mov    %rcx,%rdi
+               :    d254:	and    $0xfffffffffffffff0,%r14
+               :    d258:	and    %rax,%rdi
+               :    d25b:	mov    $0x3,%edx
+               :    d260:	and    %rax,%rsi
+               :    d263:	sub    %rdi,%rsi
+               :    d266:	add    (%r15),%rdi
+               :    d269:	mov    %rsi,0x8(%r14)
+               :    d26d:	mov    %rdi,(%r14)
+               :    d270:	callq  196a0 <realloc+0x18f0>
+               :    d275:	test   %eax,%eax
+               :    d277:	mov    -0x98(%rbp),%r8
+               :    d27e:	js     d304 <_dl_rtld_di_serinfo+0x3bf4>
+               :    d284:	mov    0x4(%r13),%eax
+               :    d288:	mov    0x2a0(%r15),%rdx
+               :    d28f:	and    $0x7,%eax
+               :    d292:	lea    0x0(,%rax,4),%ecx
+               :    d299:	mov    $0x73516240,%eax
+               :    d29e:	sar    %cl,%eax
+               :    d2a0:	movzwl 0x2b0(%r15),%ecx
+               :    d2a8:	and    $0xf,%eax
+               :    d2ab:	mov    %eax,0x10(%r14)
+               :    d2af:	mov    -0xf8(%rbp),%rax
+               :    d2b6:	mov    %r14,-0xf8(%rbp)
+               :    d2bd:	mov    %rax,0x18(%r14)
+               :    d2c1:	jmpq   d1f8 <_dl_rtld_di_serinfo+0x3ae8>
+               :    d2c6:	cmpl   $0x25,0x8(%r12)
+               :    d2cc:	jne    d2de <_dl_rtld_di_serinfo+0x3bce>
+               :    d2ce:	mov    0x10(%r12),%rax
+               :    d2d3:	add    (%r15),%rax
+               :    d2d6:	mov    (%r12),%rdx
+               :    d2da:	mov    %rax,(%rdx,%rbx,1)
+               :    d2de:	add    $0x18,%r12
+               :    d2e2:	cmp    %r13,%r12
+               :    d2e5:	jbe    d2c6 <_dl_rtld_di_serinfo+0x3bb6>
+               :    d2e7:	jmpq   c358 <_dl_rtld_di_serinfo+0x2c48>
+               :    d2ec:	lea    0x11535(%rip),%rcx        # 1e828 <realloc+0x6a78>
+               :    d2f3:	mov    0x8(%r15),%rsi
+               :    d2f7:	mov    0x216e83(%rip),%edi        # 224180 <_rtld_global+0x1120>
+               :    d2fd:	xor    %edx,%edx
+               :    d2ff:	callq  fd50 <_dl_rtld_di_serinfo+0x6640>
+               :    d304:	lea    0x114ed(%rip),%rcx        # 1e7f8 <realloc+0x6a48>
+               :    d30b:	jmp    d2f3 <_dl_rtld_di_serinfo+0x3be3>
+               :    d30d:	test   %r12d,%r12d
+               :    d310:	lea    0xf0b0(%rip),%rdx        # 1c3c7 <realloc+0x4617>
+               :    d317:	je     d326 <_dl_rtld_di_serinfo+0x3c16>
+               :    d319:	lea    0xf5b0(%rip),%rdx        # 1c8d0 <realloc+0x4b20>
+               :    d320:	mov    $0x1,%r12d
+               :    d326:	mov    0x8(%r15),%rsi
+               :    d32a:	cmpb   $0x0,(%rsi)
+               :    d32d:	jne    d347 <_dl_rtld_di_serinfo+0x3c37>
+               :    d32f:	mov    0x215aca(%rip),%rax        # 222e00 <_dl_argv>
+               :    d336:	lea    0xee17(%rip),%rsi        # 1c154 <realloc+0x43a4>
+               :    d33d:	mov    (%rax),%rax
+               :    d340:	test   %rax,%rax
+               :    d343:	cmovne %rax,%rsi
+               :    d347:	lea    0xf58a(%rip),%rdi        # 1c8d8 <realloc+0x4b28>
+               :    d34e:	xor    %eax,%eax
+               :    d350:	callq  110b0 <_dl_debug_state+0x740>
+               :    d355:	jmpq   c143 <_dl_rtld_di_serinfo+0x2a33>
+               :    d35a:	lea    0x91ef(%rip),%rdi        # 16550 <_dl_find_dso_for_object+0x2330>
+               :    d361:	mov    %rdi,0x10(%rax)
+               :    d365:	mov    0x2159dc(%rip),%rdi        # 222d48 <_rtld_global_ro+0x88>
+               :    d36c:	test   %rdi,%rdi
+               :    d36f:	je     c69c <_dl_rtld_di_serinfo+0x2f8c>
+               :    d375:	mov    %r15,%rsi
+               :    d378:	callq  111c0 <_dl_debug_state+0x850>
+               :    d37d:	test   %eax,%eax
+               :    d37f:	je     c69c <_dl_rtld_di_serinfo+0x2f8c>
+               :    d385:	mov    %r15,0x216644(%rip)        # 2239d0 <_rtld_global+0x970>
+               :    d38c:	jmpq   c69c <_dl_rtld_di_serinfo+0x2f8c>
+               :    d391:	cmpl   $0x0,0x400(%r14)
+               :    d399:	jne    cd1a <_dl_rtld_di_serinfo+0x360a>
+               :    d39f:	mov    0x410(%r14),%rdx
+               :    d3a6:	addq   $0x1,0x216632(%rip)        # 2239e0 <_rtld_global+0x980>
+               :    d3ae:	mov    0x408(%r14),%rax
+               :    d3b5:	mov    %rdx,-0x90(%rbp)
+               :    d3bc:	jmpq   cd76 <_dl_rtld_di_serinfo+0x3666>
+               :    d3c1:	mov    %r8,%rdi
+               :    d3c4:	mov    %r11,-0x118(%rbp)
+               :    d3cb:	mov    %r8,-0xc8(%rbp)
+               :    d3d2:	callq  bed0 <_dl_rtld_di_serinfo+0x27c0>
+               :    d3d7:	mov    -0xc8(%rbp),%r8
+               :    d3de:	mov    -0x80(%rbp),%rcx
+               :    d3e2:	mov    -0x118(%rbp),%r11
+               :    d3e9:	mov    0x440(%r8),%rdx
+               :    d3f0:	jmpq   c8f5 <_dl_rtld_di_serinfo+0x31e5>
+               :    d3f5:	mov    %r8,%rdi
+               :    d3f8:	mov    %r11,-0x118(%rbp)
+               :    d3ff:	mov    %r8,-0xc8(%rbp)
+               :    d406:	callq  bdf0 <_dl_rtld_di_serinfo+0x26e0>
+               :    d40b:	test   %eax,%eax
+               :    d40d:	mov    -0x80(%rbp),%rdx
+               :    d411:	mov    -0xc8(%rbp),%r8
+               :    d418:	mov    -0x118(%rbp),%r11
+               :    d41f:	jne    d0e4 <_dl_rtld_di_serinfo+0x39d4>
+               :    d425:	mov    0x440(%r8),%rcx
+               :    d42c:	jmpq   c8aa <_dl_rtld_di_serinfo+0x319a>
+               :    d431:	cmpw   $0x0,0x6(%rcx)
+               :    d436:	je     cc4a <_dl_rtld_di_serinfo+0x353a>
+               :    d43c:	cmpl   $0x0,-0xb0(%rbp)
+               :    d443:	jne    cc4a <_dl_rtld_di_serinfo+0x353a>
+               :    d449:	mov    %r8,-0xe8(%rbp)
+               :    d450:	callq  *%rsi
+               :    d452:	mov    -0xe8(%rbp),%r8
+               :    d459:	mov    %rax,%rsi
+               :    d45c:	jmpq   cc4a <_dl_rtld_di_serinfo+0x353a>
+               :    d461:	cmp    $0x7,%r13
+               :    d465:	je     d5b8 <_dl_rtld_di_serinfo+0x3ea8>
+               :    d46b:	lea    -0x10(%r13),%rax
+               :    d46f:	cmp    $0x2,%rax
+               :    d473:	jbe    d5b8 <_dl_rtld_di_serinfo+0x3ea8>
+               :    d479:	xor    %edx,%edx
+               :    d47b:	cmp    $0x24,%r13
+               :    d47f:	sete   %dl
+               :    d482:	xor    %eax,%eax
+               :    d484:	cmp    $0x5,%r13
+               :    d488:	sete   %al
+               :    d48b:	add    %eax,%eax
+               :    d48d:	or     %edx,%eax
+               :    d48f:	cmp    0x400(%rbx),%eax
+               :    d495:	jne    cba9 <_dl_rtld_di_serinfo+0x3499>
+               :    d49b:	mov    0x410(%rbx),%rcx
+               :    d4a2:	addq   $0x1,0x216536(%rip)        # 2239e0 <_rtld_global+0x980>
+               :    d4aa:	mov    0x408(%rbx),%r8
+               :    d4b1:	mov    %rcx,-0x88(%rbp)
+               :    d4b8:	jmpq   cc2c <_dl_rtld_di_serinfo+0x351c>
+               :    d4bd:	cmpw   $0x0,0x6(%rdx)
+               :    d4c2:	je     cd91 <_dl_rtld_di_serinfo+0x3681>
+               :    d4c8:	cmpl   $0x0,-0xb0(%rbp)
+               :    d4cf:	jne    cd91 <_dl_rtld_di_serinfo+0x3681>
+               :    d4d5:	add    %rsi,%rcx
+               :    d4d8:	callq  *%rcx
+               :    d4da:	jmpq   cd91 <_dl_rtld_di_serinfo+0x3681>
+               :    d4df:	mov    0x10(%r12),%rax
+               :    d4e4:	add    (%rbx),%rax
+               :    d4e7:	mov    %rax,(%r15)
+               :    d4ea:	jmpq   cc80 <_dl_rtld_di_serinfo+0x3570>
+               :    d4ef:	cmpw   $0x0,0x6(%rdx)
+               :    d4f4:	je     c806 <_dl_rtld_di_serinfo+0x30f6>
+               :    d4fa:	cmpl   $0x0,-0xb0(%rbp)
+               :    d501:	jne    c806 <_dl_rtld_di_serinfo+0x30f6>
+               :    d507:	add    %rsi,%rcx
+               :    d50a:	callq  *%rcx
+               :    d50c:	jmpq   c806 <_dl_rtld_di_serinfo+0x30f6>
+               :    d511:	cmpl   $0x0,0x400(%r15)
+               :    d519:	jne    c771 <_dl_rtld_di_serinfo+0x3061>
+               :    d51f:	mov    0x410(%r15),%rdx
+               :    d526:	addq   $0x1,0x2164b2(%rip)        # 2239e0 <_rtld_global+0x980>
+               :    d52e:	mov    0x408(%r15),%rax
+               :    d535:	mov    %rdx,-0x78(%rbp)
+               :    d539:	jmpq   c7eb <_dl_rtld_di_serinfo+0x30db>
+               :    d53e:	mov    %r8,%rdi
+               :    d541:	mov    %r8,-0xe8(%rbp)
+               :    d548:	callq  bdf0 <_dl_rtld_di_serinfo+0x26e0>
+               :    d54d:	test   %eax,%eax
+               :    d54f:	mov    -0x88(%rbp),%rdx
+               :    d556:	mov    -0xe8(%rbp),%r8
+               :    d55d:	jne    d594 <_dl_rtld_di_serinfo+0x3e84>
+               :    d55f:	mov    0x440(%r8),%rcx
+               :    d566:	jmpq   ce37 <_dl_rtld_di_serinfo+0x3727>
+               :    d56b:	mov    %r8,%rdi
+               :    d56e:	mov    %r8,-0xe8(%rbp)
+               :    d575:	callq  bed0 <_dl_rtld_di_serinfo+0x27c0>
+               :    d57a:	mov    -0xe8(%rbp),%r8
+               :    d581:	mov    -0x88(%rbp),%rcx
+               :    d588:	mov    0x440(%r8),%rdx
+               :    d58f:	jmpq   ce7e <_dl_rtld_di_serinfo+0x376e>
+               :    d594:	mov    0x10(%r12),%rsi
+               :    d599:	add    0x8(%rdx),%rsi
+               :    d59d:	mov    %r8,%rdi
+               :    d5a0:	callq  188c0 <realloc+0xb10>
+               :    d5a5:	mov    %rax,0x8(%r15)
+               :    d5a9:	lea    0xb8b0(%rip),%rax        # 18e60 <realloc+0x10b0>
+               :    d5b0:	mov    %rax,(%r15)
+               :    d5b3:	jmpq   cc80 <_dl_rtld_di_serinfo+0x3570>
+               :    d5b8:	mov    $0x1,%edx
+               :    d5bd:	jmpq   d482 <_dl_rtld_di_serinfo+0x3d72>
+               :    d5c2:	nopw   %cs:0x0(%rax,%rax,1)
+               :    d5cc:	nopl   0x0(%rax)
+               :
+               :/lib/x86_64-linux-gnu/ld-2.19.so:     file format elf64-x86-64
+               :
+               :
+               :Disassembly of section .text:
+               :
+000000000000b960 <_dl_rtld_di_serinfo+0x2250>: /* _dl_setup_hash total:      1  0.0090 */
+               :    b960:	mov    0x298(%rdi),%rax
+               :    b967:	test   %rax,%rax
+               :    b96a:	je     b9c3 <_dl_rtld_di_serinfo+0x22b3>
+               :    b96c:	mov    0x8(%rax),%rax
+               :    b970:	mov    (%rax),%ecx
+               :    b972:	mov    %ecx,0x2ec(%rdi)
+               :    b978:	mov    0x8(%rax),%edx
+               :    b97b:	mov    0x4(%rax),%r8d
+               :    b97f:	lea    -0x1(%rdx),%esi
+               :    b982:	test   %edx,%esi
+               :    b984:	jne    b9ef <_dl_rtld_di_serinfo+0x22df>
+               :    b986:	mov    %esi,0x2f0(%rdi)
+     1  0.0090 :    b98c:	lea    0x10(%rax),%rsi
+               :    b990:	mov    0xc(%rax),%eax
+               :    b993:	add    %edx,%edx
+               :    b995:	mov    %rsi,0x2f8(%rdi)
+               :    b99c:	mov    %eax,0x2f4(%rdi)
+               :    b9a2:	lea    (%rsi,%rdx,4),%rax
+               :    b9a6:	mov    %r8d,%edx
+               :    b9a9:	shl    $0x2,%rdx
+               :    b9ad:	mov    %rax,0x300(%rdi)
+               :    b9b4:	lea    (%rax,%rcx,4),%rax
+               :    b9b8:	sub    %rdx,%rax
+               :    b9bb:	mov    %rax,0x308(%rdi)
+               :    b9c2:	retq   
+               :    b9c3:	mov    0x60(%rdi),%rax
+               :    b9c7:	test   %rax,%rax
+               :    b9ca:	je     b9ee <_dl_rtld_di_serinfo+0x22de>
+               :    b9cc:	mov    0x8(%rax),%rax
+               :    b9d0:	mov    (%rax),%edx
+               :    b9d2:	add    $0x8,%rax
+               :    b9d6:	mov    %rax,0x308(%rdi)
+               :    b9dd:	lea    (%rax,%rdx,4),%rax
+               :    b9e1:	mov    %edx,0x2ec(%rdi)
+               :    b9e7:	mov    %rax,0x300(%rdi)
+               :    b9ee:	retq   
+               :    b9ef:	lea    0x10ea8(%rip),%rcx        # 1c89e <realloc+0x4aee>
+               :    b9f6:	push   %rax
+               :    b9f7:	lea    0x10dbc(%rip),%rsi        # 1c7ba <realloc+0x4a0a>
+               :    b9fe:	lea    0x12d6b(%rip),%rdi        # 1e770 <realloc+0x69c0>
+               :    ba05:	mov    $0x367,%edx
+               :    ba0a:	callq  17d60 <free+0x120>
+               :    ba0f:	nop
+               :
+               :/lib/x86_64-linux-gnu/ld-2.19.so:     file format elf64-x86-64
+               :
+               :
+               :Disassembly of section .text:
+               :
+0000000000006020 <_dl_rtld_di_serinfo-0x36f0>: /* open_path total:      1  0.0090 */
+               :    6020:	push   %rbp
+               :    6021:	mov    %rsp,%rbp
+               :    6024:	push   %r15
+               :    6026:	push   %r14
+               :    6028:	push   %r13
+               :    602a:	push   %r12
+               :    602c:	push   %rbx
+               :    602d:	sub    $0x118,%rsp
+               :    6034:	mov    (%rcx),%rax
+               :    6037:	mov    %rdi,-0xd8(%rbp)
+               :    603e:	mov    %rsi,-0xd0(%rbp)
+               :    6045:	mov    %edx,-0xe4(%rbp)
+               :    604b:	mov    %rcx,-0x110(%rbp)
+               :    6052:	mov    %r8,-0xf8(%rbp)
+               :    6059:	test   %rax,%rax
+               :    605c:	mov    %r9,-0xe0(%rbp)
+               :    6063:	mov    %rax,-0xf0(%rbp)
+               :    606a:	je     62e3 <free@plt+0x5813>
+               :    6070:	mov    %rsi,%rax
+               :    6073:	add    0x21cda6(%rip),%rax        # 222e20 <_dl_argv+0x20>
+               :    607a:	movl   $0x0,-0xe8(%rbp)
+               :    6084:	add    0x21dff5(%rip),%rax        # 224080 <_rtld_global+0x1020>
+               :    608b:	movq   $0x0,-0x118(%rbp)
+               :    6096:	add    $0x1e,%rax
+               :    609a:	and    $0xfffffffffffffff0,%rax
+               :    609e:	sub    %rax,%rsp
+               :    60a1:	lea    -0xc0(%rbp),%rax
+               :    60a8:	lea    0xf(%rsp),%r13
+               :    60ad:	mov    %rax,-0x100(%rbp)
+               :    60b4:	mov    %rsi,%rax
+               :    60b7:	not    %rax
+               :    60ba:	and    $0xfffffffffffffff0,%r13
+               :    60be:	mov    %rax,-0x108(%rbp)
+               :    60c5:	mov    -0xf0(%rbp),%rax
+               :    60cc:	nopl   0x0(%rax)
+               :    60d0:	testb  $0x1,0x21cbe9(%rip)        # 222cc0 <_rtld_global_ro>
+               :    60d7:	mov    (%rax),%rbx
+               :    60da:	jne    63c6 <free@plt+0x58f6>
+               :    60e0:	mov    0x20(%rbx),%rdx
+               :    60e4:	mov    0x18(%rbx),%rsi
+               :    60e8:	mov    %r13,%rdi
+               :    60eb:	callq  1a9c0 <realloc+0x2c10>
+               :    60f0:	mov    0x21cd31(%rip),%rdx        # 222e28 <_dl_argv+0x28>
+               :    60f7:	mov    %rax,-0xc8(%rbp)
+               :    60fe:	test   %rdx,%rdx
+               :    6101:	je     6354 <free@plt+0x5884>
+               :    6107:	mov    $0x1,%r14d
+               :    610d:	xor    %r12d,%r12d
+               :    6110:	jmp    615e <free@plt+0x568e>
+               :    6112:	nopw   0x0(%rax,%rax,1)
+               :    6118:	cmp    $0xffffffff,%ecx
+               :    611b:	je     6200 <free@plt+0x5730>
+               :    6121:	movl   $0x2,0x24(%rbx,%r14,4)
+               :    612a:	mov    $0x1,%r12d
+               :    6130:	mov    -0xe4(%rbp),%edi
+               :    6136:	test   %edi,%edi
+               :    6138:	jne    6372 <free@plt+0x58a2>
+               :    613e:	cmp    $0xffffffff,%ecx
+               :    6141:	jne    6300 <free@plt+0x5830>
+               :    6147:	mov    0x21ccda(%rip),%rdx        # 222e28 <_dl_argv+0x28>
+               :    614e:	cmp    %r14,%rdx
+               :    6151:	lea    0x1(%r14),%rax
+               :    6155:	jbe    62a0 <free@plt+0x57d0>
+               :    615b:	mov    %rax,%r14
+               :    615e:	cmpl   $0x1,0x24(%rbx,%r14,4)
+               :    6164:	je     614e <free@plt+0x567e>
+               :    6166:	mov    0x21ccc3(%rip),%rdx        # 222e30 <_dl_argv+0x30>
+               :    616d:	mov    %r14,%rax
+               :    6170:	mov    -0xc8(%rbp),%rdi
+               :    6177:	shl    $0x4,%rax
+               :    617b:	lea    -0x10(%rdx,%rax,1),%rax
+               :    6180:	mov    0x8(%rax),%rdx
+               :    6184:	mov    (%rax),%rsi
+               :    6187:	callq  1a9c0 <realloc+0x2c10>
+               :    618c:	mov    -0xd0(%rbp),%rdx
+               :    6193:	mov    -0xd8(%rbp),%rsi
+               :    619a:	mov    %rax,%rdi
+               :    619d:	callq  1a9c0 <realloc+0x2c10>
+               :    61a2:	mov    %rax,%r15
+               :    61a5:	sub    %r13,%r15
+               :    61a8:	testb  $0x1,0x21cb11(%rip)        # 222cc0 <_rtld_global_ro>
+               :    61af:	jne    635c <free@plt+0x588c>
+               :    61b5:	mov    0x18(%rbp),%ecx
+               :    61b8:	mov    0x20(%rbp),%r8
+               :    61bc:	mov    %r13,%rdi
+               :    61bf:	mov    0x10(%rbp),%rdx
+               :    61c3:	mov    -0xe0(%rbp),%rsi
+               :    61ca:	callq  5b20 <free@plt+0x5050>
+               :    61cf:	mov    %eax,%ecx
+               :    61d1:	mov    0x24(%rbx,%r14,4),%eax
+     1  0.0090 :    61d6:	test   %eax,%eax
+               :    61d8:	je     6118 <free@plt+0x5648>
+               :    61de:	cmp    $0x1,%eax
+               :    61e1:	setne  %al
+               :    61e4:	movzbl %al,%eax
+               :    61e7:	or     %eax,%r12d
+               :    61ea:	cmp    $0xffffffff,%ecx
+               :    61ed:	jne    6130 <free@plt+0x5660>
+               :    61f3:	jmpq   6147 <free@plt+0x5677>
+               :    61f8:	nopl   0x0(%rax,%rax,1)
+               :    6200:	cmpq   $0x0,0x10(%rbp)
+               :    6205:	je     6230 <free@plt+0x5760>
+               :    6207:	mov    0x10(%rbp),%rax
+               :    620b:	lea    0x21ce4e(%rip),%rdi        # 223060 <_rtld_global>
+               :    6212:	mov    0x30(%rax),%rax
+               :    6216:	lea    (%rax,%rax,8),%rax
+               :    621a:	shl    $0x4,%rax
+               :    621e:	mov    (%rdi,%rax,1),%rdx
+               :    6222:	mov    $0x1,%eax
+               :    6227:	testb  $0x8,0x315(%rdx)
+               :    622e:	jne    6285 <free@plt+0x57b5>
+               :    6230:	mov    -0x108(%rbp),%rax
+               :    6237:	lea    0x0(%r13,%r15,1),%r10
+               :    623c:	mov    -0x100(%rbp),%rdx
+               :    6243:	mov    %r13,%rsi
+               :    6246:	mov    $0x1,%edi
+               :    624b:	movb   $0x0,(%r10,%rax,1)
+               :    6250:	callq  19410 <realloc+0x1660>
+               :    6255:	test   %eax,%eax
+               :    6257:	jne    6348 <free@plt+0x5878>
+               :    625d:	mov    -0xa8(%rbp),%eax
+               :    6263:	xor    %edx,%edx
+               :    6265:	and    $0xf000,%eax
+               :    626a:	cmp    $0x4000,%eax
+               :    626f:	sete   %dl
+               :    6272:	add    $0x1,%edx
+               :    6275:	cmp    $0x4000,%eax
+               :    627a:	sete   %al
+               :    627d:	movzbl %al,%eax
+               :    6280:	mov    %edx,0x24(%rbx,%r14,4)
+               :    6285:	mov    0x21cb9c(%rip),%rdx        # 222e28 <_dl_argv+0x28>
+               :    628c:	or     %eax,%r12d
+               :    628f:	lea    0x1(%r14),%rax
+               :    6293:	cmp    %r14,%rdx
+               :    6296:	ja     615b <free@plt+0x568b>
+               :    629c:	nopl   0x0(%rax)
+               :    62a0:	test   %r12d,%r12d
+               :    62a3:	je     62b5 <free@plt+0x57e5>
+               :    62a5:	mov    0x21ded5(%rip),%eax        # 224180 <_rtld_global+0x1120>
+               :    62ab:	cmp    $0x2,%eax
+               :    62ae:	je     62b5 <free@plt+0x57e5>
+               :    62b0:	cmp    $0xd,%eax
+               :    62b3:	jne    62e3 <free@plt+0x5813>
+               :    62b5:	addq   $0x8,-0xf0(%rbp)
+               :    62bd:	or     %r12d,-0xe8(%rbp)
+               :    62c4:	mov    -0xf0(%rbp),%rax
+               :    62cb:	cmpq   $0x0,(%rax)
+               :    62cf:	jne    60d0 <free@plt+0x5600>
+               :    62d5:	mov    -0xe8(%rbp),%ecx
+               :    62db:	test   %ecx,%ecx
+               :    62dd:	je     65bf <free@plt+0x5aef>
+               :    62e3:	mov    $0xffffffff,%eax
+               :    62e8:	lea    -0x28(%rbp),%rsp
+               :    62ec:	pop    %rbx
+               :    62ed:	pop    %r12
+               :    62ef:	pop    %r13
+               :    62f1:	pop    %r14
+               :    62f3:	pop    %r15
+               :    62f5:	pop    %rbp
+               :    62f6:	retq   
+               :    62f7:	nopw   0x0(%rax,%rax,1)
+               :    6300:	mov    %r15,%r14
+               :    6303:	mov    %ecx,%r15d
+               :    6306:	mov    %r14,%rdi
+               :    6309:	callq  a90 <malloc@plt>
+               :    630e:	mov    -0xf8(%rbp),%rdi
+               :    6315:	test   %rax,%rax
+               :    6318:	mov    %rax,(%rdi)
+               :    631b:	je     65b2 <free@plt+0x5ae2>
+               :    6321:	mov    %r14,%rdx
+               :    6324:	mov    %r13,%rsi
+               :    6327:	mov    %rax,%rdi
+               :    632a:	callq  1abf0 <realloc+0x2e40>
+               :    632f:	lea    -0x28(%rbp),%rsp
+               :    6333:	mov    %r15d,%eax
+               :    6336:	pop    %rbx
+               :    6337:	pop    %r12
+               :    6339:	pop    %r13
+               :    633b:	pop    %r14
+               :    633d:	pop    %r15
+               :    633f:	pop    %rbp
+               :    6340:	retq   
+               :    6341:	nopl   0x0(%rax)
+               :    6348:	xor    %eax,%eax
+               :    634a:	mov    $0x1,%edx
+               :    634f:	jmpq   6280 <free@plt+0x57b0>
+               :    6354:	xor    %r12d,%r12d
+               :    6357:	jmpq   62b5 <free@plt+0x57e5>
+               :    635c:	lea    0x162c9(%rip),%rdi        # 1c62c <realloc+0x487c>
+               :    6363:	mov    %r13,%rsi
+               :    6366:	xor    %eax,%eax
+               :    6368:	callq  110b0 <_dl_debug_state+0x740>
+               :    636d:	jmpq   61b5 <free@plt+0x56e5>
+               :    6372:	mov    0x21caf0(%rip),%esi        # 222e68 <__libc_enable_secure>
+               :    6378:	test   %esi,%esi
+               :    637a:	je     613e <free@plt+0x566e>
+               :    6380:	mov    -0x100(%rbp),%rdx
+               :    6387:	mov    %ecx,%esi
+               :    6389:	mov    $0x1,%edi
+               :    638e:	mov    %ecx,-0x120(%rbp)
+               :    6394:	callq  19450 <realloc+0x16a0>
+               :    6399:	test   %eax,%eax
+               :    639b:	mov    -0x120(%rbp),%ecx
+               :    63a1:	jne    63b0 <free@plt+0x58e0>
+               :    63a3:	testb  $0x8,-0xa7(%rbp)
+               :    63aa:	jne    613e <free@plt+0x566e>
+               :    63b0:	mov    %ecx,%edi
+               :    63b2:	callq  19630 <realloc+0x1880>
+               :    63b7:	movl   $0x2,0x21ddbf(%rip)        # 224180 <_rtld_global+0x1120>
+               :    63c1:	jmpq   6147 <free@plt+0x5677>
+               :    63c6:	mov    0x8(%rbx),%r15
+               :    63ca:	cmp    -0x118(%rbp),%r15
+               :    63d1:	je     60e0 <free@plt+0x5610>
+               :    63d7:	mov    0x10(%rbx),%rax
+               :    63db:	lea    0x1621f(%rip),%rdi        # 1c601 <realloc+0x4851>
+               :    63e2:	mov    %rsp,-0x128(%rbp)
+               :    63e9:	mov    %rax,-0xc8(%rbp)
+               :    63f0:	mov    0x21ca29(%rip),%rax        # 222e20 <_dl_argv+0x20>
+               :    63f7:	add    0x21dc82(%rip),%rax        # 224080 <_rtld_global+0x1020>
+               :    63fe:	add    $0xf,%rax
+               :    6402:	and    $0xfffffffffffffff0,%rax
+               :    6406:	sub    %rax,%rsp
+               :    6409:	xor    %eax,%eax
+               :    640b:	callq  110b0 <_dl_debug_state+0x740>
+               :    6410:	mov    -0xf0(%rbp),%rax
+               :    6417:	mov    %rsp,%r14
+               :    641a:	mov    (%rax),%rax
+               :    641d:	test   %rax,%rax
+               :    6420:	je     6539 <free@plt+0x5a69>
+               :    6426:	cmp    0x8(%rax),%r15
+               :    642a:	jne    6539 <free@plt+0x5a69>
+               :    6430:	mov    -0xf0(%rbp),%r12
+               :    6437:	lea    0x1(%rsp),%rsi
+               :    643c:	mov    0x21c9e5(%rip),%r9        # 222e28 <_dl_argv+0x28>
+               :    6443:	mov    %rbx,-0x120(%rbp)
+               :    644a:	movl   $0x1,-0x118(%rbp)
+               :    6454:	mov    %rsi,-0x138(%rbp)
+               :    645b:	mov    %r12,%rbx
+               :    645e:	mov    0x20(%rax),%rdx
+               :    6462:	mov    0x18(%rax),%rsi
+               :    6466:	mov    %r14,%rdi
+               :    6469:	mov    %r9,-0x140(%rbp)
+               :    6470:	callq  1a9c0 <realloc+0x2c10>
+               :    6475:	mov    -0x140(%rbp),%r9
+               :    647c:	mov    %rax,-0x130(%rbp)
+               :    6483:	test   %r9,%r9
+               :    6486:	je     651c <free@plt+0x5a4c>
+               :    648c:	xor    %r12d,%r12d
+               :    648f:	jmp    64e2 <free@plt+0x5a12>
+               :    6491:	cmp    -0x138(%rbp),%rax
+               :    6498:	je     6590 <free@plt+0x5ac0>
+               :    649e:	movb   $0x0,-0x1(%rax)
+               :    64a2:	mov    -0x118(%rbp),%r8d
+               :    64a9:	lea    0x1614d(%rip),%rax        # 1c5fd <realloc+0x484d>
+               :    64b0:	lea    0x16859(%rip),%rdi        # 1cd10 <realloc+0x4f60>
+               :    64b7:	mov    %r14,%rsi
+               :    64ba:	test   %r8d,%r8d
+               :    64bd:	cmove  %rax,%rdi
+               :    64c1:	xor    %eax,%eax
+               :    64c3:	callq  11110 <_dl_debug_state+0x7a0>
+               :    64c8:	mov    0x21c959(%rip),%r9        # 222e28 <_dl_argv+0x28>
+               :    64cf:	movl   $0x0,-0x118(%rbp)
+               :    64d9:	add    $0x1,%r12
+               :    64dd:	cmp    %r9,%r12
+               :    64e0:	jae    651c <free@plt+0x5a4c>
+               :    64e2:	mov    (%rbx),%rax
+               :    64e5:	cmpl   $0x1,0x28(%rax,%r12,4)
+               :    64eb:	je     64d9 <free@plt+0x5a09>
+               :    64ed:	mov    %r12,%rax
+               :    64f0:	mov    -0x130(%rbp),%rdi
+               :    64f7:	shl    $0x4,%rax
+               :    64fb:	add    0x21c92e(%rip),%rax        # 222e30 <_dl_argv+0x30>
+               :    6502:	mov    0x8(%rax),%rdx
+               :    6506:	mov    (%rax),%rsi
+               :    6509:	callq  1a9c0 <realloc+0x2c10>
+               :    650e:	cmp    %rax,%r14
+               :    6511:	jne    6491 <free@plt+0x59c1>
+               :    6517:	movb   $0x0,(%rax)
+               :    651a:	jmp    64a2 <free@plt+0x59d2>
+               :    651c:	add    $0x8,%rbx
+               :    6520:	mov    (%rbx),%rax
+               :    6523:	test   %rax,%rax
+               :    6526:	je     6532 <free@plt+0x5a62>
+               :    6528:	cmp    0x8(%rax),%r15
+               :    652c:	je     645e <free@plt+0x598e>
+               :    6532:	mov    -0x120(%rbp),%rbx
+               :    6539:	cmpq   $0x0,-0xc8(%rbp)
+               :    6541:	je     659f <free@plt+0x5acf>
+               :    6543:	mov    -0xc8(%rbp),%rdx
+               :    654a:	cmpb   $0x0,(%rdx)
+               :    654d:	jne    6567 <free@plt+0x5a97>
+               :    654f:	mov    0x21c8aa(%rip),%rax        # 222e00 <_dl_argv>
+               :    6556:	lea    0x15bf7(%rip),%rdx        # 1c154 <realloc+0x43a4>
+               :    655d:	mov    (%rax),%rax
+               :    6560:	test   %rax,%rax
+               :    6563:	cmovne %rax,%rdx
+               :    6567:	lea    0x160a1(%rip),%rdi        # 1c60f <realloc+0x485f>
+               :    656e:	mov    %r15,%rsi
+               :    6571:	xor    %eax,%eax
+               :    6573:	callq  11110 <_dl_debug_state+0x7a0>
+               :    6578:	mov    %r15,-0x118(%rbp)
+               :    657f:	mov    -0x128(%rbp),%rsp
+               :    6586:	jmpq   60e0 <free@plt+0x5610>
+               :    658b:	nopl   0x0(%rax,%rax,1)
+               :    6590:	cmpb   $0x2f,(%r14)
+               :    6594:	jne    649e <free@plt+0x59ce>
+               :    659a:	jmpq   6517 <free@plt+0x5a47>
+               :    659f:	lea    0x1607e(%rip),%rdi        # 1c624 <realloc+0x4874>
+               :    65a6:	mov    %r15,%rsi
+               :    65a9:	xor    %eax,%eax
+               :    65ab:	callq  11110 <_dl_debug_state+0x7a0>
+               :    65b0:	jmp    6578 <free@plt+0x5aa8>
+               :    65b2:	mov    %r15d,%edi
+               :    65b5:	callq  19630 <realloc+0x1880>
+               :    65ba:	jmpq   62e3 <free@plt+0x5813>
+               :    65bf:	mov    -0x110(%rbp),%rax
+               :    65c6:	mov    0x8(%rax),%edx
+               :    65c9:	test   %edx,%edx
+               :    65cb:	je     65d5 <free@plt+0x5b05>
+               :    65cd:	mov    (%rax),%rdi
+               :    65d0:	callq  ad0 <free@plt>
+               :    65d5:	mov    -0x110(%rbp),%rsi
+               :    65dc:	lea    0x21c82d(%rip),%rax        # 222e10 <_dl_argv+0x10>
+               :    65e3:	cmp    %rax,%rsi
+               :    65e6:	je     62e3 <free@plt+0x5813>
+               :    65ec:	movq   $0xffffffffffffffff,(%rsi)
+               :    65f3:	mov    $0xffffffff,%eax
+               :    65f8:	jmpq   62e8 <free@plt+0x5818>
+               :    65fd:	nopl   (%rax)
+/* 
+ * Command line: opannotate --assembly matriu4x4-opt-unrol-i-ni.2g 
+ * 
+ * Interpretation of command line:
+ * Output annotated assembly listing with samples
+ * 
+ * CPU: Intel Ivy Bridge microarchitecture, speed 2.7e+06 MHz (estimated)
+ * Counted CPU_CLK_UNHALTED events (Clock cycles when not halted) with a unit mask of 0x00 (No unit mask) count 100000
+ */
+               :
+               :/lib/x86_64-linux-gnu/libc-2.19.so:     file format elf64-x86-64
+               :
+               :
+               :Disassembly of section .text:
+               :
+00000000000795f0 <_IO_file_xsputn>: /* _IO_file_xsputn@@GLIBC_2.2.5 total:      1  0.0090 */
+               :   795f0:	push   %r15
+               :   795f2:	xor    %eax,%eax
+               :   795f4:	push   %r14
+               :   795f6:	push   %r13
+               :   795f8:	push   %r12
+               :   795fa:	push   %rbp
+               :   795fb:	push   %rbx
+               :   795fc:	mov    %rdx,%rbx
+               :   795ff:	sub    $0x8,%rsp
+               :   79603:	test   %rdx,%rdx
+               :   79606:	je     7966c <_IO_file_xsputn+0x7c>
+               :   79608:	mov    (%rdi),%eax
+               :   7960a:	mov    %rdi,%rbp
+               :   7960d:	mov    %rsi,%r12
+               :   79610:	and    $0xa00,%eax
+               :   79615:	cmp    $0xa00,%eax
+               :   7961a:	je     796f0 <_IO_file_xsputn+0x100>
+               :   79620:	mov    0x30(%rdi),%rdx
+               :   79624:	mov    0x28(%rdi),%rdi
+               :   79628:	cmp    %rdi,%rdx
+               :   7962b:	jbe    79680 <_IO_file_xsputn+0x90>
+               :   7962d:	sub    %rdi,%rdx
+               :   79630:	xor    %r14d,%r14d
+               :   79633:	test   %rdx,%rdx
+               :   79636:	mov    %rbx,%r13
+               :   79639:	je     7965d <_IO_file_xsputn+0x6d>
+               :   7963b:	cmp    %rbx,%rdx
+     1  0.0090 :   7963e:	mov    %r12,%rsi
+               :   79641:	cmova  %rbx,%rdx
+               :   79645:	mov    %rdx,%r13
+               :   79648:	callq  8c710 <__mempcpy+0x50>
+               :   7964d:	mov    %rax,0x28(%rbp)
+               :   79651:	mov    %rbx,%rax
+               :   79654:	add    %r13,%r12
+               :   79657:	sub    %r13,%rax
+               :   7965a:	mov    %rax,%r13
+               :   7965d:	lea    (%r14,%r13,1),%rax
+               :   79661:	test   %rax,%rax
+               :   79664:	jne    7968f <_IO_file_xsputn+0x9f>
+               :   79666:	mov    %rbx,%rax
+               :   79669:	sub    %r13,%rax
+               :   7966c:	add    $0x8,%rsp
+               :   79670:	pop    %rbx
+               :   79671:	pop    %rbp
+               :   79672:	pop    %r12
+               :   79674:	pop    %r13
+               :   79676:	pop    %r14
+               :   79678:	pop    %r15
+               :   7967a:	retq   
+               :   7967b:	nopl   0x0(%rax,%rax,1)
+               :   79680:	xor    %r14d,%r14d
+               :   79683:	mov    %rbx,%r13
+               :   79686:	lea    (%r14,%r13,1),%rax
+               :   7968a:	test   %rax,%rax
+               :   7968d:	je     79666 <_IO_file_xsputn+0x76>
+               :   7968f:	mov    0xd8(%rbp),%rax
+               :   79696:	mov    $0xffffffff,%esi
+               :   7969b:	mov    %rbp,%rdi
+               :   7969e:	callq  *0x18(%rax)
+               :   796a1:	cmp    $0xffffffff,%eax
+               :   796a4:	je     79740 <_IO_file_xsputn+0x150>
+               :   796aa:	mov    0x40(%rbp),%rcx
+               :   796ae:	sub    0x38(%rbp),%rcx
+               :   796b2:	xor    %edx,%edx
+               :   796b4:	cmp    $0x7f,%rcx
+               :   796b8:	jbe    796c2 <_IO_file_xsputn+0xd2>
+               :   796ba:	mov    %r13,%rax
+               :   796bd:	xor    %edx,%edx
+               :   796bf:	div    %rcx
+               :   796c2:	mov    %r13,%r14
+               :   796c5:	sub    %rdx,%r14
+               :   796c8:	jne    79778 <_IO_file_xsputn+0x188>
+               :   796ce:	test   %r13,%r13
+               :   796d1:	je     79666 <_IO_file_xsputn+0x76>
+               :   796d3:	lea    (%r12,%r14,1),%rsi
+               :   796d7:	mov    %r13,%rdx
+               :   796da:	mov    %rbp,%rdi
+               :   796dd:	callq  7b650 <_IO_default_xsputn>
+               :   796e2:	sub    %rax,%r13
+               :   796e5:	jmpq   79666 <_IO_file_xsputn+0x76>
+               :   796ea:	nopw   0x0(%rax,%rax,1)
+               :   796f0:	mov    0x28(%rdi),%rdi
+               :   796f4:	mov    0x40(%rbp),%rdx
+               :   796f8:	sub    %rdi,%rdx
+               :   796fb:	cmp    %rdx,%rbx
+               :   796fe:	ja     79730 <_IO_file_xsputn+0x140>
+               :   79700:	lea    (%rsi,%rbx,1),%rcx
+               :   79704:	cmp    %rcx,%rsi
+               :   79707:	jae    79726 <_IO_file_xsputn+0x136>
+               :   79709:	cmpb   $0xa,-0x1(%rcx)
+               :   7970d:	lea    -0x1(%rcx),%rax
+               :   79711:	jne    79721 <_IO_file_xsputn+0x131>
+               :   79713:	jmp    79760 <_IO_file_xsputn+0x170>
+               :   79715:	nopl   (%rax)
+               :   79718:	sub    $0x1,%rax
+               :   7971c:	cmpb   $0xa,(%rax)
+               :   7971f:	je     79760 <_IO_file_xsputn+0x170>
+               :   79721:	cmp    %r12,%rax
+               :   79724:	jne    79718 <_IO_file_xsputn+0x128>
+               :   79726:	xor    %r14d,%r14d
+               :   79729:	jmpq   7963b <_IO_file_xsputn+0x4b>
+               :   7972e:	xchg   %ax,%ax
+               :   79730:	xor    %r14d,%r14d
+               :   79733:	jmpq   79633 <_IO_file_xsputn+0x43>
+               :   79738:	nopl   0x0(%rax,%rax,1)
+               :   79740:	sub    %r13,%rbx
+               :   79743:	mov    $0xffffffffffffffff,%rax
+               :   7974a:	test   %r13,%r13
+               :   7974d:	cmovne %rbx,%rax
+               :   79751:	jmpq   7966c <_IO_file_xsputn+0x7c>
+               :   79756:	nopw   %cs:0x0(%rax,%rax,1)
+               :   79760:	sub    %r12,%rax
+               :   79763:	mov    $0x1,%r14d
+               :   79769:	lea    0x1(%rax),%rdx
+               :   7976d:	jmpq   79633 <_IO_file_xsputn+0x43>
+               :   79772:	nopw   0x0(%rax,%rax,1)
+               :   79778:	testl  $0x1000,0x0(%rbp)
+               :   7977f:	je     797f8 <_IO_file_xsputn+0x208>
+               :   79781:	movq   $0xffffffffffffffff,0x90(%rbp)
+               :   7978c:	mov    0xd8(%rbp),%rax
+               :   79793:	mov    %r14,%rdx
+               :   79796:	mov    %r12,%rsi
+               :   79799:	mov    %rbp,%rdi
+               :   7979c:	callq  *0x78(%rax)
+               :   7979f:	mov    %rax,%r15
+               :   797a2:	movzwl 0x80(%rbp),%eax
+               :   797a9:	test   %ax,%ax
+               :   797ac:	je     797b7 <_IO_file_xsputn+0x1c7>
+               :   797ae:	test   %r15,%r15
+               :   797b1:	jne    7983e <_IO_file_xsputn+0x24e>
+               :   797b7:	mov    0xc0(%rbp),%eax
+               :   797bd:	mov    0x38(%rbp),%rdx
+               :   797c1:	test   %eax,%eax
+               :   797c3:	mov    %rdx,0x18(%rbp)
+               :   797c7:	mov    %rdx,0x8(%rbp)
+               :   797cb:	mov    %rdx,0x10(%rbp)
+               :   797cf:	mov    %rdx,0x28(%rbp)
+               :   797d3:	mov    %rdx,0x20(%rbp)
+               :   797d7:	jle    79833 <_IO_file_xsputn+0x243>
+               :   797d9:	mov    0x40(%rbp),%rdx
+               :   797dd:	sub    %r15,%r13
+               :   797e0:	cmp    %r15,%r14
+               :   797e3:	mov    %rdx,0x30(%rbp)
+               :   797e7:	jbe    796ce <_IO_file_xsputn+0xde>
+               :   797ed:	jmpq   79666 <_IO_file_xsputn+0x76>
+               :   797f2:	nopw   0x0(%rax,%rax,1)
+               :   797f8:	mov    0x10(%rbp),%rax
+               :   797fc:	mov    0x20(%rbp),%rsi
+               :   79800:	cmp    %rsi,%rax
+               :   79803:	je     7978c <_IO_file_xsputn+0x19c>
+               :   79805:	mov    0xd8(%rbp),%rcx
+               :   7980c:	sub    %rax,%rsi
+               :   7980f:	mov    $0x1,%edx
+               :   79814:	mov    %rbp,%rdi
+               :   79817:	callq  *0x80(%rcx)
+               :   7981d:	cmp    $0xffffffffffffffff,%rax
+               :   79821:	je     79666 <_IO_file_xsputn+0x76>
+               :   79827:	mov    %rax,0x90(%rbp)
+               :   7982e:	jmpq   7978c <_IO_file_xsputn+0x19c>
+               :   79833:	testl  $0x202,0x0(%rbp)
+               :   7983a:	jne    797dd <_IO_file_xsputn+0x1ed>
+               :   7983c:	jmp    797d9 <_IO_file_xsputn+0x1e9>
+               :   7983e:	lea    -0x1(%rax),%edi
+               :   79841:	mov    %r15d,%edx
+               :   79844:	mov    %r12,%rsi
+               :   79847:	callq  7bed0 <_IO_adjust_column>
+               :   7984c:	add    $0x1,%eax
+               :   7984f:	mov    %ax,0x80(%rbp)
+               :   79856:	jmpq   797b7 <_IO_file_xsputn+0x1c7>
+               :   7985b:	nopl   0x0(%rax,%rax,1)
+/* 
+ * Command line: opannotate --assembly matriu4x4-opt-unrol-i-ni.2g 
+ * 
+ * Interpretation of command line:
+ * Output annotated assembly listing with samples
+ * 
+ * CPU: Intel Ivy Bridge microarchitecture, speed 2.7e+06 MHz (estimated)
+ * Counted CPU_CLK_UNHALTED events (Clock cycles when not halted) with a unit mask of 0x00 (No unit mask) count 100000
+ */

@@ -1,9 +1,9 @@
-/* 
- * Command line: opannotate --assembly pi.3ni 
- * 
+    /* 
+ * Command line: opannotate --assembly pi.3ni
+ *
  * Interpretation of command line:
  * Output annotated assembly listing with samples
- * 
+ *
  * CPU: Intel Ivy Bridge microarchitecture, speed 3600 MHz (estimated)
  * Counted CPU_CLK_UNHALTED events (Clock cycles when not halted) with a unit mask of 0x00 (No unit mask) count 100000
  */
@@ -22,7 +22,7 @@
                :  400923:	movslq %esi,%r10
                :  400926:	test   %r8d,%r8d
                :  400929:	jns    40095e <LONGDIV+0x4e>
-               :  40092b:	repz retq 
+               :  40092b:	repz retq
                :  40092d:	nopl   (%rax)
    532  0.4438 :  400930:	movsbl (%rdi),%eax
    642  0.5356 :  400933:	lea    (%rdx,%rdx,4),%edx
@@ -45,7 +45,7 @@
    657  0.5481 :  40096a:	lea    (%rdx,%rdx,4),%rdx
    147  0.1226 :  40096e:	lea    (%rax,%rdx,2),%r9
    115  0.0959 :  400972:	mov    %r9,%rax
-    62  0.0517 :  400975:	cqto   
+    62  0.0517 :  400975:	cqto
    271  0.2261 :  400977:	idiv   %r10
  13363 11.1476 :  40097a:	mov    %eax,%r8d
    318  0.2653 :  40097d:	imul   %esi,%eax
@@ -57,7 +57,7 @@
      1 8.3e-04 :  400996:	test   %eax,%eax
                :  400998:	jns    4009a8 <LONGDIV+0x98>
                :  40099a:	nopw   0x0(%rax,%rax,1)
-               :  4009a0:	repz retq 
+               :  4009a0:	repz retq
                :  4009a2:	nopw   0x0(%rax,%rax,1)
                :  4009a8:	xor    %ecx,%ecx
                :  4009aa:	xor    %r8d,%r8d
@@ -76,7 +76,7 @@
                :  4009d2:	sub    %edx,%r8d
    320  0.2669 :  4009d5:	cmp    %eax,0x208f65(%rip)        # 609940 <N4>
      1 8.3e-04 :  4009db:	jge    4009b0 <LONGDIV+0xa0>
-               :  4009dd:	repz retq 
+               :  4009dd:	repz retq
                :  4009df:	nop
                :
                :/dades/albert.segarra.roca/Q6/PCA/lab/sessio4/pi/pi.3ni:     file format elf64-x86-64
@@ -103,7 +103,7 @@
   2117  1.7660 :  400872:	sub    %edx,%esi
   1014  0.8459 :  400874:	cmp    %ecx,%r8d
                :  400877:	jge    400850 <DIVIDE.constprop.2+0x10>
-               :  400879:	repz retq 
+               :  400879:	repz retq
                :  40087b:	nopl   0x0(%rax,%rax,1)
                :
                :/dades/albert.segarra.roca/Q6/PCA/lab/sessio4/pi/pi.3ni:     file format elf64-x86-64
@@ -132,7 +132,7 @@
   2010  1.6768 :  4008bf:	cmp    %ecx,%edi
                :  4008c1:	mov    %esi,%eax
                :  4008c3:	jge    400898 <DIVIDE.constprop.3+0x18>
-               :  4008c5:	repz retq 
+               :  4008c5:	repz retq
                :  4008c7:	nopw   0x0(%rax,%rax,1)
                :
                :/dades/albert.segarra.roca/Q6/PCA/lab/sessio4/pi/pi.3ni:     file format elf64-x86-64
@@ -164,7 +164,7 @@
   1442  1.2029 :  400aa0:	addb   $0x1,(%rax)
    823  0.6866 :  400aa3:	jmp    400a82 <SUBTRACT+0x22>
                :  400aa5:	nopl   (%rax)
-     1 8.3e-04 :  400aa8:	repz retq 
+     1 8.3e-04 :  400aa8:	repz retq
                :  400aaa:	nopw   0x0(%rax,%rax,1)
                :
                :/dades/albert.segarra.roca/Q6/PCA/lab/sessio4/pi/pi.3ni:     file format elf64-x86-64
@@ -195,7 +195,7 @@
   1417  1.1821 :  4007f8:	mov    %sil,(%rcx)
   1548  1.2914 :  4007fb:	addb   $0x1,(%rax)
    866  0.7224 :  4007fe:	jmp    4007db <SUBTRACT.constprop.0+0x2b>
-               :  400800:	repz retq 
+               :  400800:	repz retq
                :  400802:	data32 data32 data32 data32 nopw %cs:0x0(%rax,%rax,1)
                :
                :/dades/albert.segarra.roca/Q6/PCA/lab/sessio4/pi/pi.3ni:     file format elf64-x86-64
@@ -213,7 +213,7 @@
                :  400827:	callq  400610 <memset@plt>
      3  0.0025 :  40082c:	movb   $0x1,0x20410d(%rip)        # 604940 <c>
                :  400833:	add    $0x8,%rsp
-               :  400837:	retq   
+               :  400837:	retq
                :  400838:	nopl   0x0(%rax,%rax,1)
                :
                :/dades/albert.segarra.roca/Q6/PCA/lab/sessio4/pi/pi.3ni:     file format elf64-x86-64
@@ -307,7 +307,7 @@
                :  400a1f:	mov    %r8b,0x1(%rcx)
      1 8.3e-04 :  400a23:	cmp    %rdi,%rcx
                :  400a26:	jne    400a00 <MULTIPLY+0x20>
-               :  400a28:	repz retq 
+               :  400a28:	repz retq
                :  400a2a:	nopw   0x0(%rax,%rax,1)
                :
                :/dades/albert.segarra.roca/Q6/PCA/lab/sessio4/pi/pi.3ni:     file format elf64-x86-64
@@ -393,15 +393,15 @@
                :  400cf0:	pop    %rbx
                :  400cf1:	pop    %rbp
                :  400cf2:	pop    %r12
-               :  400cf4:	retq   
+               :  400cf4:	retq
                :  400cf5:	nopw   %cs:0x0(%rax,%rax,1)
                :  400cff:	nop
-/* 
- * Command line: opannotate --assembly pi.3ni 
- * 
+/*
+ * Command line: opannotate --assembly pi.3ni
+ *
  * Interpretation of command line:
  * Output annotated assembly listing with samples
- * 
+ *
  * CPU: Intel Ivy Bridge microarchitecture, speed 3600 MHz (estimated)
  * Counted CPU_CLK_UNHALTED events (Clock cycles when not halted) with a unit mask of 0x00 (No unit mask) count 100000
  */
@@ -586,7 +586,7 @@
                :    b061:	pop    %r14
                :    b063:	pop    %r15
                :    b065:	pop    %rbp
-               :    b066:	retq   
+               :    b066:	retq
                :    b067:	nopw   0x0(%rax,%rax,1)
                :    b070:	mov    0x288(%r10),%rax
                :    b077:	test   %rax,%rax
@@ -1691,7 +1691,7 @@
                :    8e1b:	pop    %r13
                :    8e1d:	pop    %r14
                :    8e1f:	pop    %r15
-               :    8e21:	retq   
+               :    8e21:	retq
                :    8e22:	nopw   0x0(%rax,%rax,1)
                :    8e28:	mov    %rax,0x18(%rsp)
                :    8e2d:	mov    0x50(%rsp),%rax
@@ -2147,12 +2147,12 @@
                :    957c:	mov    $0x179,%edx
                :    9581:	callq  15970 <__GI___assert_fail>
                :    9586:	nopw   %cs:0x0(%rax,%rax,1)
-/* 
- * Command line: opannotate --assembly pi.3ni 
- * 
+/*
+ * Command line: opannotate --assembly pi.3ni
+ *
  * Interpretation of command line:
  * Output annotated assembly listing with samples
- * 
+ *
  * CPU: Intel Ivy Bridge microarchitecture, speed 3600 MHz (estimated)
  * Counted CPU_CLK_UNHALTED events (Clock cycles when not halted) with a unit mask of 0x00 (No unit mask) count 100000
  */
@@ -2176,11 +2176,11 @@
                :   84d6c:	movdqu %xmm8,(%rdi)
                :   84d71:	movdqu %xmm8,-0x10(%rdi,%rdx,1)
                :   84d78:	ja     84d80 <memset+0x40>
-               :   84d7a:	repz retq 
+               :   84d7a:	repz retq
                :   84d7c:	nopl   0x0(%rax)
                :   84d80:	movdqu %xmm8,0x10(%rdi)
                :   84d86:	movdqu %xmm8,-0x20(%rdi,%rdx,1)
-               :   84d8d:	retq   
+               :   84d8d:	retq
                :   84d8e:	xchg   %ax,%ax
                :   84d90:	lea    0x40(%rdi),%rcx
                :   84d94:	movdqu %xmm8,(%rdi)
@@ -2207,7 +2207,7 @@
     18  0.0150 :   84e07:	add    $0x40,%rcx
                :   84e0b:	cmp    %rcx,%rdx
                :   84e0e:	jne    84df0 <memset+0xb0>
-               :   84e10:	repz retq 
+               :   84e10:	repz retq
                :   84e12:	add    %rdi,%rdx
                :   84e15:	and    $0xffffffffffffffc0,%rdx
                :   84e19:	cmp    %rdx,%rcx
@@ -2220,8 +2220,8 @@
                :   84e47:	add    $0x40,%rcx
                :   84e4b:	cmp    %rcx,%rdx
                :   84e4e:	jne    84e30 <memset+0xf0>
-               :   84e50:	sfence 
-               :   84e53:	repz retq 
+               :   84e50:	sfence
+               :   84e53:	repz retq
                :   84e55:	movq   %xmm8,%rcx
                :   84e5a:	test   $0x18,%dl
                :   84e5d:	jne    84e81 <memset+0x141>
@@ -2233,13 +2233,13 @@
                :   84e6b:	test   $0x2,%dl
                :   84e6e:	je     84d7a <memset+0x3a>
                :   84e74:	mov    %cx,-0x2(%rax,%rdx,1)
-               :   84e79:	retq   
+               :   84e79:	retq
                :   84e7a:	mov    %ecx,(%rdi)
                :   84e7c:	mov    %ecx,-0x4(%rdi,%rdx,1)
-               :   84e80:	retq   
+               :   84e80:	retq
                :   84e81:	mov    %rcx,(%rdi)
                :   84e84:	mov    %rcx,-0x8(%rdi,%rdx,1)
-               :   84e89:	retq   
+               :   84e89:	retq
                :   84e8a:	nopw   0x0(%rax,%rax,1)
                :
                :/lib64/libc-2.19.so:     file format elf64-x86-64
@@ -2313,7 +2313,7 @@
                :   463a9:	pop    %r14
                :   463ab:	pop    %r15
                :   463ad:	pop    %rbp
-               :   463ae:	retq   
+               :   463ae:	retq
                :   463af:	nop
                :   463b0:	cmp    $0xffffffff,%eax
                :   463b3:	je     462d5 <_IO_vfprintf+0x45>
@@ -2356,7 +2356,7 @@
                :   46457:	pop    %r14
                :   46459:	pop    %r15
                :   4645b:	pop    %rbp
-               :   4645c:	retq   
+               :   4645c:	retq
                :   4645d:	nopl   (%rax)
                :   46460:	movq   $0x0,0x8(%rdx)
                :   46468:	cmpl   $0x0,0x360365(%rip)        # 3a67d4 <__libc_multiple_threads>
@@ -2438,7 +2438,7 @@
                :   46660:	movsbl -0x4c8(%rbp),%eax
                :   46667:	lea    0x113d72(%rip),%rdx        # 15a3e0 <jump_table.12059>
                :   4666e:	sub    $0x20,%eax
-               :   46671:	cltq   
+               :   46671:	cltq
      1 8.3e-04 :   46673:	movzbl (%rdx,%rax,1),%edx
                :   46677:	lea    0x113ce2(%rip),%rax        # 15a360 <step0_jumps.12078>
                :   4667e:	movslq (%rax,%rdx,4),%rax
@@ -2593,7 +2593,7 @@
                :   4696a:	mov    $0x7fffffff,%r11d
                :   46970:	mov    %r11d,%eax
                :   46973:	sub    -0x4a8(%rbp),%eax
-               :   46979:	cltq   
+               :   46979:	cltq
                :   4697b:	cmp    %rax,%rcx
                :   4697e:	ja     46f16 <_IO_vfprintf+0xc86>
                :   46984:	mov    -0x4a8(%rbp),%r10d
@@ -2798,7 +2798,7 @@
                :   46d6e:	mov    $0x7fffffff,%eax
                :   46d73:	sub    %ecx,%eax
                :   46d75:	add    %r13d,%ecx
-               :   46d78:	cltq   
+               :   46d78:	cltq
                :   46d7a:	cmp    %rax,%r13
                :   46d7d:	jle    46a05 <_IO_vfprintf+0x775>
                :   46d83:	mov    0x35a0ce(%rip),%rax        # 3a0e58 <_DYNAMIC+0x2d8>
@@ -3146,12 +3146,12 @@
                :   473e1:	lea    0x112ff8(%rip),%rdx        # 15a3e0 <jump_table.12059>
                :   473e8:	lea    0x30c3(%rip),%r12        # 4a4b2 <_IO_vfprintf+0x4222>
                :   473ef:	sub    $0x20,%eax
-               :   473f2:	cltq   
+               :   473f2:	cltq
                :   473f4:	movzbl (%rdx,%rax,1),%edx
                :   473f8:	lea    0x112c61(%rip),%rax        # 15a060 <step4_jumps.12287>
                :   473ff:	mov    (%rax,%rdx,4),%eax
                :   47402:	movzbl -0x568(%rbp),%ecx
-               :   47409:	cltq   
+               :   47409:	cltq
                :   4740b:	add    %r12,%rax
                :   4740e:	mov    %ecx,-0x590(%rbp)
                :   47414:	movzbl -0x570(%rbp),%ecx
@@ -3377,7 +3377,7 @@
                :   478a7:	mov    $0x7fffffff,%eax
                :   478ac:	sub    -0x4a8(%rbp),%eax
                :   478b2:	add    %r13d,-0x4a8(%rbp)
-               :   478b9:	cltq   
+               :   478b9:	cltq
                :   478bb:	cmp    %rax,%r13
                :   478be:	jle    470a9 <_IO_vfprintf+0xe19>
                :   478c4:	jmpq   473af <_IO_vfprintf+0x111f>
@@ -3492,7 +3492,7 @@
                :   47afe:	mov    $0x7fffffff,%ecx
                :   47b03:	mov    %ecx,%eax
                :   47b05:	sub    -0x4a8(%rbp),%eax
-               :   47b0b:	cltq   
+               :   47b0b:	cltq
                :   47b0d:	cmp    %rax,%r13
                :   47b10:	jg     473af <_IO_vfprintf+0x111f>
                :   47b16:	mov    -0x598(%rbp),%eax
@@ -3548,7 +3548,7 @@
                :   47c15:	mov    $0x7fffffff,%ecx
                :   47c1a:	mov    %ecx,%eax
                :   47c1c:	sub    -0x4a8(%rbp),%eax
-               :   47c22:	cltq   
+               :   47c22:	cltq
                :   47c24:	cmp    %rax,%r13
                :   47c27:	ja     4903e <_IO_vfprintf+0x2dae>
                :   47c2d:	add    %r13d,-0x4a8(%rbp)
@@ -3662,7 +3662,7 @@
                :   47e4b:	mov    $0x7fffffff,%r11d
                :   47e51:	mov    %r11d,%eax
                :   47e54:	sub    -0x4a8(%rbp),%eax
-               :   47e5a:	cltq   
+               :   47e5a:	cltq
                :   47e5c:	cmp    %rax,%r9
                :   47e5f:	ja     46d83 <_IO_vfprintf+0xaf3>
                :   47e65:	mov    -0x4a8(%rbp),%r9d
@@ -3716,7 +3716,7 @@
                :   47f5d:	mov    -0x508(%rbp),%ecx
                :   47f63:	sub    %esi,%eax
                :   47f65:	add    %esi,%ecx
-               :   47f67:	cltq   
+               :   47f67:	cltq
                :   47f69:	cmp    %rax,%r9
                :   47f6c:	jbe    46a05 <_IO_vfprintf+0x775>
                :   47f72:	jmpq   46d83 <_IO_vfprintf+0xaf3>
@@ -3790,7 +3790,7 @@
                :   480bf:	movsbl -0x4c8(%rbp),%eax
                :   480c6:	lea    0x112313(%rip),%rdx        # 15a3e0 <jump_table.12059>
                :   480cd:	sub    $0x20,%eax
-               :   480d0:	cltq   
+               :   480d0:	cltq
                :   480d2:	movzbl (%rdx,%rax,1),%edx
                :   480d6:	lea    0x112283(%rip),%rax        # 15a360 <step0_jumps.12078>
                :   480dd:	movslq (%rax,%rdx,4),%rax
@@ -4057,7 +4057,7 @@
                :   485b9:	mov    0x35a198(%rip),%rdx        # 3a2758 <__printf_va_arg_table>
                :   485c0:	test   %rdx,%rdx
                :   485c3:	jne    48f70 <_IO_vfprintf+0x2ce0>
-               :   485c9:	fldz   
+               :   485c9:	fldz
                :   485cb:	fstpt  (%r8)
                :   485ce:	jmpq   484e8 <_IO_vfprintf+0x2258>
                :   485d3:	lea    0x11bb8e(%rip),%rdi        # 164168 <__PRETTY_FUNCTION__.9742+0x102d>
@@ -4147,7 +4147,7 @@
                :   48777:	mov    $0x7fffffff,%r8d
                :   4877d:	mov    %r8d,%eax
                :   48780:	sub    -0x4a8(%rbp),%eax
-               :   48786:	cltq   
+               :   48786:	cltq
                :   48788:	cmp    %rax,%r12
                :   4878b:	ja     473af <_IO_vfprintf+0x111f>
                :   48791:	mov    -0x568(%rbp),%eax
@@ -4193,7 +4193,7 @@
                :   4884d:	sub    -0x4a8(%rbp),%eax
                :   48853:	mov    -0x568(%rbp),%ecx
                :   48859:	add    %ecx,-0x4a8(%rbp)
-               :   4885f:	cltq   
+               :   4885f:	cltq
                :   48861:	cmp    %rax,%r12
                :   48864:	jbe    470a9 <_IO_vfprintf+0xe19>
                :   4886a:	jmpq   473af <_IO_vfprintf+0x111f>
@@ -5181,7 +5181,7 @@
                :   49a67:	movsbl -0x4c8(%rbp),%eax
                :   49a6e:	lea    0x11096b(%rip),%rdx        # 15a3e0 <jump_table.12059>
                :   49a75:	sub    $0x20,%eax
-               :   49a78:	cltq   
+               :   49a78:	cltq
                :   49a7a:	movzbl (%rdx,%rax,1),%edx
                :   49a7e:	lea    0x1108db(%rip),%rax        # 15a360 <step0_jumps.12078>
                :   49a85:	movslq (%rax,%rdx,4),%rax
@@ -5200,7 +5200,7 @@
                :   49abe:	movsbl -0x4c8(%rbp),%eax
                :   49ac5:	lea    0x110914(%rip),%rdx        # 15a3e0 <jump_table.12059>
                :   49acc:	sub    $0x20,%eax
-               :   49acf:	cltq   
+               :   49acf:	cltq
                :   49ad1:	movzbl (%rdx,%rax,1),%edx
                :   49ad5:	lea    0x110884(%rip),%rax        # 15a360 <step0_jumps.12078>
                :   49adc:	movslq (%rax,%rdx,4),%rax
@@ -5332,7 +5332,7 @@
                :   49d6c:	mov    $0x7fffffff,%r11d
                :   49d72:	mov    %r11d,%eax
                :   49d75:	sub    -0x4a8(%rbp),%eax
-               :   49d7b:	cltq   
+               :   49d7b:	cltq
                :   49d7d:	cmp    %rax,%r13
                :   49d80:	jg     46d83 <_IO_vfprintf+0xaf3>
                :   49d86:	mov    -0x548(%rbp),%r9d
@@ -5608,7 +5608,7 @@
                :   4a2be:	movsbl -0x4c8(%rbp),%eax
                :   4a2c5:	lea    0x110114(%rip),%rdx        # 15a3e0 <jump_table.12059>
                :   4a2cc:	sub    $0x20,%eax
-               :   4a2cf:	cltq   
+               :   4a2cf:	cltq
                :   4a2d1:	movzbl (%rdx,%rax,1),%edx
                :   4a2d5:	lea    0x10ff84(%rip),%rax        # 15a260 <step2_jumps.12110>
                :   4a2dc:	movslq (%rax,%rdx,4),%rax
@@ -5672,7 +5672,7 @@
                :   4a3ea:	movsbl -0x4c8(%rbp),%eax
                :   4a3f1:	lea    0x10ffe8(%rip),%rdx        # 15a3e0 <jump_table.12059>
                :   4a3f8:	sub    $0x20,%eax
-               :   4a3fb:	cltq   
+               :   4a3fb:	cltq
                :   4a3fd:	movzbl (%rdx,%rax,1),%edx
                :   4a401:	lea    0x10fdd8(%rip),%rax        # 15a1e0 <step3a_jumps.12111>
                :   4a408:	movslq (%rax,%rdx,4),%rax
@@ -6178,7 +6178,7 @@
                :   4acd0:	movsbl -0x4c8(%rbp),%eax
                :   4acd7:	lea    0x10f702(%rip),%rdx        # 15a3e0 <jump_table.12059>
                :   4acde:	sub    $0x20,%eax
-               :   4ace1:	cltq   
+               :   4ace1:	cltq
                :   4ace3:	movzbl (%rdx,%rax,1),%edx
                :   4ace7:	lea    0x10f672(%rip),%rax        # 15a360 <step0_jumps.12078>
                :   4acee:	movslq (%rax,%rdx,4),%rax
@@ -6214,7 +6214,7 @@
                :   4ad73:	movsbl -0x4c8(%rbp),%eax
                :   4ad7a:	lea    0x10f65f(%rip),%rdx        # 15a3e0 <jump_table.12059>
                :   4ad81:	sub    $0x20,%eax
-               :   4ad84:	cltq   
+               :   4ad84:	cltq
                :   4ad86:	movzbl (%rdx,%rax,1),%edx
                :   4ad8a:	lea    0x10f5cf(%rip),%rax        # 15a360 <step0_jumps.12078>
                :   4ad91:	movslq (%rax,%rdx,4),%rax
@@ -6281,7 +6281,7 @@
                :   4aeb5:	movsbl -0x4c8(%rbp),%eax
                :   4aebc:	lea    0x10f51d(%rip),%rdx        # 15a3e0 <jump_table.12059>
                :   4aec3:	sub    $0x20,%eax
-               :   4aec6:	cltq   
+               :   4aec6:	cltq
                :   4aec8:	movzbl (%rdx,%rax,1),%edx
                :   4aecc:	lea    0x10f28d(%rip),%rax        # 15a160 <step4_jumps.12114>
                :   4aed3:	movslq (%rax,%rdx,4),%rax
@@ -6301,7 +6301,7 @@
                :   4af16:	movsbl -0x4c8(%rbp),%eax
                :   4af1d:	lea    0x10f4bc(%rip),%rdx        # 15a3e0 <jump_table.12059>
                :   4af24:	sub    $0x20,%eax
-               :   4af27:	cltq   
+               :   4af27:	cltq
                :   4af29:	movzbl (%rdx,%rax,1),%edx
                :   4af2d:	lea    0x10f42c(%rip),%rax        # 15a360 <step0_jumps.12078>
                :   4af34:	movslq (%rax,%rdx,4),%rax
@@ -6325,7 +6325,7 @@
                :   4af8d:	movsbl -0x4c8(%rbp),%eax
                :   4af94:	lea    0x10f445(%rip),%rdx        # 15a3e0 <jump_table.12059>
                :   4af9b:	sub    $0x20,%eax
-               :   4af9e:	cltq   
+               :   4af9e:	cltq
                :   4afa0:	movzbl (%rdx,%rax,1),%edx
                :   4afa4:	lea    0x10f3b5(%rip),%rax        # 15a360 <step0_jumps.12078>
                :   4afab:	movslq (%rax,%rdx,4),%rax
@@ -6404,7 +6404,7 @@
                :   4b0fb:	movsbl -0x4c8(%rbp),%eax
                :   4b102:	lea    0x10f2d7(%rip),%rdx        # 15a3e0 <jump_table.12059>
                :   4b109:	sub    $0x20,%eax
-               :   4b10c:	cltq   
+               :   4b10c:	cltq
                :   4b10e:	movzbl (%rdx,%rax,1),%edx
                :   4b112:	lea    0x10f1c7(%rip),%rax        # 15a2e0 <step1_jumps.12109>
                :   4b119:	movslq (%rax,%rdx,4),%rax
@@ -6436,7 +6436,7 @@
                :   4b18d:	movsbl -0x4c8(%rbp),%eax
                :   4b194:	lea    0x10f245(%rip),%rdx        # 15a3e0 <jump_table.12059>
                :   4b19b:	sub    $0x20,%eax
-               :   4b19e:	cltq   
+               :   4b19e:	cltq
                :   4b1a0:	movzbl (%rdx,%rax,1),%edx
                :   4b1a4:	lea    0x10efb5(%rip),%rax        # 15a160 <step4_jumps.12114>
                :   4b1ab:	movslq (%rax,%rdx,4),%rax
@@ -6456,7 +6456,7 @@
                :   4b1ee:	movsbl -0x4c8(%rbp),%eax
                :   4b1f5:	lea    0x10f1e4(%rip),%rdx        # 15a3e0 <jump_table.12059>
                :   4b1fc:	sub    $0x20,%eax
-               :   4b1ff:	cltq   
+               :   4b1ff:	cltq
                :   4b201:	movzbl (%rdx,%rax,1),%edx
                :   4b205:	lea    0x10eed4(%rip),%rax        # 15a0e0 <step3b_jumps.12113>
                :   4b20c:	movslq (%rax,%rdx,4),%rax
@@ -6493,7 +6493,7 @@
                :   4b29d:	movsbl -0x4c8(%rbp),%eax
                :   4b2a4:	lea    0x10f135(%rip),%rdx        # 15a3e0 <jump_table.12059>
                :   4b2ab:	sub    $0x20,%eax
-               :   4b2ae:	cltq   
+               :   4b2ae:	cltq
                :   4b2b0:	movzbl (%rdx,%rax,1),%edx
                :   4b2b4:	lea    0x10eea5(%rip),%rax        # 15a160 <step4_jumps.12114>
                :   4b2bb:	movslq (%rax,%rdx,4),%rax
@@ -6530,15 +6530,15 @@
                :
 00000000000d8d69 <__write_nocancel>: /* __write_nocancel total:      6  0.0050 */
                :   d8d69:	mov    $0x1,%eax
-               :   d8d6e:	syscall 
+               :   d8d6e:	syscall
      6  0.0050 :   d8d70:	cmp    $0xfffffffffffff001,%rax
                :   d8d76:	jae    d8da9 <__write_nocancel+0x40>
-               :   d8d78:	retq   
+               :   d8d78:	retq
                :   d8d79:	sub    $0x8,%rsp
                :   d8d7d:	callq  f1630 <__libc_enable_asynccancel>
                :   d8d82:	mov    %rax,(%rsp)
                :   d8d86:	mov    $0x1,%eax
-               :   d8d8b:	syscall 
+               :   d8d8b:	syscall
                :   d8d8d:	mov    (%rsp),%rdi
                :   d8d91:	mov    %rax,%rdx
                :   d8d94:	callq  f1690 <__libc_disable_asynccancel>
@@ -6546,12 +6546,12 @@
                :   d8d9c:	add    $0x8,%rsp
                :   d8da0:	cmp    $0xfffffffffffff001,%rax
                :   d8da6:	jae    d8da9 <__write_nocancel+0x40>
-               :   d8da8:	retq   
+               :   d8da8:	retq
                :   d8da9:	mov    0x2c80a8(%rip),%rcx        # 3a0e58 <_DYNAMIC+0x2d8>
                :   d8db0:	neg    %eax
                :   d8db2:	mov    %eax,%fs:(%rcx)
                :   d8db5:	or     $0xffffffffffffffff,%rax
-               :   d8db9:	retq   
+               :   d8db9:	retq
                :   d8dba:	nopw   0x0(%rax,%rax,1)
                :
                :/lib64/libc-2.19.so:     file format elf64-x86-64
@@ -6593,7 +6593,7 @@
                :   731af:	pop    %rbx
                :   731b0:	pop    %rbp
                :   731b1:	pop    %r12
-               :   731b3:	retq   
+               :   731b3:	retq
                :   731b4:	nopl   0x0(%rax)
                :   731b8:	mov    0x10(%rdi),%rax
                :   731bc:	mov    0x20(%rdi),%rsi
@@ -6678,7 +6678,7 @@
                :   6cc29:	jne    6cca0 <_L_unlock_85>
                :   6cc2b:	mov    %edx,%eax
                :   6cc2d:	pop    %rbx
-               :   6cc2e:	retq   
+               :   6cc2e:	retq
                :   6cc2f:	nop
                :   6cc30:	mov    %rbx,%rdi
                :   6cc33:	jmp    6cbdd <putchar+0x6d>
@@ -6743,7 +6743,7 @@
                :   74bae:	pop    %rbx
                :   74baf:	pop    %rbp
                :   74bb0:	pop    %r12
-               :   74bb2:	retq   
+               :   74bb2:	retq
                :   74bb3:	nopl   0x0(%rax,%rax,1)
                :   74bb8:	cmpq   $0x0,0x20(%rdi)
                :   74bbd:	je     74ce0 <_IO_file_overflow@@GLIBC_2.2.5+0x190>
@@ -6892,7 +6892,7 @@
      2  0.0017 :   73ae0:	pop    %rbp
                :   73ae1:	pop    %r12
                :   73ae3:	pop    %r13
-               :   73ae5:	retq   
+               :   73ae5:	retq
                :   73ae6:	nopw   %cs:0x0(%rax,%rax,1)
                :   73af0:	mov    %r13,%rax
                :   73af3:	sub    %rbx,%rax
@@ -6900,7 +6900,7 @@
                :   73af8:	xor    %eax,%eax
                :   73afa:	jmp    73ac3 <_IO_file_write@@GLIBC_2.2.5+0x53>
                :   73afc:	callq  d8d69 <__write_nocancel>
-               :   73b01:	cltq   
+               :   73b01:	cltq
                :   73b03:	jmp    73ab3 <_IO_file_write@@GLIBC_2.2.5+0x43>
                :   73b05:	data32 nopw %cs:0x0(%rax,%rax,1)
                :
@@ -6983,7 +6983,7 @@
                :   4b480:	pop    %rbp
                :   4b481:	pop    %r12
                :   4b483:	pop    %r13
-               :   4b485:	retq   
+               :   4b485:	retq
                :   4b486:	nopw   %cs:0x0(%rax,%rax,1)
                :   4b490:	mov    $0xffffffff,%eax
                :   4b495:	cmp    %eax,%ecx
@@ -7070,7 +7070,7 @@
                :   73fb8:	pop    %r12
                :   73fba:	pop    %r13
                :   73fbc:	pop    %r14
-               :   73fbe:	retq   
+               :   73fbe:	retq
                :   73fbf:	nop
                :   73fc0:	xor    %r14d,%r14d
                :   73fc3:	mov    %rbx,%r13
@@ -7176,7 +7176,7 @@
                :   460ef:	mov    %dl,(%rsi)
                :   460f1:	jne    460d8 <_itoa_word+0x28>
                :   460f3:	mov    %rsi,%rax
-               :   460f6:	retq   
+               :   460f6:	retq
                :   460f7:	nopw   0x0(%rax,%rax,1)
                :   46100:	mov    %rdi,%rax
                :   46103:	shr    $0x4,%rdi
@@ -7213,7 +7213,7 @@
      1 8.3e-04 :   46173:	mov    %al,(%rsi)
                :   46175:	jne    46150 <_itoa_word+0xa0>
                :   46177:	mov    %rsi,%rax
-               :   4617a:	retq   
+               :   4617a:	retq
                :   4617b:	nopl   0x0(%rax,%rax,1)
                :
                :/lib64/libc-2.19.so:     file format elf64-x86-64
@@ -7284,7 +7284,7 @@
                :   75920:	pop    %r12
                :   75922:	pop    %r13
                :   75924:	pop    %r14
-               :   75926:	retq   
+               :   75926:	retq
                :   75927:	nopw   0x0(%rax,%rax,1)
                :
                :/lib64/libc-2.19.so:     file format elf64-x86-64
@@ -7299,7 +7299,7 @@
                :   748d6:	mov    %rdx,%rbx
                :   748d9:	jne    748e0 <_IO_do_write@@GLIBC_2.2.5+0x10>
                :   748db:	pop    %rbx
-               :   748dc:	retq   
+               :   748dc:	retq
                :   748dd:	nopl   (%rax)
                :   748e0:	callq  73140 <new_do_write>
                :   748e5:	cmp    %rax,%rbx
@@ -7307,7 +7307,7 @@
                :   748eb:	movzbl %al,%eax
                :   748ee:	neg    %eax
                :   748f0:	pop    %rbx
-               :   748f1:	retq   
+               :   748f1:	retq
                :   748f2:	data32 data32 data32 data32 nopw %cs:0x0(%rax,%rax,1)
                :
                :/lib64/libc-2.19.so:     file format elf64-x86-64
@@ -7350,7 +7350,7 @@
                :   8bf01:	je     8bf10 <strchrnul+0x50>
                :   8bf03:	bsf    %eax,%eax
                :   8bf06:	lea    (%rdi,%rax,1),%rax
-     1 8.3e-04 :   8bf0a:	retq   
+     1 8.3e-04 :   8bf0a:	retq
                :   8bf0b:	nopl   0x0(%rax,%rax,1)
                :   8bf10:	movdqu 0x10(%rdi),%xmm0
                :   8bf15:	movdqa %xmm0,%xmm4
@@ -7419,7 +7419,7 @@
                :   8c01d:	or     %rdx,%rax
                :   8c020:	bsf    %rax,%rax
                :   8c024:	lea    (%rdi,%rax,1),%rax
-               :   8c028:	retq   
+               :   8c028:	retq
                :   8c029:	nopl   0x0(%rax)
                :   8c030:	mov    %rdi,%rdx
                :   8c033:	pxor   %xmm2,%xmm2
@@ -7461,12 +7461,12 @@
                :   8c0bf:	jne    8c020 <strchrnul+0x160>
                :   8c0c5:	jmpq   8bf72 <strchrnul+0xb2>
                :   8c0ca:	nopw   0x0(%rax,%rax,1)
-/* 
- * Command line: opannotate --assembly pi.3ni 
- * 
+/*
+ * Command line: opannotate --assembly pi.3ni
+ *
  * Interpretation of command line:
  * Output annotated assembly listing with samples
- * 
+ *
  * CPU: Intel Ivy Bridge microarchitecture, speed 3600 MHz (estimated)
  * Counted CPU_CLK_UNHALTED events (Clock cycles when not halted) with a unit mask of 0x00 (No unit mask) count 100000
  */

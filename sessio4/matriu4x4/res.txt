@@ -1,0 +1,58 @@
+b)
+  1)
+    timing: time matriu4x4.g2 >/dev/null
+          0.37s
+    speedup: 0.77/0.37 = 2.08
+  2)
+    operf matriu4x4-opt-unrol-k.g2
+    opannotate --source matriu4x4-opt-unrol-k.g2 > matriu4x4-opt-unrol-k.g2.ann.txt
+
+    203  1.7285 :   for (iter=0; iter<n_iter; iter++)
+    190  1.6178 :     for (i = 0; i < 4; i++)
+    542  4.6151 :       for (j = 0; j < 4; j++) {
+   1548 13.1812 :         k_iter(0)
+   2548 21.6962 :         k_iter(1)
+   2117 18.0262 :         k_iter(2)
+   3574 30.4326 :         k_iter(3)
+                :       }
+
+    Now we see that the cost of the loop comparisons and branching
+    has been reduced to a total 8% vs 82% of the inner loop body.
+  3)
+
+  -- Init i loop (1 instr, TOTAL = 297 instr)
+    400600:	31 f6                	xor    %esi,%esi
+  -- Start i loop ((10+64)*4 instr = 296 instr)
+    400602:	48 8b 04 24          	mov    (%rsp),%rax
+    400606:	8b 5c 34 10          	mov    0x10(%rsp,%rsi,1),%ebx
+    40060a:	48 8d 4c 35 00       	lea    0x0(%rbp,%rsi,1),%rcx
+    40060f:	45 8b 1c 37          	mov    (%r15,%rsi,1),%r11d
+    400613:	45 8b 14 36          	mov    (%r14,%rsi,1),%r10d
+    400617:	44 8b 0c 30          	mov    (%rax,%rsi,1),%r9d
+    40061b:	31 c0                	xor    %eax,%eax
+  --- Start j loop ( 4*16 instr = 64 instr)
+    40061d:	8b 54 04 50          	mov    0x50(%rsp,%rax,1),%edx
+    400621:	45 8b 44 05 00       	mov    0x0(%r13,%rax,1),%r8d
+    400626:	0f af d3             	imul   %ebx,%edx
+    400629:	03 14 01             	add    (%rcx,%rax,1),%edx
+    40062c:	45 0f af c3          	imul   %r11d,%r8d
+    400630:	44 01 c2             	add    %r8d,%edx
+    400633:	45 8b 04 04          	mov    (%r12,%rax,1),%r8d
+    400637:	45 0f af c2          	imul   %r10d,%r8d
+    40063b:	44 01 c2             	add    %r8d,%edx
+    40063e:	44 8b 04 07          	mov    (%rdi,%rax,1),%r8d
+    400642:	45 0f af c1          	imul   %r9d,%r8d
+    400646:	44 01 c2             	add    %r8d,%edx
+    400649:	89 14 01             	mov    %edx,(%rcx,%rax,1)
+    40064c:	48 83 c0 04          	add    $0x4,%rax
+    400650:	48 83 f8 10          	cmp    $0x10,%rax
+    400654:	75 c7                	jne    40061d <main+0xdd>
+  --- End j loop
+    400656:	48 83 c6 10          	add    $0x10,%rsi
+    40065a:	48 83 fe 40          	cmp    $0x40,%rsi
+    40065e:	75 a2                	jne    400602 <main+0xc2>
+  --- End i loop
+
+  And so we see that the number of instructions has been reduced to 297.
+
+c)

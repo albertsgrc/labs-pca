@@ -174,7 +174,7 @@ void epilog( void );
 int main( int argc, char *argv[] )
 {
     N = 10000;
-
+    return 0;
     if( argc > 1 )
         N = atoi(argv[1]);
 

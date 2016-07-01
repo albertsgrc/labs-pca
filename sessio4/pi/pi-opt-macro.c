@@ -9,93 +9,70 @@ char string[100];
 // SPEEDUP: 3325750/2887600 = 1.151735004848317
 
 #define DIVIDE(_x, _n) {        \
-    int j, k;                   \
+    int k;                   \
     unsigned q, r, u;           \
     long v;                     \
                                 \
-    r = 0;                      \                                       
-    for( k = 0; k <= N4; k++ )  \                  
-    {                           \               
-        u = r * 10 + _x[k];     \                  
-        q = u / _n;             \                 
-        r = u - q * _n;         \                 
-        _x[k] = q;              \                 
+    r = 0;                      \
+    for( k = 0; k <= N4; k++ )  \
+    {                           \
+        u = r * 10 + _x[k];     \
+        q = u / _n;             \
+        r = u - q * _n;         \
+        _x[k] = q;              \
     }                           \
 }                               \
 
-void LONGDIV( char *x, int n )                          
-{                                                
+void LONGDIV( char *x, int n )
+{
+    int j, k;
+    unsigned q, r;
+    long u;
+
+    r = 0;
+    for (k = 0; k <= N4; k++)
+    {
+      u = (long) r * 10 + x[k];
+      q = u / n;
+      r = u - q * n;
+      x[k] = q;
+    }
+}
+
+void MULTIPLY( char *x, int n )
+{
     int j, k;
     unsigned q, r, u;
     long v;
-
-    if( n < 6553 )                               
-    {                                            
-        r = 0;                                   
-        for( k = 0; k <= N4; k++ )               
-        {                                        
-            u = r * 10 + x[k];                   
-            q = u / n;                           
-            r = u - q * n;                       
-            x[k] = q;                            
-        }                                       
-    }                                            
-    else                                         
-    {                                            
-        r = 0;                                   
-        for( k = 0; k <= N4; k++ )              
-        {                                       
-            if( r < 6553 )                      
-            {                                   
-                u = r * 10 + x[k];              
-                q = u / n;                      
-                r = u - q * n;                  
-            }                                   
-            else                                
-            {                                   
-                v = (long) r * 10 + x[k];       
-                q = v / n;                      
-                r = v - q * n;                  
-            }                                   
-            x[k] = q;                           
-        }                                       
-    }                                           
+    r = 0;
+    for( k = N4; k >= 0; k-- )
+    {
+        q = n * x[k] + r;
+        r = q / 10;
+        x[k] = q - r * 10;
+    }
 }
 
-void MULTIPLY( char *x, int n )                        
-{                                            
+void SET( char *x, int n )
+{
+    memset( x, 0, N4 + 1 );
+    x[0] = n;
+}
+
+
+void SUBTRACT( char *x, char *y, char *z )
+{
     int j, k;
     unsigned q, r, u;
     long v;
-    r = 0;                                   
-    for( k = N4; k >= 0; k-- )               
-    {                                        
-        q = n * x[k] + r;                    
-        r = q / 10;                          
-        x[k] = q - r * 10;                   
-    }                                        
-}
-
-void SET( char *x, int n )                              
-{                                                
-    memset( x, 0, N4 + 1 );                      
-    x[0] = n;                                    
-}
-
-
-void SUBTRACT( char *x, char *y, char *z )                      
-{                                                
-    int j, k;
-    unsigned q, r, u;
-    long v;
-    for( k = N4; k >= 0; k-- )                   
-    {                                            
-        if( (x[k] = y[k] - z[k]) < 0 )           
-        {                                        
-            x[k] += 10;                          
-            z[k-1]++;                            
-        }                                        
-    }                                            
+    for( k = N4; k >= 0; k-- )
+    {
+        if( (x[k] = y[k] - z[k]) < 0 )
+        {
+            x[k] += 10;
+            z[k-1]++;
+        }
+    }
 }
 
 
@@ -132,14 +109,13 @@ void calculate( void )
     for( j = 2 * N4 + 1; j >= 3; j -= 2 )
     {
         SET( c, 1 );
-        LONGDIV( c, j );
+        DIVIDE( c, j );
 
         SUBTRACT( a, c, a );
         DIVIDE( a, 25 );
 
         SUBTRACT( b, c, b );
-        DIVIDE( b, 239 );
-        DIVIDE( b, 239 );
+        LONGDIV( b, 239*239 );
 
         progress();
     }
@@ -161,17 +137,17 @@ void calculate( void )
 
 /*
 
- N = 10000                      
- A = 0                          
- B = 0                          
- J = 2 * (N + 4) + 1            
- FOR J = J TO 3 STEP -2         
-     A = (1 / J - A) / 5 ^ 2    
-     B = (1 / J - B) / 239 ^ 2  
- NEXT J                         
- A = (1 - A) / 5                
- B = (1 - B) / 239              
- PI = (A * 4 - B) * 4           
+ N = 10000
+ A = 0
+ B = 0
+ J = 2 * (N + 4) + 1
+ FOR J = J TO 3 STEP -2
+     A = (1 / J - A) / 5 ^ 2
+     B = (1 / J - B) / 239 ^ 2
+ NEXT J
+ A = (1 - A) / 5
+ B = (1 - B) / 239
+ PI = (A * 4 - B) * 4
 
 */
 
@@ -200,4 +176,3 @@ void epilog( void )
         }
     }
 }
-
